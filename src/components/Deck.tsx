@@ -342,10 +342,10 @@ const slides: Slide[] = [
               "WooCommerce plugin on WordPress.org — Live",
               "Yellow Card anchor integration — In progress",
             ].map((t) => (
-              <div key={t} className="flex items-start gap-3 rounded-xl border border-border bg-card p-4">
+              <motion.div {...cardHover} key={t} className="flex cursor-pointer items-start gap-3 rounded-xl border border-border bg-card p-4 transition-colors hover:border-lime/60">
                 <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-lime" />
                 <span className="text-sm text-foreground">{t}</span>
-              </div>
+              </motion.div>
             ))}
           </div>
           <div className="grid grid-cols-2 gap-4">
