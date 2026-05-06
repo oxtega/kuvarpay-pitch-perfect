@@ -243,14 +243,14 @@ const slides: Slide[] = [
             { n: "03", t: "Stellar settles", d: "Universal settlement layer." },
             { n: "04", t: "Merchant gets paid", d: "Local fiat or USDC on Stellar." },
           ].map((s, i) => (
-            <div key={s.n} className="relative rounded-2xl border border-border bg-card p-6">
+            <motion.div {...cardHover} key={s.n} className="relative cursor-pointer rounded-2xl border border-border bg-card p-6 transition-colors hover:border-lime/60">
               <div className="font-display text-3xl text-lime">{s.n}</div>
               <div className="mt-3 font-display text-xl">{s.t}</div>
               <p className="mt-2 text-sm text-muted-foreground">{s.d}</p>
               {i < 3 && (
                 <ArrowRight className="absolute -right-4 top-1/2 hidden h-6 w-6 -translate-y-1/2 text-lime md:block" />
               )}
-            </div>
+            </motion.div>
           ))}
         </div>
         <div className="mt-10 rounded-2xl border border-lime/30 bg-lime/5 p-6">
