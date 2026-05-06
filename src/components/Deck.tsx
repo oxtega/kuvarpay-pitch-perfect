@@ -139,11 +139,11 @@ const slides: Slide[] = [
             { i: Workflow, t: "Zero compliance", d: "P2P bypasses KYC, sanctions and audit trails." },
             { i: Globe2, t: "No global reach", d: "Local merchants can't accept overseas crypto." },
           ].map(({ i: Icon, t, d }) => (
-            <div key={t} className="rounded-2xl border border-border bg-card p-6">
-              <Icon className="h-6 w-6 text-lime" />
+            <motion.div {...cardHover} key={t} className="group cursor-pointer rounded-2xl border border-border bg-card p-6 transition-colors hover:border-lime/60">
+              <Icon className="h-6 w-6 text-lime transition-transform group-hover:scale-110" />
               <div className="mt-3 font-display text-xl">{t}</div>
               <p className="mt-2 text-sm text-muted-foreground">{d}</p>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
