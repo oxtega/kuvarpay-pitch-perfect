@@ -380,11 +380,11 @@ const slides: Slide[] = [
             { t: "FX spread", v: "0.8%", d: "On crypto → local fiat conversions." },
             { t: "SaaS + add-ons", v: "$49+/mo", d: "Subscriptions, APA, advanced analytics." },
           ].map((b) => (
-            <div key={b.t} className="rounded-3xl border border-border bg-card p-8">
+            <motion.div {...cardHover} key={b.t} className="cursor-pointer rounded-3xl border border-border bg-card p-8 transition-colors hover:border-lime/60">
               <div className="text-xs uppercase tracking-[0.2em] text-muted-foreground">{b.t}</div>
               <div className="text-gradient-lime mt-3 font-display text-6xl font-bold">{b.v}</div>
               <p className="mt-4 text-muted-foreground">{b.d}</p>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
