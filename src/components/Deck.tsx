@@ -83,7 +83,14 @@ const slides: Slide[] = [
     eyebrow: "Meet Kuvar",
     render: () => (
       <div className="grid h-full items-center gap-12 lg:grid-cols-2">
-        <img src={mascot} alt="Kuvar" className="mx-auto max-h-[520px]" />
+        <motion.img
+          src={mascot}
+          alt="Kuvar"
+          className="mx-auto max-h-[420px] w-auto object-contain"
+          animate={{ rotate: [-2, 2, -2] }}
+          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+          whileHover={{ scale: 1.06 }}
+        />
         <div>
           <h2 className="font-display text-5xl font-bold md:text-6xl">
             Hi, I'm <span className="text-gradient-lime">Kuvar.</span>
