@@ -7,20 +7,28 @@ import {
   Boxes,
   CheckCircle2,
   Globe2,
+  Instagram,
   LineChart,
+  Linkedin,
   Lock,
   Repeat,
   Rocket,
   Sparkles,
+  Twitter,
   Wallet,
   Workflow,
   Zap,
 } from "lucide-react";
 import { SlideShell } from "@/components/SlideShell";
 import { AfricaMap } from "@/components/AfricaMap";
-import mascot from "@/assets/kuvar-mascot.jpg";
-import logo from "@/assets/kuvarpay-logo.jpg";
+import mascot from "@/assets/kuvar-mascot.png";
 import dashboard from "@/assets/dashboard.jpg";
+
+// Reusable interactive card — lifts, glows on hover, presses on click
+const cardHover = {
+  whileHover: { y: -4, scale: 1.02, transition: { type: "spring" as const, stiffness: 300, damping: 20 } },
+  whileTap: { scale: 0.98 },
+};
 
 type Slide = { eyebrow?: string; render: () => React.ReactNode };
 
