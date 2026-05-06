@@ -58,10 +58,22 @@ const slides: Slide[] = [
             <div><span className="font-display text-2xl text-foreground">10+</span> chains</div>
           </div>
         </div>
-        <div className="relative">
+        <motion.div
+          className="relative"
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.6 }}
+        >
           <div className="absolute inset-0 -z-10 rounded-[3rem] bg-lime/20 blur-3xl" />
-          <img src={mascot} alt="Kuvar mascot" className="mx-auto max-h-[560px] drop-shadow-2xl" />
-        </div>
+          <motion.img
+            src={mascot}
+            alt="Kuvar mascot"
+            className="mx-auto max-h-[440px] w-auto object-contain drop-shadow-2xl"
+            animate={{ y: [0, -12, 0] }}
+            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+            whileHover={{ scale: 1.05, rotate: -2 }}
+          />
+        </motion.div>
       </div>
     ),
   },
