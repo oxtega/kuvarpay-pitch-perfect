@@ -280,12 +280,12 @@ const slides: Slide[] = [
           </p>
           <div className="mt-8 space-y-2">
             {["Nigeria","Ghana","Kenya","Rwanda","South Africa"].map((c) => (
-              <div key={c} className="flex items-center justify-between rounded-xl border border-border bg-card px-4 py-3">
+              <motion.div {...cardHover} key={c} className="flex cursor-pointer items-center justify-between rounded-xl border border-border bg-card px-4 py-3 transition-colors hover:border-lime/60">
                 <span className="font-display text-foreground">{c}</span>
                 <span className="inline-flex items-center gap-2 text-xs font-medium text-lime">
                   <span className="h-2 w-2 animate-pulse rounded-full bg-lime" /> Live
                 </span>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
