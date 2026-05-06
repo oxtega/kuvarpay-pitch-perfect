@@ -310,10 +310,10 @@ const slides: Slide[] = [
             { v: "84M", l: "Active African crypto users" },
             { v: "$40B", l: "African e-commerce TAM by 2027" },
           ].map((s) => (
-            <div key={s.l} className="rounded-3xl border border-border bg-card p-8">
+            <motion.div {...cardHover} key={s.l} className="cursor-pointer rounded-3xl border border-border bg-card p-8 transition-colors hover:border-lime/60">
               <div className="text-gradient-lime font-display text-6xl font-bold">{s.v}</div>
               <p className="mt-4 text-muted-foreground">{s.l}</p>
-            </div>
+            </motion.div>
           ))}
         </div>
         <p className="mt-8 max-w-3xl text-muted-foreground">
