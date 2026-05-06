@@ -171,10 +171,14 @@ const slides: Slide[] = [
               "Stellar settlement with full audit trail",
               "One JS snippet to go live",
             ].map((t) => (
-              <div key={t} className="flex items-center gap-3 text-foreground">
+              <motion.div
+                key={t}
+                whileHover={{ x: 6 }}
+                className="flex cursor-pointer items-center gap-3 rounded-lg p-2 text-foreground transition-colors hover:bg-lime/5"
+              >
                 <CheckCircle2 className="h-5 w-5 shrink-0 text-lime" />
                 <span>{t}</span>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
