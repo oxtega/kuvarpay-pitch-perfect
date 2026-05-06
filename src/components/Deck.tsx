@@ -7,20 +7,28 @@ import {
   Boxes,
   CheckCircle2,
   Globe2,
+  Instagram,
   LineChart,
+  Linkedin,
   Lock,
   Repeat,
   Rocket,
   Sparkles,
+  Twitter,
   Wallet,
   Workflow,
   Zap,
 } from "lucide-react";
 import { SlideShell } from "@/components/SlideShell";
 import { AfricaMap } from "@/components/AfricaMap";
-import mascot from "@/assets/kuvar-mascot.jpg";
-import logo from "@/assets/kuvarpay-logo.jpg";
+import mascot from "@/assets/kuvar-mascot.png";
 import dashboard from "@/assets/dashboard.jpg";
+
+// Reusable interactive card — lifts, glows on hover, presses on click
+const cardHover = {
+  whileHover: { y: -4, scale: 1.02, transition: { type: "spring" as const, stiffness: 300, damping: 20 } },
+  whileTap: { scale: 0.98 },
+};
 
 type Slide = { eyebrow?: string; render: () => React.ReactNode };
 
@@ -50,10 +58,22 @@ const slides: Slide[] = [
             <div><span className="font-display text-2xl text-foreground">10+</span> chains</div>
           </div>
         </div>
-        <div className="relative">
+        <motion.div
+          className="relative"
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.6 }}
+        >
           <div className="absolute inset-0 -z-10 rounded-[3rem] bg-lime/20 blur-3xl" />
-          <img src={mascot} alt="Kuvar mascot" className="mx-auto max-h-[560px] drop-shadow-2xl" />
-        </div>
+          <motion.img
+            src={mascot}
+            alt="Kuvar mascot"
+            className="mx-auto max-h-[440px] w-auto object-contain drop-shadow-2xl"
+            animate={{ y: [0, -12, 0] }}
+            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+            whileHover={{ scale: 1.05, rotate: -2 }}
+          />
+        </motion.div>
       </div>
     ),
   },
@@ -63,7 +83,14 @@ const slides: Slide[] = [
     eyebrow: "Meet Kuvar",
     render: () => (
       <div className="grid h-full items-center gap-12 lg:grid-cols-2">
-        <img src={mascot} alt="Kuvar" className="mx-auto max-h-[520px]" />
+        <motion.img
+          src={mascot}
+          alt="Kuvar"
+          className="mx-auto max-h-[420px] w-auto object-contain"
+          animate={{ rotate: [-2, 2, -2] }}
+          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+          whileHover={{ scale: 1.06 }}
+        />
         <div>
           <h2 className="font-display text-5xl font-bold md:text-6xl">
             Hi, I'm <span className="text-gradient-lime">Kuvar.</span>
@@ -78,10 +105,10 @@ const slides: Slide[] = [
               { k: "Settle", v: "Stellar rails" },
               { k: "Deliver", v: "Local money" },
             ].map((b) => (
-              <div key={b.k} className="rounded-2xl border border-border bg-card p-4">
+              <motion.div {...cardHover} key={b.k} className="cursor-pointer rounded-2xl border border-border bg-card p-4 transition-colors hover:border-lime/60 hover:bg-card/70">
                 <div className="text-xs uppercase tracking-widest text-muted-foreground">{b.k}</div>
                 <div className="mt-1 font-display text-lg text-foreground">{b.v}</div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
@@ -112,11 +139,11 @@ const slides: Slide[] = [
             { i: Workflow, t: "Zero compliance", d: "P2P bypasses KYC, sanctions and audit trails." },
             { i: Globe2, t: "No global reach", d: "Local merchants can't accept overseas crypto." },
           ].map(({ i: Icon, t, d }) => (
-            <div key={t} className="rounded-2xl border border-border bg-card p-6">
-              <Icon className="h-6 w-6 text-lime" />
+            <motion.div {...cardHover} key={t} className="group cursor-pointer rounded-2xl border border-border bg-card p-6 transition-colors hover:border-lime/60">
+              <Icon className="h-6 w-6 text-lime transition-transform group-hover:scale-110" />
               <div className="mt-3 font-display text-xl">{t}</div>
               <p className="mt-2 text-sm text-muted-foreground">{d}</p>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
@@ -144,10 +171,14 @@ const slides: Slide[] = [
               "Stellar settlement with full audit trail",
               "One JS snippet to go live",
             ].map((t) => (
-              <div key={t} className="flex items-center gap-3 text-foreground">
+              <motion.div
+                key={t}
+                whileHover={{ x: 6 }}
+                className="flex cursor-pointer items-center gap-3 rounded-lg p-2 text-foreground transition-colors hover:bg-lime/5"
+              >
                 <CheckCircle2 className="h-5 w-5 shrink-0 text-lime" />
                 <span>{t}</span>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
@@ -180,16 +211,17 @@ const slides: Slide[] = [
             { i: Workflow, t: "Payment Agent", d: "Autonomous payouts & disbursements." },
             { i: LineChart, t: "Dashboard + SDK", d: "Analytics, webhooks, WooCommerce plugin." },
           ].map(({ i: Icon, t, d }) => (
-            <div
+            <motion.div
+              {...cardHover}
               key={t}
-              className="group rounded-2xl border border-border bg-card p-6 transition hover:border-lime/60 hover:bg-card/70"
+              className="group cursor-pointer rounded-2xl border border-border bg-card p-6 transition-colors hover:border-lime/60 hover:bg-card/70"
             >
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-lime/15 text-lime">
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-lime/15 text-lime transition-all group-hover:bg-lime group-hover:text-ink">
                 <Icon className="h-5 w-5" />
               </div>
               <div className="mt-4 font-display text-xl">{t}</div>
               <p className="mt-2 text-sm text-muted-foreground">{d}</p>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
@@ -211,14 +243,14 @@ const slides: Slide[] = [
             { n: "03", t: "Stellar settles", d: "Universal settlement layer." },
             { n: "04", t: "Merchant gets paid", d: "Local fiat or USDC on Stellar." },
           ].map((s, i) => (
-            <div key={s.n} className="relative rounded-2xl border border-border bg-card p-6">
+            <motion.div {...cardHover} key={s.n} className="relative cursor-pointer rounded-2xl border border-border bg-card p-6 transition-colors hover:border-lime/60">
               <div className="font-display text-3xl text-lime">{s.n}</div>
               <div className="mt-3 font-display text-xl">{s.t}</div>
               <p className="mt-2 text-sm text-muted-foreground">{s.d}</p>
               {i < 3 && (
                 <ArrowRight className="absolute -right-4 top-1/2 hidden h-6 w-6 -translate-y-1/2 text-lime md:block" />
               )}
-            </div>
+            </motion.div>
           ))}
         </div>
         <div className="mt-10 rounded-2xl border border-lime/30 bg-lime/5 p-6">
@@ -248,12 +280,12 @@ const slides: Slide[] = [
           </p>
           <div className="mt-8 space-y-2">
             {["Nigeria","Ghana","Kenya","Rwanda","South Africa"].map((c) => (
-              <div key={c} className="flex items-center justify-between rounded-xl border border-border bg-card px-4 py-3">
+              <motion.div {...cardHover} key={c} className="flex cursor-pointer items-center justify-between rounded-xl border border-border bg-card px-4 py-3 transition-colors hover:border-lime/60">
                 <span className="font-display text-foreground">{c}</span>
                 <span className="inline-flex items-center gap-2 text-xs font-medium text-lime">
                   <span className="h-2 w-2 animate-pulse rounded-full bg-lime" /> Live
                 </span>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
@@ -278,10 +310,10 @@ const slides: Slide[] = [
             { v: "84M", l: "Active African crypto users" },
             { v: "$40B", l: "African e-commerce TAM by 2027" },
           ].map((s) => (
-            <div key={s.l} className="rounded-3xl border border-border bg-card p-8">
+            <motion.div {...cardHover} key={s.l} className="cursor-pointer rounded-3xl border border-border bg-card p-8 transition-colors hover:border-lime/60">
               <div className="text-gradient-lime font-display text-6xl font-bold">{s.v}</div>
               <p className="mt-4 text-muted-foreground">{s.l}</p>
-            </div>
+            </motion.div>
           ))}
         </div>
         <p className="mt-8 max-w-3xl text-muted-foreground">
@@ -310,10 +342,10 @@ const slides: Slide[] = [
               "WooCommerce plugin on WordPress.org — Live",
               "Yellow Card anchor integration — In progress",
             ].map((t) => (
-              <div key={t} className="flex items-start gap-3 rounded-xl border border-border bg-card p-4">
+              <motion.div {...cardHover} key={t} className="flex cursor-pointer items-start gap-3 rounded-xl border border-border bg-card p-4 transition-colors hover:border-lime/60">
                 <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-lime" />
                 <span className="text-sm text-foreground">{t}</span>
-              </div>
+              </motion.div>
             ))}
           </div>
           <div className="grid grid-cols-2 gap-4">
@@ -323,10 +355,10 @@ const slides: Slide[] = [
               { v: "1,200+", l: "Currencies accepted" },
               { v: "100%", l: "Stellar-settled" },
             ].map((s) => (
-              <div key={s.l} className="rounded-2xl border border-border bg-card p-6">
+              <motion.div {...cardHover} key={s.l} className="cursor-pointer rounded-2xl border border-border bg-card p-6 transition-colors hover:border-lime/60">
                 <div className="text-gradient-lime font-display text-5xl font-bold">{s.v}</div>
                 <p className="mt-2 text-sm text-muted-foreground">{s.l}</p>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
@@ -348,11 +380,11 @@ const slides: Slide[] = [
             { t: "FX spread", v: "0.8%", d: "On crypto → local fiat conversions." },
             { t: "SaaS + add-ons", v: "$49+/mo", d: "Subscriptions, APA, advanced analytics." },
           ].map((b) => (
-            <div key={b.t} className="rounded-3xl border border-border bg-card p-8">
+            <motion.div {...cardHover} key={b.t} className="cursor-pointer rounded-3xl border border-border bg-card p-8 transition-colors hover:border-lime/60">
               <div className="text-xs uppercase tracking-[0.2em] text-muted-foreground">{b.t}</div>
               <div className="text-gradient-lime mt-3 font-display text-6xl font-bold">{b.v}</div>
               <p className="mt-4 text-muted-foreground">{b.d}</p>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
@@ -376,7 +408,7 @@ const slides: Slide[] = [
             { n: "Diana Ekefre", r: "Marketing Officer", t: "SOL" },
             { n: "Alarape Yusuf", r: "Graphic Designer", t: "XTZ" },
           ].map((p) => (
-            <div key={p.n} className="rounded-2xl border border-border bg-card p-6">
+            <motion.div {...cardHover} key={p.n} className="cursor-pointer rounded-2xl border border-border bg-card p-6 transition-colors hover:border-lime/60">
               <div className="flex items-center justify-between">
                 <div className="font-display text-xl">{p.n}</div>
                 <span className="rounded-full border border-lime/30 bg-lime/10 px-2 py-0.5 text-xs font-medium text-lime">
@@ -384,7 +416,7 @@ const slides: Slide[] = [
                 </span>
               </div>
               <div className="mt-1 text-sm text-muted-foreground">{p.r}</div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
@@ -412,26 +444,61 @@ const slides: Slide[] = [
               { v: "18mo", l: "Runway" },
               { v: "10x", l: "Merchant target" },
             ].map((s) => (
-              <div key={s.l} className="rounded-2xl border border-lime/40 bg-lime/5 p-4">
+              <motion.div {...cardHover} key={s.l} className="cursor-pointer rounded-2xl border border-lime/40 bg-lime/5 p-4 transition-colors hover:bg-lime/10">
                 <div className="text-gradient-lime font-display text-3xl font-bold">{s.v}</div>
                 <div className="mt-1 text-xs text-muted-foreground">{s.l}</div>
-              </div>
+              </motion.div>
             ))}
           </div>
           <div className="mt-10 flex flex-wrap items-center gap-4">
-            <a
+            <motion.a
+              whileHover={{ scale: 1.04 }}
+              whileTap={{ scale: 0.97 }}
               href="https://kuvarpay.com"
-              className="inline-flex items-center gap-2 rounded-full bg-lime px-6 py-3 font-display text-ink transition hover:scale-[1.02]"
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-2 rounded-full bg-lime px-6 py-3 font-display text-ink"
             >
               <Rocket className="h-4 w-4" /> kuvarpay.com
-            </a>
+            </motion.a>
             <span className="text-sm text-muted-foreground">hello@kuvarpay.com</span>
           </div>
+          <div className="mt-6 flex flex-wrap items-center gap-3">
+            {[
+              { i: Twitter, l: "Twitter", h: "https://twitter.com/kuvarpay" },
+              { i: Instagram, l: "Instagram", h: "https://instagram.com/kuvarpay" },
+              { i: Linkedin, l: "LinkedIn", h: "https://linkedin.com/company/kuvarpay" },
+            ].map(({ i: Icon, l, h }) => (
+              <motion.a
+                key={l}
+                href={h}
+                target="_blank"
+                rel="noreferrer"
+                whileHover={{ y: -3, scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-4 py-2 text-sm text-foreground transition-colors hover:border-lime/60 hover:text-lime"
+              >
+                <Icon className="h-4 w-4" /> {l}
+              </motion.a>
+            ))}
+          </div>
         </div>
-        <div className="relative">
+        <motion.div
+          className="relative"
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.6 }}
+        >
           <div className="absolute inset-0 -z-10 rounded-[3rem] bg-lime/20 blur-3xl" />
-          <img src={mascot} alt="Kuvar" className="mx-auto max-h-[520px]" />
-        </div>
+          <motion.img
+            src={mascot}
+            alt="Kuvar"
+            className="mx-auto max-h-[420px] w-auto object-contain"
+            animate={{ y: [0, -10, 0] }}
+            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+            whileHover={{ scale: 1.05 }}
+          />
+        </motion.div>
       </div>
     ),
   },
