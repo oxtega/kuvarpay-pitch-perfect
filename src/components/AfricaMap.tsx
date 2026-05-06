@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { ComposableMap, Geographies, Geography, Marker } from "react-simple-maps";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 
 const GEO_URL =
   "https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json";
@@ -25,11 +25,30 @@ const LIVE: Live[] = [
 
 const LIVE_NAMES = new Set(LIVE.map((c) => c.name));
 
+// Cycle through statuses for non-live countries
+const STATUSES = ["Watching", "Loading", "Coming soon", "On the radar"];
+function statusFor(name: string) {
+  let h = 0;
+  for (let i = 0; i < name.length; i++) h = (h * 31 + name.charCodeAt(i)) | 0;
+  return STATUSES[Math.abs(h) % STATUSES.length];
+}
+
+type Tip = { x: number; y: number; name: string; live: boolean; status?: string } | null;
+
 export function AfricaMap() {
-  const [hovered, setHovered] = useState<string | null>(null);
+  const [tip, setTip] = useState<Tip>(null);
+  const [pinned, setPinned] = useState<Tip>(null);
+
+  const active = pinned ?? tip;
 
   return (
-    <div className="relative w-full">
+    <div
+      className="relative w-full"
+      onMouseLeave={() => setTip(null)}
+      onClick={(e) => {
+        if (e.target === e.currentTarget) setPinned(null);
+      }}
+    >
       <ComposableMap
         projection="geoMercator"
         projectionConfig={{ scale: 380, center: [20, 3] }}
@@ -48,24 +67,42 @@ export function AfricaMap() {
                   <Geography
                     key={geo.rsmKey}
                     geography={geo}
-                    onMouseEnter={() => setHovered(name)}
-                    onMouseLeave={() => setHovered(null)}
+                    onMouseMove={(e) =>
+                      setTip({
+                        x: e.clientX,
+                        y: e.clientY,
+                        name,
+                        live: isLive,
+                        status: isLive ? undefined : statusFor(name),
+                      })
+                    }
+                    onMouseLeave={() => setTip(null)}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setPinned({
+                        x: (e as unknown as MouseEvent).clientX,
+                        y: (e as unknown as MouseEvent).clientY,
+                        name,
+                        live: isLive,
+                        status: isLive ? undefined : statusFor(name),
+                      });
+                    }}
                     style={{
                       default: {
                         fill: isLive
                           ? "oklch(0.88 0.22 128)"
-                          : "oklch(0.27 0.02 170)",
-                        stroke: "oklch(0.16 0.02 170)",
-                        strokeWidth: 0.6,
+                          : "oklch(0.42 0.025 170)",
+                        stroke: "oklch(0.97 0.005 170)",
+                        strokeWidth: 0.8,
                         outline: "none",
-                        transition: "fill 200ms",
+                        transition: "fill 200ms, transform 200ms",
                       },
                       hover: {
                         fill: isLive
                           ? "oklch(0.94 0.18 128)"
-                          : "oklch(0.34 0.02 170)",
+                          : "oklch(0.56 0.04 170)",
                         outline: "none",
-                        cursor: isLive ? "pointer" : "default",
+                        cursor: "pointer",
                       },
                       pressed: { outline: "none" },
                     }}
@@ -77,24 +114,27 @@ export function AfricaMap() {
 
         {LIVE.map((c) => (
           <Marker key={c.name} coordinates={c.coords}>
-            <circle r={6} fill="oklch(0.16 0.02 170)" />
-            <circle r={4} fill="oklch(0.97 0.005 170)" />
             <motion.circle
               r={10}
               fill="none"
-              stroke="oklch(0.94 0.18 128)"
+              stroke="oklch(0.97 0.005 170)"
               strokeWidth={1.5}
-              animate={{ r: [6, 16], opacity: [0.8, 0] }}
+              animate={{ r: [6, 18], opacity: [0.9, 0] }}
               transition={{ duration: 1.8, repeat: Infinity, ease: "easeOut" }}
             />
+            <circle r={6} fill="oklch(0.16 0.02 170)" />
+            <circle r={3.5} fill="oklch(0.97 0.005 170)" />
             <text
-              y={-12}
+              y={-14}
               textAnchor="middle"
               style={{
                 fontFamily: "Space Grotesk",
-                fontSize: 12,
-                fontWeight: 600,
-                fill: "oklch(0.97 0.005 170)",
+                fontSize: 13,
+                fontWeight: 700,
+                fill: "oklch(0.16 0.02 170)",
+                stroke: "oklch(0.97 0.005 170)",
+                strokeWidth: 3,
+                paintOrder: "stroke",
                 pointerEvents: "none",
               }}
             >
@@ -104,16 +144,35 @@ export function AfricaMap() {
         ))}
       </ComposableMap>
 
-      {hovered && (
-        <div className="pointer-events-none absolute left-4 top-4 rounded-lg border border-border bg-ink/80 px-3 py-1.5 text-xs font-medium text-foreground backdrop-blur">
-          {hovered}
-          {LIVE_NAMES.has(hovered) && (
-            <span className="ml-2 inline-flex items-center gap-1 text-lime">
-              <span className="h-1.5 w-1.5 rounded-full bg-lime" /> Live
-            </span>
-          )}
-        </div>
-      )}
+      <AnimatePresence>
+        {active && (
+          <motion.div
+            key={active.name + (pinned ? "-p" : "-h")}
+            initial={{ opacity: 0, y: 4 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0 }}
+            className="pointer-events-none absolute left-4 top-4 rounded-xl border border-border bg-ink/90 px-4 py-2.5 text-sm font-medium text-foreground backdrop-blur-xl shadow-2xl"
+          >
+            <div className="font-display text-base">{active.name}</div>
+            {active.live ? (
+              <span className="mt-1 inline-flex items-center gap-1.5 text-xs text-lime">
+                <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-lime" />
+                Live · accepting payments
+              </span>
+            ) : (
+              <span className="mt-1 inline-flex items-center gap-1.5 text-xs text-muted-foreground">
+                <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-muted-foreground" />
+                {active.status} · expansion queue
+              </span>
+            )}
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      <div className="absolute bottom-3 right-3 flex items-center gap-3 rounded-full border border-border bg-ink/70 px-3 py-1.5 text-[10px] uppercase tracking-widest text-muted-foreground backdrop-blur">
+        <span className="inline-flex items-center gap-1.5"><span className="h-2 w-2 rounded-sm bg-lime" /> Live</span>
+        <span className="inline-flex items-center gap-1.5"><span className="h-2 w-2 rounded-sm bg-muted" /> Watching</span>
+      </div>
     </div>
   );
 }
