@@ -444,26 +444,61 @@ const slides: Slide[] = [
               { v: "18mo", l: "Runway" },
               { v: "10x", l: "Merchant target" },
             ].map((s) => (
-              <div key={s.l} className="rounded-2xl border border-lime/40 bg-lime/5 p-4">
+              <motion.div {...cardHover} key={s.l} className="cursor-pointer rounded-2xl border border-lime/40 bg-lime/5 p-4 transition-colors hover:bg-lime/10">
                 <div className="text-gradient-lime font-display text-3xl font-bold">{s.v}</div>
                 <div className="mt-1 text-xs text-muted-foreground">{s.l}</div>
-              </div>
+              </motion.div>
             ))}
           </div>
           <div className="mt-10 flex flex-wrap items-center gap-4">
-            <a
+            <motion.a
+              whileHover={{ scale: 1.04 }}
+              whileTap={{ scale: 0.97 }}
               href="https://kuvarpay.com"
-              className="inline-flex items-center gap-2 rounded-full bg-lime px-6 py-3 font-display text-ink transition hover:scale-[1.02]"
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-2 rounded-full bg-lime px-6 py-3 font-display text-ink"
             >
               <Rocket className="h-4 w-4" /> kuvarpay.com
-            </a>
+            </motion.a>
             <span className="text-sm text-muted-foreground">hello@kuvarpay.com</span>
           </div>
+          <div className="mt-6 flex flex-wrap items-center gap-3">
+            {[
+              { i: Twitter, l: "Twitter", h: "https://twitter.com/kuvarpay" },
+              { i: Instagram, l: "Instagram", h: "https://instagram.com/kuvarpay" },
+              { i: Linkedin, l: "LinkedIn", h: "https://linkedin.com/company/kuvarpay" },
+            ].map(({ i: Icon, l, h }) => (
+              <motion.a
+                key={l}
+                href={h}
+                target="_blank"
+                rel="noreferrer"
+                whileHover={{ y: -3, scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-4 py-2 text-sm text-foreground transition-colors hover:border-lime/60 hover:text-lime"
+              >
+                <Icon className="h-4 w-4" /> {l}
+              </motion.a>
+            ))}
+          </div>
         </div>
-        <div className="relative">
+        <motion.div
+          className="relative"
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.6 }}
+        >
           <div className="absolute inset-0 -z-10 rounded-[3rem] bg-lime/20 blur-3xl" />
-          <img src={mascot} alt="Kuvar" className="mx-auto max-h-[520px]" />
-        </div>
+          <motion.img
+            src={mascot}
+            alt="Kuvar"
+            className="mx-auto max-h-[420px] w-auto object-contain"
+            animate={{ y: [0, -10, 0] }}
+            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+            whileHover={{ scale: 1.05 }}
+          />
+        </motion.div>
       </div>
     ),
   },
