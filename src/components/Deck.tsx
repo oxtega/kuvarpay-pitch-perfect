@@ -105,10 +105,10 @@ const slides: Slide[] = [
               { k: "Settle", v: "Stellar rails" },
               { k: "Deliver", v: "Local money" },
             ].map((b) => (
-              <div key={b.k} className="rounded-2xl border border-border bg-card p-4">
+              <motion.div {...cardHover} key={b.k} className="cursor-pointer rounded-2xl border border-border bg-card p-4 transition-colors hover:border-lime/60 hover:bg-card/70">
                 <div className="text-xs uppercase tracking-widest text-muted-foreground">{b.k}</div>
                 <div className="mt-1 font-display text-lg text-foreground">{b.v}</div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
