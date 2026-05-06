@@ -408,7 +408,7 @@ const slides: Slide[] = [
             { n: "Diana Ekefre", r: "Marketing Officer", t: "SOL" },
             { n: "Alarape Yusuf", r: "Graphic Designer", t: "XTZ" },
           ].map((p) => (
-            <div key={p.n} className="rounded-2xl border border-border bg-card p-6">
+            <motion.div {...cardHover} key={p.n} className="cursor-pointer rounded-2xl border border-border bg-card p-6 transition-colors hover:border-lime/60">
               <div className="flex items-center justify-between">
                 <div className="font-display text-xl">{p.n}</div>
                 <span className="rounded-full border border-lime/30 bg-lime/10 px-2 py-0.5 text-xs font-medium text-lime">
@@ -416,7 +416,7 @@ const slides: Slide[] = [
                 </span>
               </div>
               <div className="mt-1 text-sm text-muted-foreground">{p.r}</div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
