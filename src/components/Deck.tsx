@@ -22,7 +22,7 @@ import mascot from "@/assets/kuvar-mascot.jpg";
 import logo from "@/assets/kuvarpay-logo.jpg";
 import dashboard from "@/assets/dashboard.jpg";
 
-type Slide = { eyebrow?: string; render: () => JSX.Element };
+type Slide = { eyebrow?: string; render: () => React.ReactNode };
 
 const slides: Slide[] = [
   // 1. Cover
