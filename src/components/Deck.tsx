@@ -211,16 +211,17 @@ const slides: Slide[] = [
             { i: Workflow, t: "Payment Agent", d: "Autonomous payouts & disbursements." },
             { i: LineChart, t: "Dashboard + SDK", d: "Analytics, webhooks, WooCommerce plugin." },
           ].map(({ i: Icon, t, d }) => (
-            <div
+            <motion.div
+              {...cardHover}
               key={t}
-              className="group rounded-2xl border border-border bg-card p-6 transition hover:border-lime/60 hover:bg-card/70"
+              className="group cursor-pointer rounded-2xl border border-border bg-card p-6 transition-colors hover:border-lime/60 hover:bg-card/70"
             >
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-lime/15 text-lime">
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-lime/15 text-lime transition-all group-hover:bg-lime group-hover:text-ink">
                 <Icon className="h-5 w-5" />
               </div>
               <div className="mt-4 font-display text-xl">{t}</div>
               <p className="mt-2 text-sm text-muted-foreground">{d}</p>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
