@@ -6,23 +6,22 @@ import {
   ArrowUpRight,
   BadgeCheck,
   Boxes,
+  Briefcase,
   CheckCircle2,
   Clock,
   Coins,
   CreditCard,
   Globe2,
   Instagram,
-  Landmark,
   Linkedin,
   Lock,
-  PartyPopper,
   Repeat,
   Rocket,
   ShieldCheck,
   Sparkles,
   Store,
   Twitter,
-  Utensils,
+  Users,
   Wallet,
   XCircle,
   Zap,
@@ -31,6 +30,12 @@ import { SlideShell } from "@/components/SlideShell";
 import { AfricaMap } from "@/components/AfricaMap";
 import mascot from "@/assets/kuvar-mascot.png";
 import dashboard from "@/assets/dashboard.jpg";
+import devicesImg from "@/assets/howitworks-devices.png";
+import mobileMoneyImg from "@/assets/mobile-money-iphone.png";
+import avatarVickish from "@/assets/avatar-vickish.png";
+import avatarBaddy from "@/assets/avatar-baddy.png";
+import avatarTori from "@/assets/avatar-tori.png";
+import avatarRemia from "@/assets/avatar-remia.png";
 
 const cardHover = {
   whileHover: { y: -4, scale: 1.02, transition: { type: "spring" as const, stiffness: 300, damping: 20 } },
