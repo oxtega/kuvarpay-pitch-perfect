@@ -6,23 +6,22 @@ import {
   ArrowUpRight,
   BadgeCheck,
   Boxes,
+  Briefcase,
   CheckCircle2,
   Clock,
   Coins,
   CreditCard,
   Globe2,
   Instagram,
-  Landmark,
   Linkedin,
   Lock,
-  PartyPopper,
   Repeat,
   Rocket,
   ShieldCheck,
   Sparkles,
   Store,
   Twitter,
-  Utensils,
+  Users,
   Wallet,
   XCircle,
   Zap,
@@ -31,6 +30,12 @@ import { SlideShell } from "@/components/SlideShell";
 import { AfricaMap } from "@/components/AfricaMap";
 import mascot from "@/assets/kuvar-mascot.png";
 import dashboard from "@/assets/dashboard.jpg";
+import devicesImg from "@/assets/howitworks-devices.png";
+import mobileMoneyImg from "@/assets/mobile-money-iphone.png";
+import avatarVickish from "@/assets/avatar-vickish.png";
+import avatarBaddy from "@/assets/avatar-baddy.png";
+import avatarTori from "@/assets/avatar-tori.png";
+import avatarRemia from "@/assets/avatar-remia.png";
 
 const cardHover = {
   whileHover: { y: -4, scale: 1.02, transition: { type: "spring" as const, stiffness: 300, damping: 20 } },
@@ -44,12 +49,14 @@ function ComplaintCard({
   time,
   body,
   rotate = 0,
+  avatar,
 }: {
   handle: string;
   name: string;
   time: string;
   body: string;
   rotate?: number;
+  avatar: string;
 }) {
   return (
     <motion.div
@@ -59,7 +66,7 @@ function ComplaintCard({
     >
       <div className="flex items-center justify-between text-xs">
         <div className="flex items-center gap-2">
-          <div className="h-7 w-7 rounded-full bg-gradient-to-br from-lime/60 to-lime/20" />
+          <img src={avatar} alt={name} className="h-8 w-8 rounded-full object-cover ring-2 ring-lime/30" />
           <div>
             <div className="font-display text-sm text-foreground">{name}</div>
             <div className="text-[10px] text-muted-foreground">@{handle} · {time}</div>
@@ -84,7 +91,7 @@ const slides: Slide[] = [
       <div className="grid h-full items-center gap-12 lg:grid-cols-[1.2fr_1fr]">
         <div>
           <span className="inline-flex items-center gap-2 rounded-full border border-lime/40 bg-lime/10 px-3 py-1 text-xs font-medium uppercase tracking-[0.18em] text-lime">
-            <Sparkles className="h-3 w-3" /> For Restaurants, Clubs & Retail
+            <Sparkles className="h-3 w-3" /> For Businesses & Freelancers
           </span>
           <h1 className="mt-6 font-display text-6xl font-bold leading-[0.95] md:text-8xl">
             Accept crypto.<br />
@@ -171,7 +178,7 @@ const slides: Slide[] = [
             THE <span className="text-gradient-lime">PROBLEM</span>
           </h2>
           <p className="mt-4 text-base text-muted-foreground">
-            Restaurants, nightclubs & retail businesses are losing revenue because:
+            Businesses and freelancers are losing revenue because:
           </p>
           <ul className="mt-5 space-y-2.5">
             {[
@@ -205,6 +212,7 @@ const slides: Slide[] = [
           <div className="relative z-10 grid grid-cols-2 gap-3">
             <ComplaintCard
               rotate={-2}
+              avatar={avatarVickish}
               name="vickish | devrel"
               handle="Vickish11"
               time="16 Jan"
@@ -212,6 +220,7 @@ const slides: Slide[] = [
             />
             <ComplaintCard
               rotate={3}
+              avatar={avatarBaddy}
               name="Baddy of Lagos"
               handle="baddylagos"
               time="19 Aug"
@@ -219,6 +228,7 @@ const slides: Slide[] = [
             />
             <ComplaintCard
               rotate={-3}
+              avatar={avatarTori}
               name="Tori"
               handle="Toribatieegirl"
               time="17 Jul"
@@ -226,6 +236,7 @@ const slides: Slide[] = [
             />
             <ComplaintCard
               rotate={2}
+              avatar={avatarRemia}
               name="Remia"
               handle="remiaxyz"
               time="3d"
@@ -293,22 +304,43 @@ const slides: Slide[] = [
         <h2 className="font-display text-5xl font-bold md:text-6xl">
           Live in <span className="text-gradient-lime">5 minutes.</span>
         </h2>
-        <div className="mt-12 grid gap-6 md:grid-cols-4">
-          {[
-            { n: "01", t: "Sign up", d: "Create your KuvarPay merchant account in minutes." },
-            { n: "02", t: "Add to checkout", d: "QR code, POS, link or website plugin." },
-            { n: "03", t: "Customer pays", d: "Any crypto, any chain, any country." },
-            { n: "04", t: "You get cash", d: "Local currency lands in your bank." },
-          ].map((s, i) => (
-            <motion.div {...cardHover} key={s.n} className="relative cursor-pointer rounded-2xl border border-border bg-card p-6 transition-colors hover:border-lime/60">
-              <div className="font-display text-3xl text-lime">{s.n}</div>
-              <div className="mt-3 font-display text-xl">{s.t}</div>
-              <p className="mt-2 text-sm text-muted-foreground">{s.d}</p>
-              {i < 3 && (
-                <ArrowRight className="absolute -right-4 top-1/2 hidden h-6 w-6 -translate-y-1/2 text-lime md:block" />
-              )}
-            </motion.div>
-          ))}
+        <div className="mt-8 grid flex-1 gap-8 lg:grid-cols-[1.1fr_1fr]">
+          <div className="space-y-4">
+            {[
+              { n: "01", t: "Business creates a payment request", d: "Create a payment link, send an invoice, download a QR code, or integrate our API into your website or system." },
+              { n: "02", t: "Customer pays using crypto", d: "Customer clicks the link, scans the QR code, or pays through the checkout using their preferred cryptocurrency." },
+              { n: "03", t: "KuvarPay confirms instantly", d: "We securely receive and verify the crypto payment in real time." },
+              { n: "04", t: "Settlement in local currency", d: "We auto-convert the crypto and settle to your bank in your local currency." },
+            ].map((s) => (
+              <motion.div {...cardHover} key={s.n} className="cursor-pointer rounded-2xl border border-border bg-card p-4 transition-colors hover:border-lime/60">
+                <div className="flex items-baseline gap-3">
+                  <div className="font-display text-2xl text-lime">{s.n}</div>
+                  <div className="font-display text-lg">{s.t}</div>
+                </div>
+                <p className="mt-1 pl-9 text-sm text-muted-foreground">{s.d}</p>
+              </motion.div>
+            ))}
+          </div>
+          <div className="flex flex-col items-center justify-center gap-6">
+            <div className="relative w-full">
+              <div className="absolute inset-0 -z-10 rounded-[2rem] bg-lime/15 blur-2xl" />
+              <img
+                src={devicesImg}
+                alt="KuvarPay dashboard on laptop and mobile checkout"
+                className="mx-auto w-full max-w-[480px] object-contain drop-shadow-2xl"
+                loading="lazy"
+              />
+            </div>
+            <div className="w-full rounded-2xl border border-lime/30 bg-lime/5 p-3">
+              <div className="mb-2 text-[10px] uppercase tracking-widest text-lime">Settlement to your bank</div>
+              <img
+                src={mobileMoneyImg}
+                alt="Mobile money settlement of 800,000 RWF"
+                className="mx-auto w-full max-w-[420px] object-contain"
+                loading="lazy"
+              />
+            </div>
+          </div>
         </div>
       </div>
     ),
@@ -356,17 +388,19 @@ const slides: Slide[] = [
         <h2 className="font-display text-5xl font-bold md:text-6xl">
           Made for <span className="text-gradient-lime">your business.</span>
         </h2>
-        <div className="mt-10 grid flex-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
+        <p className="mt-4 max-w-2xl text-base text-muted-foreground">
+          Whether you run a business or freelance — KuvarPay gives you the
+          same global rails the biggest merchants use.
+        </p>
+        <div className="mt-10 grid flex-1 gap-4 md:grid-cols-2">
           {[
-            { i: Utensils, t: "Restaurants", d: "QR at the table — tourists pay in seconds." },
-            { i: PartyPopper, t: "Nightclubs", d: "Bottle service, VIP tabs, no card declines." },
-            { i: Store, t: "Retail", d: "Walk-in & online sales, one rail." },
-            { i: Landmark, t: "Hotels & travel", d: "Bookings, deposits, room charges." },
+            { i: Store, t: "Businesses", d: "Walk-in, online, in-person — accept crypto from any customer worldwide and settle to your bank in local currency." },
+            { i: Briefcase, t: "Freelancers", d: "Send invoices, share payment links, and get paid by global clients without juggling P2P, FX, or wallets." },
           ].map(({ i: Icon, t, d }) => (
-            <motion.div {...cardHover} key={t} className="group cursor-pointer rounded-3xl border border-border bg-card p-6 transition-colors hover:border-lime/60">
-              <Icon className="h-8 w-8 text-lime" />
-              <div className="mt-4 font-display text-2xl">{t}</div>
-              <p className="mt-2 text-sm text-muted-foreground">{d}</p>
+            <motion.div {...cardHover} key={t} className="group cursor-pointer rounded-3xl border border-border bg-card p-8 transition-colors hover:border-lime/60">
+              <Icon className="h-10 w-10 text-lime" />
+              <div className="mt-4 font-display text-3xl">{t}</div>
+              <p className="mt-3 text-muted-foreground">{d}</p>
             </motion.div>
           ))}
         </div>
@@ -508,8 +542,8 @@ const slides: Slide[] = [
             <span className="text-gradient-lime">the world?</span>
           </h2>
           <p className="mt-6 max-w-xl text-lg text-muted-foreground">
-            Join the restaurants, clubs and retailers turning every walk-in
-            tourist and global customer into local cash.
+            Join the businesses and freelancers turning every global
+            customer into local cash.
           </p>
           <div className="mt-10 flex flex-wrap items-center gap-4">
             <motion.a
