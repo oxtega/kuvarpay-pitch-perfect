@@ -304,22 +304,43 @@ const slides: Slide[] = [
         <h2 className="font-display text-5xl font-bold md:text-6xl">
           Live in <span className="text-gradient-lime">5 minutes.</span>
         </h2>
-        <div className="mt-12 grid gap-6 md:grid-cols-4">
-          {[
-            { n: "01", t: "Sign up", d: "Create your KuvarPay merchant account in minutes." },
-            { n: "02", t: "Add to checkout", d: "QR code, POS, link or website plugin." },
-            { n: "03", t: "Customer pays", d: "Any crypto, any chain, any country." },
-            { n: "04", t: "You get cash", d: "Local currency lands in your bank." },
-          ].map((s, i) => (
-            <motion.div {...cardHover} key={s.n} className="relative cursor-pointer rounded-2xl border border-border bg-card p-6 transition-colors hover:border-lime/60">
-              <div className="font-display text-3xl text-lime">{s.n}</div>
-              <div className="mt-3 font-display text-xl">{s.t}</div>
-              <p className="mt-2 text-sm text-muted-foreground">{s.d}</p>
-              {i < 3 && (
-                <ArrowRight className="absolute -right-4 top-1/2 hidden h-6 w-6 -translate-y-1/2 text-lime md:block" />
-              )}
-            </motion.div>
-          ))}
+        <div className="mt-8 grid flex-1 gap-8 lg:grid-cols-[1.1fr_1fr]">
+          <div className="space-y-4">
+            {[
+              { n: "01", t: "Business creates a payment request", d: "Create a payment link, send an invoice, download a QR code, or integrate our API into your website or system." },
+              { n: "02", t: "Customer pays using crypto", d: "Customer clicks the link, scans the QR code, or pays through the checkout using their preferred cryptocurrency." },
+              { n: "03", t: "KuvarPay confirms instantly", d: "We securely receive and verify the crypto payment in real time." },
+              { n: "04", t: "Settlement in local currency", d: "We auto-convert the crypto and settle to your bank in your local currency." },
+            ].map((s) => (
+              <motion.div {...cardHover} key={s.n} className="cursor-pointer rounded-2xl border border-border bg-card p-4 transition-colors hover:border-lime/60">
+                <div className="flex items-baseline gap-3">
+                  <div className="font-display text-2xl text-lime">{s.n}</div>
+                  <div className="font-display text-lg">{s.t}</div>
+                </div>
+                <p className="mt-1 pl-9 text-sm text-muted-foreground">{s.d}</p>
+              </motion.div>
+            ))}
+          </div>
+          <div className="flex flex-col items-center justify-center gap-6">
+            <div className="relative w-full">
+              <div className="absolute inset-0 -z-10 rounded-[2rem] bg-lime/15 blur-2xl" />
+              <img
+                src={devicesImg}
+                alt="KuvarPay dashboard on laptop and mobile checkout"
+                className="mx-auto w-full max-w-[480px] object-contain drop-shadow-2xl"
+                loading="lazy"
+              />
+            </div>
+            <div className="w-full rounded-2xl border border-lime/30 bg-lime/5 p-3">
+              <div className="mb-2 text-[10px] uppercase tracking-widest text-lime">Settlement to your bank</div>
+              <img
+                src={mobileMoneyImg}
+                alt="Mobile money settlement of 800,000 RWF"
+                className="mx-auto w-full max-w-[420px] object-contain"
+                loading="lazy"
+              />
+            </div>
+          </div>
         </div>
       </div>
     ),
