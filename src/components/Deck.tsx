@@ -91,7 +91,7 @@ const slides: Slide[] = [
       <div className="grid h-full items-center gap-12 lg:grid-cols-[1.2fr_1fr]">
         <div>
           <span className="inline-flex items-center gap-2 rounded-full border border-lime/40 bg-lime/10 px-3 py-1 text-xs font-medium uppercase tracking-[0.18em] text-lime">
-            <Sparkles className="h-3 w-3" /> For Restaurants, Clubs & Retail
+            <Sparkles className="h-3 w-3" /> For Businesses & Freelancers
           </span>
           <h1 className="mt-6 font-display text-6xl font-bold leading-[0.95] md:text-8xl">
             Accept crypto.<br />
