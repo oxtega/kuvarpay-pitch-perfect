@@ -1,11 +1,10 @@
 import { useState } from "react";
-import { ComposableMap, Geographies, Geography, Marker } from "react-simple-maps";
+import { ComposableMap, Geographies, Geography, Marker, Line } from "react-simple-maps";
 import { motion, AnimatePresence } from "framer-motion";
 
 const GEO_URL =
   "https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json";
 
-// ISO numeric codes for African countries (used by world-atlas)
 const AFRICA_NUM = new Set([
   "012","024","072","086","108","120","132","140","148","174","178","180","262",
   "204","218","226","231","232","266","270","288","324","384","404","426","430",
@@ -14,18 +13,35 @@ const AFRICA_NUM = new Set([
   "768","788","800","818","834","854","894",
 ]);
 
-type Live = { name: string; coords: [number, number]; tag: string };
+type Live = {
+  name: string;
+  coords: [number, number];
+  tag: string;
+  txns: number;
+  localCcy: string;
+  localAmount: string;
+  usd: string;
+};
+
 const LIVE: Live[] = [
-  { name: "Nigeria",      coords: [8.6753, 9.0820],  tag: "NG" },
-  { name: "Ghana",        coords: [-1.0232, 7.9465], tag: "GH" },
-  { name: "Kenya",        coords: [37.9062, -0.0236], tag: "KE" },
-  { name: "Rwanda",       coords: [29.8739, -1.9403], tag: "RW" },
-  { name: "South Africa", coords: [22.9375, -30.5595], tag: "ZA" },
+  { name: "Nigeria",      coords: [8.6753, 9.0820],  tag: "NG", txns: 12480, localCcy: "NGN", localAmount: "₦2.1B",   usd: "$1.4M" },
+  { name: "Ghana",        coords: [-1.0232, 7.9465], tag: "GH", txns: 4310,  localCcy: "GHS", localAmount: "GH₵5.6M", usd: "$420K" },
+  { name: "Kenya",        coords: [37.9062, -0.0236], tag: "KE", txns: 9620,  localCcy: "KES", localAmount: "KSh118M", usd: "$910K" },
+  { name: "Rwanda",       coords: [29.8739, -1.9403], tag: "RW", txns: 2185,  localCcy: "RWF", localAmount: "RWF 312M", usd: "$240K" },
+  { name: "South Africa", coords: [22.9375, -30.5595], tag: "ZA", txns: 7440,  localCcy: "ZAR", localAmount: "R8.9M",   usd: "$490K" },
 ];
 
 const LIVE_NAMES = new Set(LIVE.map((c) => c.name));
+const LIVE_BY_NAME = new Map(LIVE.map((c) => [c.name, c]));
 
-// Cycle through statuses for non-live countries
+// Connect every live country to every other (corridor lines)
+const CORRIDORS: [Live, Live][] = [];
+for (let i = 0; i < LIVE.length; i++) {
+  for (let j = i + 1; j < LIVE.length; j++) {
+    CORRIDORS.push([LIVE[i], LIVE[j]]);
+  }
+}
+
 const STATUSES = ["Watching", "Loading", "Coming soon", "On the radar"];
 function statusFor(name: string) {
   let h = 0;
@@ -33,18 +49,17 @@ function statusFor(name: string) {
   return STATUSES[Math.abs(h) % STATUSES.length];
 }
 
-type Tip = { x: number; y: number; name: string; live: boolean; status?: string } | null;
+type Tip = { name: string; live: boolean; status?: string; data?: Live } | null;
 
 export function AfricaMap() {
-  const [tip, setTip] = useState<Tip>(null);
+  const [hover, setHover] = useState<Tip>(null);
   const [pinned, setPinned] = useState<Tip>(null);
 
-  const active = pinned ?? tip;
+  const active = pinned ?? hover;
 
   return (
     <div
       className="relative w-full"
-      onMouseLeave={() => setTip(null)}
       onClick={(e) => {
         if (e.target === e.currentTarget) setPinned(null);
       }}
@@ -63,29 +78,18 @@ export function AfricaMap() {
               .map((geo) => {
                 const name = geo.properties.name as string;
                 const isLive = LIVE_NAMES.has(name);
+                const data = LIVE_BY_NAME.get(name);
                 return (
                   <Geography
                     key={geo.rsmKey}
                     geography={geo}
-                    onMouseMove={(e) =>
-                      setTip({
-                        x: e.clientX,
-                        y: e.clientY,
-                        name,
-                        live: isLive,
-                        status: isLive ? undefined : statusFor(name),
-                      })
+                    onMouseEnter={() =>
+                      setHover({ name, live: isLive, status: isLive ? undefined : statusFor(name), data })
                     }
-                    onMouseLeave={() => setTip(null)}
+                    onMouseLeave={() => setHover(null)}
                     onClick={(e) => {
                       e.stopPropagation();
-                      setPinned({
-                        x: (e as unknown as MouseEvent).clientX,
-                        y: (e as unknown as MouseEvent).clientY,
-                        name,
-                        live: isLive,
-                        status: isLive ? undefined : statusFor(name),
-                      });
+                      setPinned({ name, live: isLive, status: isLive ? undefined : statusFor(name), data });
                     }}
                     style={{
                       default: {
@@ -95,7 +99,7 @@ export function AfricaMap() {
                         stroke: "oklch(0.97 0.005 170)",
                         strokeWidth: 0.8,
                         outline: "none",
-                        transition: "fill 200ms, transform 200ms",
+                        transition: "fill 200ms",
                       },
                       hover: {
                         fill: isLive
@@ -111,6 +115,20 @@ export function AfricaMap() {
               })
           }
         </Geographies>
+
+        {/* Dotted corridor lines between live countries */}
+        {CORRIDORS.map(([a, b]) => (
+          <Line
+            key={`${a.tag}-${b.tag}`}
+            from={a.coords}
+            to={b.coords}
+            stroke="oklch(0.88 0.22 128)"
+            strokeWidth={1.4}
+            strokeDasharray="3,4"
+            strokeLinecap="round"
+            opacity={0.85}
+          />
+        ))}
 
         {LIVE.map((c) => (
           <Marker key={c.name} coordinates={c.coords}>
@@ -151,14 +169,31 @@ export function AfricaMap() {
             initial={{ opacity: 0, y: 4 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0 }}
-            className="pointer-events-none absolute left-4 top-4 rounded-xl border border-border bg-ink/90 px-4 py-2.5 text-sm font-medium text-foreground backdrop-blur-xl shadow-2xl"
+            className="pointer-events-none absolute left-4 top-4 max-w-[240px] rounded-xl border border-border bg-ink/90 px-4 py-3 text-sm text-foreground backdrop-blur-xl shadow-2xl"
           >
             <div className="font-display text-base">{active.name}</div>
-            {active.live ? (
-              <span className="mt-1 inline-flex items-center gap-1.5 text-xs text-lime">
-                <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-lime" />
-                Live · accepting payments
-              </span>
+            {active.live && active.data ? (
+              <div className="mt-2 space-y-1.5">
+                <span className="inline-flex items-center gap-1.5 text-xs text-lime">
+                  <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-lime" />
+                  Live
+                </span>
+                <div className="flex items-baseline justify-between gap-3 text-xs">
+                  <span className="text-muted-foreground">Transactions</span>
+                  <span className="font-display text-foreground">{active.data.txns.toLocaleString()}</span>
+                </div>
+                <div className="flex items-baseline justify-between gap-3 text-xs">
+                  <span className="text-muted-foreground">Processed</span>
+                  <span className="font-display text-foreground">{active.data.localAmount}</span>
+                </div>
+                <div className="flex items-baseline justify-between gap-3 text-xs">
+                  <span className="text-muted-foreground">≈ USD</span>
+                  <span className="font-display text-lime">{active.data.usd}</span>
+                </div>
+                {!pinned && (
+                  <div className="pt-1 text-[10px] text-muted-foreground">Click to pin</div>
+                )}
+              </div>
             ) : (
               <span className="mt-1 inline-flex items-center gap-1.5 text-xs text-muted-foreground">
                 <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-muted-foreground" />
