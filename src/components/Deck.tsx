@@ -3,20 +3,28 @@ import { AnimatePresence, motion } from "framer-motion";
 import {
   ArrowLeft,
   ArrowRight,
-  AlertTriangle,
+  ArrowUpRight,
+  BadgeCheck,
   Boxes,
   CheckCircle2,
+  Clock,
+  Coins,
+  CreditCard,
   Globe2,
   Instagram,
-  LineChart,
+  Landmark,
   Linkedin,
   Lock,
+  PartyPopper,
   Repeat,
   Rocket,
+  ShieldCheck,
   Sparkles,
+  Store,
   Twitter,
+  Utensils,
   Wallet,
-  Workflow,
+  XCircle,
   Zap,
 } from "lucide-react";
 import { SlideShell } from "@/components/SlideShell";
@@ -24,11 +32,48 @@ import { AfricaMap } from "@/components/AfricaMap";
 import mascot from "@/assets/kuvar-mascot.png";
 import dashboard from "@/assets/dashboard.jpg";
 
-// Reusable interactive card — lifts, glows on hover, presses on click
 const cardHover = {
   whileHover: { y: -4, scale: 1.02, transition: { type: "spring" as const, stiffness: 300, damping: 20 } },
   whileTap: { scale: 0.98 },
 };
+
+// Mock P2P complaint tweet card
+function ComplaintCard({
+  handle,
+  name,
+  time,
+  body,
+  rotate = 0,
+}: {
+  handle: string;
+  name: string;
+  time: string;
+  body: string;
+  rotate?: number;
+}) {
+  return (
+    <motion.div
+      whileHover={{ scale: 1.04, rotate: 0, zIndex: 10 }}
+      style={{ rotate: `${rotate}deg` }}
+      className="cursor-pointer rounded-2xl border border-border bg-[#0f1115] p-4 shadow-xl ring-1 ring-white/5"
+    >
+      <div className="flex items-center justify-between text-xs">
+        <div className="flex items-center gap-2">
+          <div className="h-7 w-7 rounded-full bg-gradient-to-br from-lime/60 to-lime/20" />
+          <div>
+            <div className="font-display text-sm text-foreground">{name}</div>
+            <div className="text-[10px] text-muted-foreground">@{handle} · {time}</div>
+          </div>
+        </div>
+        <Twitter className="h-3 w-3 text-muted-foreground" />
+      </div>
+      <p className="mt-3 text-xs leading-relaxed text-foreground/90">{body}</p>
+      <div className="mt-3 flex items-center gap-4 text-[10px] text-muted-foreground">
+        <span>💬 36</span><span>🔁 5</span><span>❤️ 50</span>
+      </div>
+    </motion.div>
+  );
+}
 
 type Slide = { eyebrow?: string; render: () => React.ReactNode };
 
@@ -39,23 +84,23 @@ const slides: Slide[] = [
       <div className="grid h-full items-center gap-12 lg:grid-cols-[1.2fr_1fr]">
         <div>
           <span className="inline-flex items-center gap-2 rounded-full border border-lime/40 bg-lime/10 px-3 py-1 text-xs font-medium uppercase tracking-[0.18em] text-lime">
-            <Sparkles className="h-3 w-3" /> Investor Pitch · 2026
+            <Sparkles className="h-3 w-3" /> For Restaurants, Clubs & Retail
           </span>
           <h1 className="mt-6 font-display text-6xl font-bold leading-[0.95] md:text-8xl">
-            Crypto payments,<br />
-            <span className="text-gradient-lime">made for Africa.</span>
+            Accept crypto.<br />
+            <span className="text-gradient-lime">Get paid in cash.</span>
           </h1>
           <p className="mt-6 max-w-xl text-lg text-muted-foreground">
-            KuvarPay is the regulated payment gateway turning crypto into a
-            safe, everyday way for African businesses to get paid — settled in
-            local currency, on Stellar.
+            KuvarPay lets your business accept payments from any customer,
+            anywhere in the world — and settles directly to your bank in
+            local currency. No crypto knowledge required.
           </p>
           <div className="mt-10 flex flex-wrap items-center gap-6 text-sm text-muted-foreground">
-            <div><span className="font-display text-2xl text-foreground">5</span> countries live</div>
+            <div><span className="font-display text-2xl text-foreground">0.9%</span> per transaction</div>
             <div className="h-6 w-px bg-border" />
-            <div><span className="font-display text-2xl text-foreground">1,200+</span> currencies</div>
+            <div><span className="font-display text-2xl text-foreground">T+0</span> settlement</div>
             <div className="h-6 w-px bg-border" />
-            <div><span className="font-display text-2xl text-foreground">10+</span> chains</div>
+            <div><span className="font-display text-2xl text-foreground">5 min</span> setup</div>
           </div>
         </div>
         <motion.div
@@ -68,7 +113,7 @@ const slides: Slide[] = [
           <motion.img
             src={mascot}
             alt="Kuvar mascot"
-            className="mx-auto max-h-[440px] w-auto object-contain drop-shadow-2xl"
+            className="mx-auto max-h-[480px] w-auto object-contain drop-shadow-2xl"
             animate={{ y: [0, -12, 0] }}
             transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
             whileHover={{ scale: 1.05, rotate: -2 }}
@@ -86,7 +131,7 @@ const slides: Slide[] = [
         <motion.img
           src={mascot}
           alt="Kuvar"
-          className="mx-auto max-h-[420px] w-auto object-contain"
+          className="mx-auto max-h-[460px] w-auto object-contain drop-shadow-2xl"
           animate={{ rotate: [-2, 2, -2] }}
           transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
           whileHover={{ scale: 1.06 }}
@@ -96,16 +141,16 @@ const slides: Slide[] = [
             Hi, I'm <span className="text-gradient-lime">Kuvar.</span>
           </h2>
           <p className="mt-6 text-xl text-muted-foreground">
-            Like a chameleon, I adapt fast — so your crypto payments stay
-            smooth across any chain, any currency, any country.
+            I'm here to help your business accept payments from anyone, in any
+            currency — without the headache. You serve. I settle.
           </p>
           <div className="mt-8 grid grid-cols-3 gap-4">
             {[
-              { k: "Adapt", v: "10+ chains" },
-              { k: "Settle", v: "Stellar rails" },
-              { k: "Deliver", v: "Local money" },
+              { k: "You sell", v: "Anywhere" },
+              { k: "They pay", v: "Anyhow" },
+              { k: "You get", v: "Local cash" },
             ].map((b) => (
-              <motion.div {...cardHover} key={b.k} className="cursor-pointer rounded-2xl border border-border bg-card p-4 transition-colors hover:border-lime/60 hover:bg-card/70">
+              <motion.div {...cardHover} key={b.k} className="cursor-pointer rounded-2xl border border-border bg-card p-4 transition-colors hover:border-lime/60">
                 <div className="text-xs uppercase tracking-widest text-muted-foreground">{b.k}</div>
                 <div className="mt-1 font-display text-lg text-foreground">{b.v}</div>
               </motion.div>
@@ -116,60 +161,106 @@ const slides: Slide[] = [
     ),
   },
 
-  // 3. Problem
+  // 3. The Problem
   {
     eyebrow: "The problem",
     render: () => (
-      <div className="grid h-full gap-10 lg:grid-cols-[1fr_1.2fr]">
+      <div className="grid h-full gap-8 lg:grid-cols-[1fr_1fr]">
         <div>
-          <h2 className="font-display text-5xl font-bold leading-tight md:text-6xl">
-            Africa's <span className="text-gradient-lime">P2P scam</span> crisis.
+          <h2 className="font-display text-5xl font-bold leading-[1.05] md:text-6xl">
+            THE <span className="text-gradient-lime">PROBLEM</span>
           </h2>
-          <p className="mt-6 text-lg text-muted-foreground">
-            Millions trade crypto peer-to-peer — and pay the price. Traders
-            unknowingly receive stolen funds, get arrested, and have their
-            accounts frozen. There's no merchant-grade rail to accept crypto
-            cleanly.
+          <p className="mt-4 text-base text-muted-foreground">
+            Restaurants, nightclubs & retail businesses are losing revenue because:
           </p>
+          <ul className="mt-5 space-y-2.5">
+            {[
+              "Tourists face payment friction (FX, card limits, declined payments)",
+              "High POS/card fees (up to 3–4%)",
+              "Delayed settlements (T+2 / T+3 from banks)",
+              "No access to crypto-paying high-value customers",
+              "No modern, simple crypto checkout for global customers",
+              "Limited payment options at checkout for foreigners",
+              "P2P fiat conversion delays at checkout",
+              "Little to no knowledge about crypto acceptance",
+            ].map((t) => (
+              <motion.li
+                key={t}
+                whileHover={{ x: 6 }}
+                className="flex cursor-pointer items-start gap-2 text-sm text-foreground"
+              >
+                <XCircle className="mt-0.5 h-4 w-4 shrink-0 text-red-500" />
+                <span>{t}</span>
+              </motion.li>
+            ))}
+          </ul>
+          <div className="mt-5 inline-block border-b-4 border-lime pb-1 font-display text-base">
+            👉 Result: Lost sales + poor customer experience
+          </div>
         </div>
-        <div className="grid gap-4 sm:grid-cols-2">
-          {[
-            { i: AlertTriangle, t: "Frozen accounts", d: "Banks block traders linked to dirty inflows." },
-            { i: Lock, t: "Legal exposure", d: "Receiving stolen crypto = criminal liability." },
-            { i: Workflow, t: "Zero compliance", d: "P2P bypasses KYC, sanctions and audit trails." },
-            { i: Globe2, t: "No global reach", d: "Local merchants can't accept overseas crypto." },
-          ].map(({ i: Icon, t, d }) => (
-            <motion.div {...cardHover} key={t} className="group cursor-pointer rounded-2xl border border-border bg-card p-6 transition-colors hover:border-lime/60">
-              <Icon className="h-6 w-6 text-lime transition-transform group-hover:scale-110" />
-              <div className="mt-3 font-display text-xl">{t}</div>
-              <p className="mt-2 text-sm text-muted-foreground">{d}</p>
-            </motion.div>
-          ))}
+        <div className="relative">
+          {/* lime decorative blobs */}
+          <div className="absolute right-0 top-0 -z-0 h-64 w-64 rounded-full bg-lime/30 blur-2xl" />
+          <div className="absolute bottom-10 right-20 -z-0 h-40 w-40 rounded-full bg-lime/20 blur-2xl" />
+          <div className="relative z-10 grid grid-cols-2 gap-3">
+            <ComplaintCard
+              rotate={-2}
+              name="vickish | devrel"
+              handle="Vickish11"
+              time="16 Jan"
+              body="some of you take st*pid risks. I went to dinner with this guy; he knew he didn't have cash to pay for dinner, but he still waited until we were almost done eating to start a p2p transfer. The p2p person didn't respond — I ended up paying."
+            />
+            <ComplaintCard
+              rotate={3}
+              name="Baddy of Lagos"
+              handle="baddylagos"
+              time="19 Aug"
+              body="Omo, I no go lie… P2P vendors don humble me tire. You send crypto to them and they'll say 'give me 20mins.' Next thing, 1hr don pass. Some even switch off phone when market change."
+            />
+            <ComplaintCard
+              rotate={-3}
+              name="Tori"
+              handle="Toribatieegirl"
+              time="17 Jul"
+              body="What scares you most about P2P platforms? Waste of time? Scammers? Risky? Over 100 trades done with Bybit's P2P, no issues — but only because I vet every user."
+            />
+            <ComplaintCard
+              rotate={2}
+              name="Remia"
+              handle="remiaxyz"
+              time="3d"
+              body="Unpopular opinion: P2P crypto trading is worse now than it was 3 years ago. Scam volume keeps climbing. Platforms don't care. CEXs aren't any better — they freeze your account for 'review' whenever they feel like it."
+            />
+          </div>
+          <p className="mt-4 text-center text-xs text-muted-foreground">
+            Why should your customer go through this when you can let them pay
+            crypto <span className="text-lime">directly at checkout?</span>
+          </p>
         </div>
       </div>
     ),
   },
 
-  // 4. Solution
+  // 4. The solution
   {
-    eyebrow: "Our solution",
+    eyebrow: "The solution",
     render: () => (
       <div className="grid h-full items-center gap-12 lg:grid-cols-[1.1fr_1fr]">
         <div>
           <h2 className="font-display text-5xl font-bold md:text-6xl">
-            A regulated rail for <span className="text-gradient-lime">crypto-native commerce.</span>
+            One checkout. <span className="text-gradient-lime">Every customer.</span>
           </h2>
           <p className="mt-6 text-lg text-muted-foreground">
-            Customers pay in any crypto, any chain. KuvarPay screens, converts,
-            and settles via Stellar — landing local currency in the merchant's
-            bank or USDC in their wallet.
+            Plug KuvarPay into your POS, website or invoice link. Your customer
+            pays in any crypto, any chain — you receive local currency in your
+            bank, instantly.
           </p>
           <div className="mt-8 space-y-3">
             {[
-              "Sanctions + KYB screened end-to-end",
-              "Auto-conversion across 1,200+ currencies",
-              "Stellar settlement with full audit trail",
-              "One JS snippet to go live",
+              "Accept payments from tourists & global customers",
+              "Settle to your bank account in NGN, KES, GHS, RWF, ZAR",
+              "No chargebacks. No frozen funds. No P2P scams.",
+              "Lower fees than Visa, Mastercard or POS terminals",
             ].map((t) => (
               <motion.div
                 key={t}
@@ -194,27 +285,56 @@ const slides: Slide[] = [
     ),
   },
 
-  // 5. Product features
+  // 5. How it works
   {
-    eyebrow: "Product",
+    eyebrow: "How it works",
     render: () => (
       <div className="flex h-full flex-col">
         <h2 className="font-display text-5xl font-bold md:text-6xl">
-          Full-stack <span className="text-gradient-lime">payment infrastructure.</span>
+          Live in <span className="text-gradient-lime">5 minutes.</span>
+        </h2>
+        <div className="mt-12 grid gap-6 md:grid-cols-4">
+          {[
+            { n: "01", t: "Sign up", d: "Create your KuvarPay merchant account in minutes." },
+            { n: "02", t: "Add to checkout", d: "QR code, POS, link or website plugin." },
+            { n: "03", t: "Customer pays", d: "Any crypto, any chain, any country." },
+            { n: "04", t: "You get cash", d: "Local currency lands in your bank." },
+          ].map((s, i) => (
+            <motion.div {...cardHover} key={s.n} className="relative cursor-pointer rounded-2xl border border-border bg-card p-6 transition-colors hover:border-lime/60">
+              <div className="font-display text-3xl text-lime">{s.n}</div>
+              <div className="mt-3 font-display text-xl">{s.t}</div>
+              <p className="mt-2 text-sm text-muted-foreground">{s.d}</p>
+              {i < 3 && (
+                <ArrowRight className="absolute -right-4 top-1/2 hidden h-6 w-6 -translate-y-1/2 text-lime md:block" />
+              )}
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    ),
+  },
+
+  // 6. Why KuvarPay (benefits)
+  {
+    eyebrow: "Why KuvarPay",
+    render: () => (
+      <div className="flex h-full flex-col">
+        <h2 className="font-display text-5xl font-bold md:text-6xl">
+          More sales. <span className="text-gradient-lime">Less friction.</span>
         </h2>
         <div className="mt-10 grid flex-1 gap-4 md:grid-cols-3">
           {[
-            { i: Zap, t: "Hosted Checkout", d: "One snippet, 1,200+ currencies, 10+ chains." },
-            { i: Repeat, t: "Subscriptions", d: "Fixed + metered billing on Soroban." },
-            { i: Boxes, t: "Split Payments", d: "Marketplace-grade multi-party routing." },
-            { i: Wallet, t: "POS App", d: "In-person crypto for retail merchants." },
-            { i: Workflow, t: "Payment Agent", d: "Autonomous payouts & disbursements." },
-            { i: LineChart, t: "Dashboard + SDK", d: "Analytics, webhooks, WooCommerce plugin." },
+            { i: Coins, t: "Lower fees", d: "Just 0.9% — vs 3–4% on POS / cards." },
+            { i: Clock, t: "Instant settlement", d: "T+0 to your bank. No more T+3 waits." },
+            { i: Globe2, t: "Global customers", d: "Tourists & remote buyers can finally pay." },
+            { i: ShieldCheck, t: "No chargebacks", d: "Crypto payments are final & verified." },
+            { i: BadgeCheck, t: "Compliance built-in", d: "KYC/AML & sanctions screened end-to-end." },
+            { i: Zap, t: "Zero crypto skill", d: "Your team uses cash. We handle the rest." },
           ].map(({ i: Icon, t, d }) => (
             <motion.div
               {...cardHover}
               key={t}
-              className="group cursor-pointer rounded-2xl border border-border bg-card p-6 transition-colors hover:border-lime/60 hover:bg-card/70"
+              className="group cursor-pointer rounded-2xl border border-border bg-card p-6 transition-colors hover:border-lime/60"
             >
               <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-lime/15 text-lime transition-all group-hover:bg-lime group-hover:text-ink">
                 <Icon className="h-5 w-5" />
@@ -228,43 +348,67 @@ const slides: Slide[] = [
     ),
   },
 
-  // 6. How it works
+  // 7. Built for your business (use cases)
   {
-    eyebrow: "How it works",
+    eyebrow: "Built for you",
     render: () => (
       <div className="flex h-full flex-col">
         <h2 className="font-display text-5xl font-bold md:text-6xl">
-          One flow. <span className="text-gradient-lime">Every payment.</span>
+          Made for <span className="text-gradient-lime">your business.</span>
         </h2>
-        <div className="mt-12 grid gap-6 md:grid-cols-4">
+        <div className="mt-10 grid flex-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
           {[
-            { n: "01", t: "Customer pays", d: "Any token, any chain via hosted modal." },
-            { n: "02", t: "Auto-convert", d: "Routed and converted to USDC." },
-            { n: "03", t: "Stellar settles", d: "Universal settlement layer." },
-            { n: "04", t: "Merchant gets paid", d: "Local fiat or USDC on Stellar." },
-          ].map((s, i) => (
-            <motion.div {...cardHover} key={s.n} className="relative cursor-pointer rounded-2xl border border-border bg-card p-6 transition-colors hover:border-lime/60">
-              <div className="font-display text-3xl text-lime">{s.n}</div>
-              <div className="mt-3 font-display text-xl">{s.t}</div>
-              <p className="mt-2 text-sm text-muted-foreground">{s.d}</p>
-              {i < 3 && (
-                <ArrowRight className="absolute -right-4 top-1/2 hidden h-6 w-6 -translate-y-1/2 text-lime md:block" />
-              )}
+            { i: Utensils, t: "Restaurants", d: "QR at the table — tourists pay in seconds." },
+            { i: PartyPopper, t: "Nightclubs", d: "Bottle service, VIP tabs, no card declines." },
+            { i: Store, t: "Retail", d: "Walk-in & online sales, one rail." },
+            { i: Landmark, t: "Hotels & travel", d: "Bookings, deposits, room charges." },
+          ].map(({ i: Icon, t, d }) => (
+            <motion.div {...cardHover} key={t} className="group cursor-pointer rounded-3xl border border-border bg-card p-6 transition-colors hover:border-lime/60">
+              <Icon className="h-8 w-8 text-lime" />
+              <div className="mt-4 font-display text-2xl">{t}</div>
+              <p className="mt-2 text-sm text-muted-foreground">{d}</p>
             </motion.div>
           ))}
-        </div>
-        <div className="mt-10 rounded-2xl border border-lime/30 bg-lime/5 p-6">
-          <p className="text-sm text-muted-foreground">
-            <span className="font-display text-foreground">Stellar is the backbone.</span>{" "}
-            Every payment converges on Stellar — generating real network volume
-            from every transaction processed.
-          </p>
         </div>
       </div>
     ),
   },
 
-  // 7. Africa map
+  // 8. Tools
+  {
+    eyebrow: "Your toolkit",
+    render: () => (
+      <div className="flex h-full flex-col">
+        <h2 className="font-display text-5xl font-bold md:text-6xl">
+          Everything you need <span className="text-gradient-lime">in one place.</span>
+        </h2>
+        <div className="mt-10 grid flex-1 gap-4 md:grid-cols-3">
+          {[
+            { i: CreditCard, t: "Hosted Checkout", d: "Branded payment page in one click." },
+            { i: Wallet, t: "POS App", d: "Tablet & phone friendly for in-person sales." },
+            { i: Repeat, t: "Subscriptions", d: "Memberships & recurring billing." },
+            { i: Boxes, t: "Payment Links", d: "Send a link via WhatsApp, get paid." },
+            { i: Lock, t: "Secure Dashboard", d: "Track every payment & payout." },
+            { i: Zap, t: "WooCommerce Plugin", d: "Drop-in for any online store." },
+          ].map(({ i: Icon, t, d }) => (
+            <motion.div
+              {...cardHover}
+              key={t}
+              className="group cursor-pointer rounded-2xl border border-border bg-card p-6 transition-colors hover:border-lime/60"
+            >
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-lime/15 text-lime transition-all group-hover:bg-lime group-hover:text-ink">
+                <Icon className="h-5 w-5" />
+              </div>
+              <div className="mt-4 font-display text-xl">{t}</div>
+              <p className="mt-2 text-sm text-muted-foreground">{d}</p>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    ),
+  },
+
+  // 9. Live across Africa
   {
     eyebrow: "Live across Africa",
     render: () => (
@@ -274,9 +418,8 @@ const slides: Slide[] = [
             5 countries. <span className="text-gradient-lime">One rail.</span>
           </h2>
           <p className="mt-6 text-lg text-muted-foreground">
-            KuvarPay is processing real merchant transactions across the
-            continent's largest crypto markets — with anchor coverage to
-            deliver local fiat to every account.
+            We're already settling local currency for merchants across the
+            continent's largest crypto markets — your business is next.
           </p>
           <div className="mt-8 space-y-2">
             {["Nigeria","Ghana","Kenya","Rwanda","South Africa"].map((c) => (
@@ -296,89 +439,19 @@ const slides: Slide[] = [
     ),
   },
 
-  // 8. Market
+  // 10. Pricing
   {
-    eyebrow: "Market",
+    eyebrow: "Pricing",
     render: () => (
       <div className="flex h-full flex-col">
         <h2 className="font-display text-5xl font-bold md:text-6xl">
-          A continent of <span className="text-gradient-lime">crypto buyers.</span>
-        </h2>
-        <div className="mt-10 grid flex-1 gap-6 md:grid-cols-3">
-          {[
-            { v: "$125B", l: "Sub-Saharan Africa crypto volume (annual)" },
-            { v: "84M", l: "Active African crypto users" },
-            { v: "$40B", l: "African e-commerce TAM by 2027" },
-          ].map((s) => (
-            <motion.div {...cardHover} key={s.l} className="cursor-pointer rounded-3xl border border-border bg-card p-8 transition-colors hover:border-lime/60">
-              <div className="text-gradient-lime font-display text-6xl font-bold">{s.v}</div>
-              <p className="mt-4 text-muted-foreground">{s.l}</p>
-            </motion.div>
-          ))}
-        </div>
-        <p className="mt-8 max-w-3xl text-muted-foreground">
-          African merchants don't lack demand — they lack a safe, compliant
-          way to capture it. KuvarPay is the missing rail.
-        </p>
-      </div>
-    ),
-  },
-
-  // 9. Traction
-  {
-    eyebrow: "Traction",
-    render: () => (
-      <div className="flex h-full flex-col">
-        <h2 className="font-display text-5xl font-bold md:text-6xl">
-          Shipped. Live. <span className="text-gradient-lime">Growing.</span>
-        </h2>
-        <div className="mt-10 grid gap-8 lg:grid-cols-2">
-          <div className="space-y-3">
-            {[
-              "Hosted payment gateway — Live",
-              "Stellar USDC acceptance via Horizon — Live",
-              "Multi-currency FX (USD/EUR/GBP → NGN/RWF/KES) — Live",
-              "Subscription billing (Fixed + Metered) — Live",
-              "WooCommerce plugin on WordPress.org — Live",
-              "Yellow Card anchor integration — In progress",
-            ].map((t) => (
-              <motion.div {...cardHover} key={t} className="flex cursor-pointer items-start gap-3 rounded-xl border border-border bg-card p-4 transition-colors hover:border-lime/60">
-                <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-lime" />
-                <span className="text-sm text-foreground">{t}</span>
-              </motion.div>
-            ))}
-          </div>
-          <div className="grid grid-cols-2 gap-4">
-            {[
-              { v: "5", l: "Countries live" },
-              { v: "10+", l: "Blockchains supported" },
-              { v: "1,200+", l: "Currencies accepted" },
-              { v: "100%", l: "Stellar-settled" },
-            ].map((s) => (
-              <motion.div {...cardHover} key={s.l} className="cursor-pointer rounded-2xl border border-border bg-card p-6 transition-colors hover:border-lime/60">
-                <div className="text-gradient-lime font-display text-5xl font-bold">{s.v}</div>
-                <p className="mt-2 text-sm text-muted-foreground">{s.l}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </div>
-    ),
-  },
-
-  // 10. Business model
-  {
-    eyebrow: "Business model",
-    render: () => (
-      <div className="flex h-full flex-col">
-        <h2 className="font-display text-5xl font-bold md:text-6xl">
-          Margins that <span className="text-gradient-lime">scale with volume.</span>
+          Simple, transparent <span className="text-gradient-lime">pricing.</span>
         </h2>
         <div className="mt-12 grid flex-1 gap-6 md:grid-cols-3">
           {[
-            { t: "Transaction fee", v: "1.5%", d: "Per successful merchant payment." },
-            { t: "FX spread", v: "0.8%", d: "On crypto → local fiat conversions." },
-            { t: "SaaS + add-ons", v: "$49+/mo", d: "Subscriptions, APA, advanced analytics." },
+            { t: "Per transaction", v: "0.9%", d: "Flat fee on every successful payment. No hidden charges." },
+            { t: "Setup", v: "Free", d: "Zero onboarding cost. Get live in under 5 minutes." },
+            { t: "Monthly", v: "$0", d: "No subscription. Pay only when you get paid." },
           ].map((b) => (
             <motion.div {...cardHover} key={b.t} className="cursor-pointer rounded-3xl border border-border bg-card p-8 transition-colors hover:border-lime/60">
               <div className="text-xs uppercase tracking-[0.2em] text-muted-foreground">{b.t}</div>
@@ -387,69 +460,57 @@ const slides: Slide[] = [
             </motion.div>
           ))}
         </div>
+        <p className="mt-8 text-sm text-muted-foreground">
+          Compare: Visa/Mastercard charge 2.5–4% + delayed settlement. KuvarPay
+          is <span className="text-lime">3x cheaper</span> and pays you the same day.
+        </p>
       </div>
     ),
   },
 
-  // 11. Team
+  // 11. Onboarding
   {
-    eyebrow: "Team",
+    eyebrow: "Onboarding",
     render: () => (
       <div className="flex h-full flex-col">
         <h2 className="font-display text-5xl font-bold md:text-6xl">
-          Built by <span className="text-gradient-lime">operators.</span>
+          Onboarding in <span className="text-gradient-lime">3 steps.</span>
         </h2>
-        <div className="mt-10 grid flex-1 gap-4 md:grid-cols-3">
+        <div className="mt-12 grid flex-1 gap-6 md:grid-cols-3">
           {[
-            { n: "Aderemi Azeez", r: "Founder & CEO", t: "BTC" },
-            { n: "Abdulazeez Jubril", r: "Co-Founder & COO", t: "ETH" },
-            { n: "Funmi Davies", r: "CFO", t: "USDT" },
-            { n: "Christopher Tega", r: "CMO", t: "BNB" },
-            { n: "Diana Ekefre", r: "Marketing Officer", t: "SOL" },
-            { n: "Alarape Yusuf", r: "Graphic Designer", t: "XTZ" },
-          ].map((p) => (
-            <motion.div {...cardHover} key={p.n} className="cursor-pointer rounded-2xl border border-border bg-card p-6 transition-colors hover:border-lime/60">
-              <div className="flex items-center justify-between">
-                <div className="font-display text-xl">{p.n}</div>
-                <span className="rounded-full border border-lime/30 bg-lime/10 px-2 py-0.5 text-xs font-medium text-lime">
-                  {p.t}
-                </span>
-              </div>
-              <div className="mt-1 text-sm text-muted-foreground">{p.r}</div>
+            { n: "01", t: "We meet", d: "15-min call to understand your business & pick the right tools." },
+            { n: "02", t: "We set up", d: "We provision your dashboard, branded checkout, QR codes & POS." },
+            { n: "03", t: "We train", d: "Your team learns to accept payments — no crypto knowledge needed." },
+          ].map((s) => (
+            <motion.div {...cardHover} key={s.n} className="cursor-pointer rounded-3xl border border-border bg-card p-8 transition-colors hover:border-lime/60">
+              <div className="font-display text-4xl text-lime">{s.n}</div>
+              <div className="mt-4 font-display text-2xl">{s.t}</div>
+              <p className="mt-3 text-muted-foreground">{s.d}</p>
             </motion.div>
           ))}
+        </div>
+        <div className="mt-8 rounded-2xl border border-lime/30 bg-lime/5 p-6 text-sm text-muted-foreground">
+          <span className="font-display text-foreground">First month free.</span>{" "}
+          Onboard now and pay zero fees on your first 30 days of transactions.
         </div>
       </div>
     ),
   },
 
-  // 12. Ask / CTA
+  // 12. CTA
   {
-    eyebrow: "The ask",
+    eyebrow: "Let's get you paid",
     render: () => (
       <div className="grid h-full items-center gap-12 lg:grid-cols-[1.2fr_1fr]">
         <div>
           <h2 className="font-display text-6xl font-bold leading-[0.95] md:text-7xl">
-            Help us make crypto<br />
-            <span className="text-gradient-lime">Africa's payment standard.</span>
+            Ready to accept<br />
+            <span className="text-gradient-lime">the world?</span>
           </h2>
           <p className="mt-6 max-w-xl text-lg text-muted-foreground">
-            We're raising to deepen anchor coverage across all 5 markets,
-            scale merchant acquisition, and ship Soroban subscriptions to
-            mainnet.
+            Join the restaurants, clubs and retailers turning every walk-in
+            tourist and global customer into local cash.
           </p>
-          <div className="mt-10 grid grid-cols-3 gap-4 max-w-lg">
-            {[
-              { v: "$1.5M", l: "Seed round" },
-              { v: "18mo", l: "Runway" },
-              { v: "10x", l: "Merchant target" },
-            ].map((s) => (
-              <motion.div {...cardHover} key={s.l} className="cursor-pointer rounded-2xl border border-lime/40 bg-lime/5 p-4 transition-colors hover:bg-lime/10">
-                <div className="text-gradient-lime font-display text-3xl font-bold">{s.v}</div>
-                <div className="mt-1 text-xs text-muted-foreground">{s.l}</div>
-              </motion.div>
-            ))}
-          </div>
           <div className="mt-10 flex flex-wrap items-center gap-4">
             <motion.a
               whileHover={{ scale: 1.04 }}
@@ -459,10 +520,18 @@ const slides: Slide[] = [
               rel="noreferrer"
               className="inline-flex items-center gap-2 rounded-full bg-lime px-6 py-3 font-display text-ink"
             >
-              <Rocket className="h-4 w-4" /> kuvarpay.com
+              <Rocket className="h-4 w-4" /> Get started at kuvarpay.com
             </motion.a>
-            <span className="text-sm text-muted-foreground">hello@kuvarpay.com</span>
+            <motion.a
+              whileHover={{ scale: 1.04 }}
+              whileTap={{ scale: 0.97 }}
+              href="mailto:hello@kuvarpay.com"
+              className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-6 py-3 font-display text-foreground hover:border-lime/60"
+            >
+              Book a demo <ArrowUpRight className="h-4 w-4" />
+            </motion.a>
           </div>
+          <div className="mt-6 text-sm text-muted-foreground">hello@kuvarpay.com</div>
           <div className="mt-6 flex flex-wrap items-center gap-3">
             {[
               { i: Twitter, l: "Twitter", h: "https://twitter.com/kuvarpay" },
@@ -493,7 +562,7 @@ const slides: Slide[] = [
           <motion.img
             src={mascot}
             alt="Kuvar"
-            className="mx-auto max-h-[420px] w-auto object-contain"
+            className="mx-auto max-h-[460px] w-auto object-contain drop-shadow-2xl"
             animate={{ y: [0, -10, 0] }}
             transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
             whileHover={{ scale: 1.05 }}
@@ -527,7 +596,6 @@ export function Deck() {
         </SlideShell>
       </AnimatePresence>
 
-      {/* Nav */}
       <div className="fixed bottom-6 left-1/2 z-40 flex -translate-x-1/2 items-center gap-3 rounded-full border border-border bg-card/80 px-3 py-2 backdrop-blur-xl">
         <button
           onClick={() => setI((p) => Math.max(p - 1, 0))}
