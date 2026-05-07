@@ -542,8 +542,8 @@ const slides: Slide[] = [
             <span className="text-gradient-lime">the world?</span>
           </h2>
           <p className="mt-6 max-w-xl text-lg text-muted-foreground">
-            Join the restaurants, clubs and retailers turning every walk-in
-            tourist and global customer into local cash.
+            Join the businesses and freelancers turning every global
+            customer into local cash.
           </p>
           <div className="mt-10 flex flex-wrap items-center gap-4">
             <motion.a
