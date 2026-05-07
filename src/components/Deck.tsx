@@ -367,17 +367,19 @@ const slides: Slide[] = [
         <h2 className="font-display text-5xl font-bold md:text-6xl">
           Made for <span className="text-gradient-lime">your business.</span>
         </h2>
-        <div className="mt-10 grid flex-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
+        <p className="mt-4 max-w-2xl text-base text-muted-foreground">
+          Whether you run a business or freelance — KuvarPay gives you the
+          same global rails the biggest merchants use.
+        </p>
+        <div className="mt-10 grid flex-1 gap-4 md:grid-cols-2">
           {[
-            { i: Utensils, t: "Restaurants", d: "QR at the table — tourists pay in seconds." },
-            { i: PartyPopper, t: "Nightclubs", d: "Bottle service, VIP tabs, no card declines." },
-            { i: Store, t: "Retail", d: "Walk-in & online sales, one rail." },
-            { i: Landmark, t: "Hotels & travel", d: "Bookings, deposits, room charges." },
+            { i: Store, t: "Businesses", d: "Walk-in, online, in-person — accept crypto from any customer worldwide and settle to your bank in local currency." },
+            { i: Briefcase, t: "Freelancers", d: "Send invoices, share payment links, and get paid by global clients without juggling P2P, FX, or wallets." },
           ].map(({ i: Icon, t, d }) => (
-            <motion.div {...cardHover} key={t} className="group cursor-pointer rounded-3xl border border-border bg-card p-6 transition-colors hover:border-lime/60">
-              <Icon className="h-8 w-8 text-lime" />
-              <div className="mt-4 font-display text-2xl">{t}</div>
-              <p className="mt-2 text-sm text-muted-foreground">{d}</p>
+            <motion.div {...cardHover} key={t} className="group cursor-pointer rounded-3xl border border-border bg-card p-8 transition-colors hover:border-lime/60">
+              <Icon className="h-10 w-10 text-lime" />
+              <div className="mt-4 font-display text-3xl">{t}</div>
+              <p className="mt-3 text-muted-foreground">{d}</p>
             </motion.div>
           ))}
         </div>
