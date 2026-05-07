@@ -49,12 +49,14 @@ function ComplaintCard({
   time,
   body,
   rotate = 0,
+  avatar,
 }: {
   handle: string;
   name: string;
   time: string;
   body: string;
   rotate?: number;
+  avatar: string;
 }) {
   return (
     <motion.div
@@ -64,7 +66,7 @@ function ComplaintCard({
     >
       <div className="flex items-center justify-between text-xs">
         <div className="flex items-center gap-2">
-          <div className="h-7 w-7 rounded-full bg-gradient-to-br from-lime/60 to-lime/20" />
+          <img src={avatar} alt={name} className="h-8 w-8 rounded-full object-cover ring-2 ring-lime/30" />
           <div>
             <div className="font-display text-sm text-foreground">{name}</div>
             <div className="text-[10px] text-muted-foreground">@{handle} · {time}</div>
