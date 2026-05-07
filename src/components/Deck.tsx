@@ -178,7 +178,7 @@ const slides: Slide[] = [
             THE <span className="text-gradient-lime">PROBLEM</span>
           </h2>
           <p className="mt-4 text-base text-muted-foreground">
-            Restaurants, nightclubs & retail businesses are losing revenue because:
+            Businesses and freelancers are losing revenue because:
           </p>
           <ul className="mt-5 space-y-2.5">
             {[
@@ -212,6 +212,7 @@ const slides: Slide[] = [
           <div className="relative z-10 grid grid-cols-2 gap-3">
             <ComplaintCard
               rotate={-2}
+              avatar={avatarVickish}
               name="vickish | devrel"
               handle="Vickish11"
               time="16 Jan"
@@ -219,6 +220,7 @@ const slides: Slide[] = [
             />
             <ComplaintCard
               rotate={3}
+              avatar={avatarBaddy}
               name="Baddy of Lagos"
               handle="baddylagos"
               time="19 Aug"
@@ -226,6 +228,7 @@ const slides: Slide[] = [
             />
             <ComplaintCard
               rotate={-3}
+              avatar={avatarTori}
               name="Tori"
               handle="Toribatieegirl"
               time="17 Jul"
@@ -233,6 +236,7 @@ const slides: Slide[] = [
             />
             <ComplaintCard
               rotate={2}
+              avatar={avatarRemia}
               name="Remia"
               handle="remiaxyz"
               time="3d"
