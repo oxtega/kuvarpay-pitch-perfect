@@ -32,10 +32,10 @@ import mascot from "@/assets/kuvar-mascot.png";
 import dashboard from "@/assets/dashboard.jpg";
 import devicesImg from "@/assets/howitworks-devices.png";
 import mobileMoneyImg from "@/assets/mobile-money-iphone.png";
-import avatarVickish from "@/assets/avatar-vickish.png";
-import avatarBaddy from "@/assets/avatar-baddy.png";
-import avatarTori from "@/assets/avatar-tori.png";
-import avatarRemia from "@/assets/avatar-remia.png";
+import avatarKhadee from "@/assets/avatar-khadee.png";
+import avatarSweet from "@/assets/avatar-sweet.png";
+import avatarJaypee from "@/assets/avatar-jaypee.png";
+import avatarKenneth from "@/assets/avatar-kenneth.png";
 
 const cardHover = {
   whileHover: { y: -4, scale: 1.02, transition: { type: "spring" as const, stiffness: 300, damping: 20 } },
@@ -50,6 +50,7 @@ function ComplaintCard({
   body,
   rotate = 0,
   avatar,
+  href,
 }: {
   handle: string;
   name: string;
@@ -57,12 +58,16 @@ function ComplaintCard({
   body: string;
   rotate?: number;
   avatar: string;
+  href: string;
 }) {
   return (
-    <motion.div
+    <motion.a
+      href={href}
+      target="_blank"
+      rel="noreferrer"
       whileHover={{ scale: 1.04, rotate: 0, zIndex: 10 }}
       style={{ rotate: `${rotate}deg` }}
-      className="cursor-pointer rounded-2xl border border-border bg-[#0f1115] p-4 shadow-xl ring-1 ring-white/5"
+      className="block cursor-pointer rounded-2xl border border-border bg-[#0f1115] p-4 shadow-xl ring-1 ring-white/5 no-underline"
     >
       <div className="flex items-center justify-between text-xs">
         <div className="flex items-center gap-2">
@@ -78,7 +83,7 @@ function ComplaintCard({
       <div className="mt-3 flex items-center gap-4 text-[10px] text-muted-foreground">
         <span>💬 36</span><span>🔁 5</span><span>❤️ 50</span>
       </div>
-    </motion.div>
+    </motion.a>
   );
 }
 
@@ -559,13 +564,12 @@ const slides: Slide[] = [
             <motion.a
               whileHover={{ scale: 1.04 }}
               whileTap={{ scale: 0.97 }}
-              href="mailto:hello@kuvarpay.com"
+              href="mailto:hq@kuvarpay.com"
               className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-6 py-3 font-display text-foreground hover:border-lime/60"
             >
               Book a demo <ArrowUpRight className="h-4 w-4" />
             </motion.a>
           </div>
-          <div className="mt-6 text-sm text-muted-foreground">hello@kuvarpay.com</div>
           <div className="mt-6 flex flex-wrap items-center gap-3">
             {[
               { i: Twitter, l: "Twitter", h: "https://twitter.com/kuvarpay" },
@@ -630,34 +634,27 @@ export function Deck() {
         </SlideShell>
       </AnimatePresence>
 
-      <div className="fixed bottom-6 left-1/2 z-40 flex -translate-x-1/2 items-center gap-3 rounded-full border border-border bg-card/80 px-3 py-2 backdrop-blur-xl">
+      <div className="fixed bottom-3 left-1/2 z-40 flex -translate-x-1/2 items-center gap-1.5 rounded-full border border-border bg-card/80 px-2 py-1 backdrop-blur-xl">
         <button
           onClick={() => setI((p) => Math.max(p - 1, 0))}
           disabled={i === 0}
-          className="flex h-9 w-9 items-center justify-center rounded-full text-foreground transition hover:bg-secondary disabled:opacity-30"
+          className="flex h-6 w-6 items-center justify-center rounded-full text-foreground transition hover:bg-secondary disabled:opacity-30"
           aria-label="Previous slide"
         >
-          <ArrowLeft className="h-4 w-4" />
+          <ArrowLeft className="h-3 w-3" />
         </button>
-        <div className="flex items-center gap-1.5 px-2">
-          {slides.map((_, idx) => (
-            <button
-              key={idx}
-              onClick={() => setI(idx)}
-              aria-label={`Slide ${idx + 1}`}
-              className={`h-1.5 rounded-full transition-all ${
-                idx === i ? "w-8 bg-lime" : "w-1.5 bg-border hover:bg-muted-foreground"
-              }`}
-            />
-          ))}
+        <div className="flex items-center gap-1 px-1.5 text-[10px] font-medium tabular-nums text-muted-foreground">
+          <span className="text-foreground">{i + 1}</span>
+          <span>/</span>
+          <span>{total}</span>
         </div>
         <button
           onClick={() => setI((p) => Math.min(p + 1, total - 1))}
           disabled={i === total - 1}
-          className="flex h-9 w-9 items-center justify-center rounded-full text-foreground transition hover:bg-secondary disabled:opacity-30"
+          className="flex h-6 w-6 items-center justify-center rounded-full text-foreground transition hover:bg-secondary disabled:opacity-30"
           aria-label="Next slide"
         >
-          <ArrowRight className="h-4 w-4" />
+          <ArrowRight className="h-3 w-3" />
         </button>
       </div>
     </div>
