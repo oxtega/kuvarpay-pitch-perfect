@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ComposableMap, Geographies, Geography, Marker, Line } from "react-simple-maps";
+import { ComposableMap, Geographies, Geography, Marker } from "react-simple-maps";
 import { motion, AnimatePresence } from "framer-motion";
 
 const GEO_URL =
@@ -24,23 +24,15 @@ type Live = {
 };
 
 const LIVE: Live[] = [
-  { name: "Nigeria",      coords: [8.6753, 9.0820],  tag: "NG", txns: 12480, localCcy: "NGN", localAmount: "₦2.1B",   usd: "$1.4M" },
-  { name: "Ghana",        coords: [-1.0232, 7.9465], tag: "GH", txns: 4310,  localCcy: "GHS", localAmount: "GH₵5.6M", usd: "$420K" },
-  { name: "Kenya",        coords: [37.9062, -0.0236], tag: "KE", txns: 9620,  localCcy: "KES", localAmount: "KSh118M", usd: "$910K" },
-  { name: "Rwanda",       coords: [29.8739, -1.9403], tag: "RW", txns: 2185,  localCcy: "RWF", localAmount: "RWF 312M", usd: "$240K" },
-  { name: "South Africa", coords: [22.9375, -30.5595], tag: "ZA", txns: 7440,  localCcy: "ZAR", localAmount: "R8.9M",   usd: "$490K" },
+  { name: "Nigeria",      coords: [8.6753, 9.0820],   tag: "NG", txns: 1247, localCcy: "NGN", localAmount: "₦53,869,080",  usd: "$32,847" },
+  { name: "Kenya",        coords: [37.9062, -0.0236], tag: "KE", txns: 836,  localCcy: "KES", localAmount: "KSh 2,781,627", usd: "$21,563" },
+  { name: "Ghana",        coords: [-1.0232, 7.9465],  tag: "GH", txns: 512,  localCcy: "GHS", localAmount: "GH₵ 190,400",   usd: "$14,209" },
+  { name: "South Africa", coords: [22.9375, -30.5595],tag: "ZA", txns: 489,  localCcy: "ZAR", localAmount: "R 255,341",     usd: "$13,728" },
+  { name: "Rwanda",       coords: [29.8739, -1.9403], tag: "RW", txns: 273,  localCcy: "RWF", localAmount: "RWF 10,101,960", usd: "$7,653" },
 ];
 
 const LIVE_NAMES = new Set(LIVE.map((c) => c.name));
 const LIVE_BY_NAME = new Map(LIVE.map((c) => [c.name, c]));
-
-// Connect every live country to every other (corridor lines)
-const CORRIDORS: [Live, Live][] = [];
-for (let i = 0; i < LIVE.length; i++) {
-  for (let j = i + 1; j < LIVE.length; j++) {
-    CORRIDORS.push([LIVE[i], LIVE[j]]);
-  }
-}
 
 const STATUSES = ["Watching", "Loading", "Coming soon", "On the radar"];
 function statusFor(name: string) {
