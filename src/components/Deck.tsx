@@ -32,10 +32,10 @@ import mascot from "@/assets/kuvar-mascot.png";
 import dashboard from "@/assets/dashboard.jpg";
 import devicesImg from "@/assets/howitworks-devices.png";
 import mobileMoneyImg from "@/assets/mobile-money-iphone.png";
-import avatarVickish from "@/assets/avatar-vickish.png";
-import avatarBaddy from "@/assets/avatar-baddy.png";
-import avatarTori from "@/assets/avatar-tori.png";
-import avatarRemia from "@/assets/avatar-remia.png";
+import avatarKhadee from "@/assets/avatar-khadee.png";
+import avatarSweet from "@/assets/avatar-sweet.png";
+import avatarJaypee from "@/assets/avatar-jaypee.png";
+import avatarKenneth from "@/assets/avatar-kenneth.png";
 
 const cardHover = {
   whileHover: { y: -4, scale: 1.02, transition: { type: "spring" as const, stiffness: 300, damping: 20 } },
@@ -50,6 +50,7 @@ function ComplaintCard({
   body,
   rotate = 0,
   avatar,
+  href,
 }: {
   handle: string;
   name: string;
@@ -57,12 +58,16 @@ function ComplaintCard({
   body: string;
   rotate?: number;
   avatar: string;
+  href: string;
 }) {
   return (
-    <motion.div
+    <motion.a
+      href={href}
+      target="_blank"
+      rel="noreferrer"
       whileHover={{ scale: 1.04, rotate: 0, zIndex: 10 }}
       style={{ rotate: `${rotate}deg` }}
-      className="cursor-pointer rounded-2xl border border-border bg-[#0f1115] p-4 shadow-xl ring-1 ring-white/5"
+      className="block cursor-pointer rounded-2xl border border-border bg-[#0f1115] p-4 shadow-xl ring-1 ring-white/5 no-underline"
     >
       <div className="flex items-center justify-between text-xs">
         <div className="flex items-center gap-2">
@@ -78,7 +83,7 @@ function ComplaintCard({
       <div className="mt-3 flex items-center gap-4 text-[10px] text-muted-foreground">
         <span>💬 36</span><span>🔁 5</span><span>❤️ 50</span>
       </div>
-    </motion.div>
+    </motion.a>
   );
 }
 
@@ -212,35 +217,39 @@ const slides: Slide[] = [
           <div className="relative z-10 grid grid-cols-2 gap-3">
             <ComplaintCard
               rotate={-2}
-              avatar={avatarVickish}
-              name="vickish | devrel"
-              handle="Vickish11"
-              time="16 Jan"
-              body="some of you take st*pid risks. I went to dinner with this guy; he knew he didn't have cash to pay for dinner, but he still waited until we were almost done eating to start a p2p transfer. The p2p person didn't respond — I ended up paying."
+              avatar={avatarKhadee}
+              name="💗💚 khadee"
+              handle="dee_nftarmy"
+              time="29 Mar"
+              href="https://x.com/dee_nftarmy/status/2038187509419504047?s=20"
+              body="Another day to fight with P2P vendors 😂😂 It's always when you want to convert big money. And please don't tell me to use spenda."
             />
             <ComplaintCard
               rotate={3}
-              avatar={avatarBaddy}
-              name="Baddy of Lagos"
-              handle="baddylagos"
-              time="19 Aug"
-              body="Omo, I no go lie… P2P vendors don humble me tire. You send crypto to them and they'll say 'give me 20mins.' Next thing, 1hr don pass. Some even switch off phone when market change."
+              avatar={avatarSweet}
+              name="sweet_coder"
+              handle="AdegbemboB"
+              time="16 Feb"
+              href="https://x.com/AdegbemboB/status/2023322897993867771?s=20"
+              body="Some of these P2P vendors on these exchanges are actually thieves 😭 I tried to sell my USDT… I was supposed to get 553,000 naira, but this vendor sent me 535,000 thinking I wouldn't notice. He really wanted to scam me."
             />
             <ComplaintCard
               rotate={-3}
-              avatar={avatarTori}
-              name="Tori"
-              handle="Toribatieegirl"
-              time="17 Jul"
-              body="What scares you most about P2P platforms? Waste of time? Scammers? Risky? Over 100 trades done with Bybit's P2P, no issues — but only because I vet every user."
+              avatar={avatarJaypee}
+              name="JayPee👑"
+              handle="Mr_Jay_Pee"
+              time="2 May"
+              href="https://x.com/Mr_Jay_Pee/status/2050678019065295019?s=20"
+              body="If you want to see scammers, visit Bybit P2P. That's home of Scam Vendors. Even the ones with 96% completion and 2000+ trades — doesn't still work. Even 100% record aren't legit too."
             />
             <ComplaintCard
               rotate={2}
-              avatar={avatarRemia}
-              name="Remia"
-              handle="remiaxyz"
-              time="3d"
-              body="Unpopular opinion: P2P crypto trading is worse now than it was 3 years ago. Scam volume keeps climbing. Platforms don't care. CEXs aren't any better — they freeze your account for 'review' whenever they feel like it."
+              avatar={avatarKenneth}
+              name="Kenn_eth"
+              handle="keenn_eth"
+              time="1 May"
+              href="https://x.com/keenn_eth/status/2050205543906607316?s=20"
+              body="I just got scammed on Bybit p2p. Buyer kept saying 'accept your incoming pending transaction so the money can drop'… reporting you for scam."
             />
           </div>
           <p className="mt-4 text-center text-xs text-muted-foreground">
@@ -559,13 +568,12 @@ const slides: Slide[] = [
             <motion.a
               whileHover={{ scale: 1.04 }}
               whileTap={{ scale: 0.97 }}
-              href="mailto:hello@kuvarpay.com"
+              href="mailto:hq@kuvarpay.com"
               className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-6 py-3 font-display text-foreground hover:border-lime/60"
             >
               Book a demo <ArrowUpRight className="h-4 w-4" />
             </motion.a>
           </div>
-          <div className="mt-6 text-sm text-muted-foreground">hello@kuvarpay.com</div>
           <div className="mt-6 flex flex-wrap items-center gap-3">
             {[
               { i: Twitter, l: "Twitter", h: "https://twitter.com/kuvarpay" },
@@ -630,34 +638,27 @@ export function Deck() {
         </SlideShell>
       </AnimatePresence>
 
-      <div className="fixed bottom-6 left-1/2 z-40 flex -translate-x-1/2 items-center gap-3 rounded-full border border-border bg-card/80 px-3 py-2 backdrop-blur-xl">
+      <div className="fixed bottom-3 left-1/2 z-40 flex -translate-x-1/2 items-center gap-1.5 rounded-full border border-border bg-card/80 px-2 py-1 backdrop-blur-xl">
         <button
           onClick={() => setI((p) => Math.max(p - 1, 0))}
           disabled={i === 0}
-          className="flex h-9 w-9 items-center justify-center rounded-full text-foreground transition hover:bg-secondary disabled:opacity-30"
+          className="flex h-6 w-6 items-center justify-center rounded-full text-foreground transition hover:bg-secondary disabled:opacity-30"
           aria-label="Previous slide"
         >
-          <ArrowLeft className="h-4 w-4" />
+          <ArrowLeft className="h-3 w-3" />
         </button>
-        <div className="flex items-center gap-1.5 px-2">
-          {slides.map((_, idx) => (
-            <button
-              key={idx}
-              onClick={() => setI(idx)}
-              aria-label={`Slide ${idx + 1}`}
-              className={`h-1.5 rounded-full transition-all ${
-                idx === i ? "w-8 bg-lime" : "w-1.5 bg-border hover:bg-muted-foreground"
-              }`}
-            />
-          ))}
+        <div className="flex items-center gap-1 px-1.5 text-[10px] font-medium tabular-nums text-muted-foreground">
+          <span className="text-foreground">{i + 1}</span>
+          <span>/</span>
+          <span>{total}</span>
         </div>
         <button
           onClick={() => setI((p) => Math.min(p + 1, total - 1))}
           disabled={i === total - 1}
-          className="flex h-9 w-9 items-center justify-center rounded-full text-foreground transition hover:bg-secondary disabled:opacity-30"
+          className="flex h-6 w-6 items-center justify-center rounded-full text-foreground transition hover:bg-secondary disabled:opacity-30"
           aria-label="Next slide"
         >
-          <ArrowRight className="h-4 w-4" />
+          <ArrowRight className="h-3 w-3" />
         </button>
       </div>
     </div>
