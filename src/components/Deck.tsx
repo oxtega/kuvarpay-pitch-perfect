@@ -217,35 +217,39 @@ const slides: Slide[] = [
           <div className="relative z-10 grid grid-cols-2 gap-3">
             <ComplaintCard
               rotate={-2}
-              avatar={avatarVickish}
-              name="vickish | devrel"
-              handle="Vickish11"
-              time="16 Jan"
-              body="some of you take st*pid risks. I went to dinner with this guy; he knew he didn't have cash to pay for dinner, but he still waited until we were almost done eating to start a p2p transfer. The p2p person didn't respond — I ended up paying."
+              avatar={avatarKhadee}
+              name="💗💚 khadee"
+              handle="dee_nftarmy"
+              time="29 Mar"
+              href="https://x.com/dee_nftarmy/status/2038187509419504047?s=20"
+              body="Another day to fight with P2P vendors 😂😂 It's always when you want to convert big money. And please don't tell me to use spenda."
             />
             <ComplaintCard
               rotate={3}
-              avatar={avatarBaddy}
-              name="Baddy of Lagos"
-              handle="baddylagos"
-              time="19 Aug"
-              body="Omo, I no go lie… P2P vendors don humble me tire. You send crypto to them and they'll say 'give me 20mins.' Next thing, 1hr don pass. Some even switch off phone when market change."
+              avatar={avatarSweet}
+              name="sweet_coder"
+              handle="AdegbemboB"
+              time="16 Feb"
+              href="https://x.com/AdegbemboB/status/2023322897993867771?s=20"
+              body="Some of these P2P vendors on these exchanges are actually thieves 😭 I tried to sell my USDT… I was supposed to get 553,000 naira, but this vendor sent me 535,000 thinking I wouldn't notice. He really wanted to scam me."
             />
             <ComplaintCard
               rotate={-3}
-              avatar={avatarTori}
-              name="Tori"
-              handle="Toribatieegirl"
-              time="17 Jul"
-              body="What scares you most about P2P platforms? Waste of time? Scammers? Risky? Over 100 trades done with Bybit's P2P, no issues — but only because I vet every user."
+              avatar={avatarJaypee}
+              name="JayPee👑"
+              handle="Mr_Jay_Pee"
+              time="2 May"
+              href="https://x.com/Mr_Jay_Pee/status/2050678019065295019?s=20"
+              body="If you want to see scammers, visit Bybit P2P. That's home of Scam Vendors. Even the ones with 96% completion and 2000+ trades — doesn't still work. Even 100% record aren't legit too."
             />
             <ComplaintCard
               rotate={2}
-              avatar={avatarRemia}
-              name="Remia"
-              handle="remiaxyz"
-              time="3d"
-              body="Unpopular opinion: P2P crypto trading is worse now than it was 3 years ago. Scam volume keeps climbing. Platforms don't care. CEXs aren't any better — they freeze your account for 'review' whenever they feel like it."
+              avatar={avatarKenneth}
+              name="Kenn_eth"
+              handle="keenn_eth"
+              time="1 May"
+              href="https://x.com/keenn_eth/status/2050205543906607316?s=20"
+              body="I just got scammed on Bybit p2p. Buyer kept saying 'accept your incoming pending transaction so the money can drop'… reporting you for scam."
             />
           </div>
           <p className="mt-4 text-center text-xs text-muted-foreground">
