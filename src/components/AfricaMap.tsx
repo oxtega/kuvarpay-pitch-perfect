@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { ComposableMap, Geographies, Geography, Marker } from "react-simple-maps";
+import { ComposableMap, Geographies, Geography, Marker, ZoomableGroup } from "react-simple-maps";
 import { motion, AnimatePresence } from "framer-motion";
+import { Plus, Minus, RotateCcw, Locate } from "lucide-react";
 
 const GEO_URL =
   "https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json";
@@ -46,8 +47,17 @@ type Tip = { name: string; live: boolean; status?: string; data?: Live } | null;
 export function AfricaMap() {
   const [hover, setHover] = useState<Tip>(null);
   const [pinned, setPinned] = useState<Tip>(null);
+  const [position, setPosition] = useState<{ coordinates: [number, number]; zoom: number }>({
+    coordinates: [20, 3],
+    zoom: 1,
+  });
 
   const active = pinned ?? hover;
+
+  const zoomIn = () => setPosition((p) => ({ ...p, zoom: Math.min(p.zoom * 1.5, 8) }));
+  const zoomOut = () => setPosition((p) => ({ ...p, zoom: Math.max(p.zoom / 1.5, 1) }));
+  const reset = () => setPosition({ coordinates: [20, 3], zoom: 1 });
+  const focusRwanda = () => setPosition({ coordinates: [29.8739, -1.9403], zoom: 5 });
 
   return (
     <div
@@ -63,6 +73,13 @@ export function AfricaMap() {
         height={720}
         style={{ width: "100%", height: "auto" }}
       >
+        <ZoomableGroup
+          zoom={position.zoom}
+          center={position.coordinates}
+          minZoom={1}
+          maxZoom={8}
+          onMoveEnd={(pos) => setPosition({ coordinates: pos.coordinates as [number, number], zoom: pos.zoom })}
+        >
         <Geographies geography={GEO_URL}>
           {({ geographies }) =>
             geographies
