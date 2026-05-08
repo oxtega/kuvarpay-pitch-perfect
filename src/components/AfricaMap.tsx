@@ -108,19 +108,7 @@ export function AfricaMap() {
           }
         </Geographies>
 
-        {/* Dotted corridor lines between live countries */}
-        {CORRIDORS.map(([a, b]) => (
-          <Line
-            key={`${a.tag}-${b.tag}`}
-            from={a.coords}
-            to={b.coords}
-            stroke="oklch(0.88 0.22 128)"
-            strokeWidth={1.4}
-            strokeDasharray="3,4"
-            strokeLinecap="round"
-            opacity={0.85}
-          />
-        ))}
+
 
         {LIVE.map((c) => (
           <Marker key={c.name} coordinates={c.coords}>
