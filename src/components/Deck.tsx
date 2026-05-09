@@ -15,6 +15,7 @@ import {
   Instagram,
   Linkedin,
   Lock,
+  PlayCircle,
   Repeat,
   Rocket,
   ShieldCheck,
