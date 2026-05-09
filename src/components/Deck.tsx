@@ -569,6 +569,16 @@ const slides: Slide[] = [
             >
               Book a demo <ArrowUpRight className="h-4 w-4" />
             </motion.a>
+            <motion.a
+              whileHover={{ scale: 1.04 }}
+              whileTap={{ scale: 0.97 }}
+              href="https://www.youtube.com/watch?v=leIO-yUl8R0&t=245s"
+              target="_blank"
+              rel="noreferrer"
+              className="group inline-flex items-center gap-2 rounded-full border border-lime/40 bg-lime/10 px-6 py-3 font-display text-lime hover:bg-lime/20"
+            >
+              <PlayCircle className="h-5 w-5" /> Watch demo
+            </motion.a>
           </div>
           <div className="mt-6 flex flex-wrap items-center gap-3">
             {[
