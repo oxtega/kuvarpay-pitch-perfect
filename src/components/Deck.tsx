@@ -329,21 +329,18 @@ const slides: Slide[] = [
             ))}
           </div>
           <div className="flex flex-col items-center justify-center gap-6">
-            <div className="relative w-full">
-              <div className="absolute inset-0 -z-10 rounded-[2rem] bg-lime/15 blur-2xl" />
-              <img
-                src={devicesImg}
-                alt="KuvarPay dashboard on laptop and mobile checkout"
-                className="mx-auto w-full max-w-[480px] object-contain drop-shadow-2xl"
-                loading="lazy"
-              />
-            </div>
-            <div className="w-full rounded-2xl border border-lime/30 bg-lime/5 p-3">
-              <div className="mb-2 text-[10px] uppercase tracking-widest text-lime">Settlement to your bank</div>
+            <img
+              src={devicesImg}
+              alt="KuvarPay dashboard on laptop and mobile checkout"
+              className="mx-auto w-full max-w-[480px] object-contain"
+              loading="lazy"
+            />
+            <div className="w-full">
+              <div className="mb-2 text-center text-[10px] uppercase tracking-widest text-lime">Settlement to your bank</div>
               <img
                 src={mobileMoneyImg}
                 alt="Mobile money settlement of 800,000 RWF"
-                className="mx-auto w-full max-w-[420px] object-contain"
+                className="mx-auto w-full max-w-[360px] object-contain"
                 loading="lazy"
               />
             </div>
