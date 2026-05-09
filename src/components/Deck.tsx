@@ -293,11 +293,10 @@ const slides: Slide[] = [
           </div>
         </div>
         <div className="relative">
-          <div className="absolute inset-0 -z-10 rounded-[2rem] bg-lime/15 blur-2xl" />
           <img
             src={dashboard}
             alt="KuvarPay dashboard"
-            className="rounded-2xl border border-border ring-lime-glow"
+            className="w-full object-contain"
           />
         </div>
       </div>
