@@ -470,7 +470,7 @@ const slides: Slide[] = [
             ))}
           </div>
         </div>
-        <div className="rounded-3xl border border-border bg-card p-4">
+        <div>
           <AfricaMap />
         </div>
       </div>
