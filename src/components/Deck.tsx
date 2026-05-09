@@ -15,6 +15,7 @@ import {
   Instagram,
   Linkedin,
   Lock,
+  PlayCircle,
   Repeat,
   Rocket,
   ShieldCheck,
@@ -121,11 +122,10 @@ const slides: Slide[] = [
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.6 }}
         >
-          <div className="absolute inset-0 -z-10 rounded-[3rem] bg-lime/20 blur-3xl" />
           <motion.img
             src={mascot}
             alt="Kuvar mascot"
-            className="mx-auto max-h-[480px] w-auto object-contain drop-shadow-2xl"
+            className="mx-auto max-h-[480px] w-auto object-contain"
             animate={{ y: [0, -12, 0] }}
             transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
             whileHover={{ scale: 1.05, rotate: -2 }}
@@ -143,7 +143,7 @@ const slides: Slide[] = [
         <motion.img
           src={mascot}
           alt="Kuvar"
-          className="mx-auto max-h-[460px] w-auto object-contain drop-shadow-2xl"
+          className="mx-auto max-h-[460px] w-auto object-contain"
           animate={{ rotate: [-2, 2, -2] }}
           transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
           whileHover={{ scale: 1.06 }}
@@ -294,11 +294,10 @@ const slides: Slide[] = [
           </div>
         </div>
         <div className="relative">
-          <div className="absolute inset-0 -z-10 rounded-[2rem] bg-lime/15 blur-2xl" />
           <img
             src={dashboard}
             alt="KuvarPay dashboard"
-            className="rounded-2xl border border-border ring-lime-glow"
+            className="w-full object-contain"
           />
         </div>
       </div>
@@ -331,21 +330,18 @@ const slides: Slide[] = [
             ))}
           </div>
           <div className="flex flex-col items-center justify-center gap-6">
-            <div className="relative w-full">
-              <div className="absolute inset-0 -z-10 rounded-[2rem] bg-lime/15 blur-2xl" />
-              <img
-                src={devicesImg}
-                alt="KuvarPay dashboard on laptop and mobile checkout"
-                className="mx-auto w-full max-w-[480px] object-contain drop-shadow-2xl"
-                loading="lazy"
-              />
-            </div>
-            <div className="w-full rounded-2xl border border-lime/30 bg-lime/5 p-3">
-              <div className="mb-2 text-[10px] uppercase tracking-widest text-lime">Settlement to your bank</div>
+            <img
+              src={devicesImg}
+              alt="KuvarPay dashboard on laptop and mobile checkout"
+              className="mx-auto w-full max-w-[480px] object-contain"
+              loading="lazy"
+            />
+            <div className="w-full">
+              <div className="mb-2 text-center text-[10px] uppercase tracking-widest text-lime">Settlement to your bank</div>
               <img
                 src={mobileMoneyImg}
                 alt="Mobile money settlement of 800,000 RWF"
-                className="mx-auto w-full max-w-[420px] object-contain"
+                className="mx-auto w-full max-w-[360px] object-contain"
                 loading="lazy"
               />
             </div>
@@ -475,7 +471,7 @@ const slides: Slide[] = [
             ))}
           </div>
         </div>
-        <div className="rounded-3xl border border-border bg-card p-4">
+        <div>
           <AfricaMap />
         </div>
       </div>
@@ -573,6 +569,16 @@ const slides: Slide[] = [
             >
               Book a demo <ArrowUpRight className="h-4 w-4" />
             </motion.a>
+            <motion.a
+              whileHover={{ scale: 1.04 }}
+              whileTap={{ scale: 0.97 }}
+              href="https://www.youtube.com/watch?v=leIO-yUl8R0&t=245s"
+              target="_blank"
+              rel="noreferrer"
+              className="group inline-flex items-center gap-2 rounded-full border border-lime/40 bg-lime/10 px-6 py-3 font-display text-lime hover:bg-lime/20"
+            >
+              <PlayCircle className="h-5 w-5" /> Watch demo
+            </motion.a>
           </div>
           <div className="mt-6 flex flex-wrap items-center gap-3">
             {[
@@ -600,11 +606,10 @@ const slides: Slide[] = [
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.6 }}
         >
-          <div className="absolute inset-0 -z-10 rounded-[3rem] bg-lime/20 blur-3xl" />
           <motion.img
             src={mascot}
             alt="Kuvar"
-            className="mx-auto max-h-[460px] w-auto object-contain drop-shadow-2xl"
+            className="mx-auto max-h-[460px] w-auto object-contain"
             animate={{ y: [0, -10, 0] }}
             transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
             whileHover={{ scale: 1.05 }}
