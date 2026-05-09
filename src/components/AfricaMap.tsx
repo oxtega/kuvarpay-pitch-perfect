@@ -129,7 +129,44 @@ export function AfricaMap() {
 
         {LIVE.map((c) => {
           const isRwanda = c.tag === "RW";
-          const labelY = isRwanda ? -22 : -14;
+          if (isRwanda) {
+            // Pin floats above Rwanda so the country shape stays visible.
+            return (
+              <Marker key={c.name} coordinates={c.coords}>
+                <motion.g
+                  animate={{ y: [-2, -6, -2] }}
+                  transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }}
+                >
+                  {/* Pin body (teardrop) anchored so the tip sits at y=0 (Rwanda center) */}
+                  <g transform="translate(0,-22)">
+                    <path
+                      d="M0 22 C-7 14 -10 8 -10 2 a10 10 0 1 1 20 0 c0 6 -3 12 -10 20 z"
+                      fill="oklch(0.88 0.22 128)"
+                      stroke="oklch(0.16 0.02 170)"
+                      strokeWidth={1.2}
+                    />
+                    <circle cx={0} cy={2} r={3.5} fill="oklch(0.16 0.02 170)" />
+                  </g>
+                </motion.g>
+                <text
+                  y={-32}
+                  textAnchor="middle"
+                  style={{
+                    fontFamily: "Space Grotesk",
+                    fontSize: 14,
+                    fontWeight: 700,
+                    fill: "oklch(0.16 0.02 170)",
+                    stroke: "oklch(0.88 0.22 128)",
+                    strokeWidth: 4,
+                    paintOrder: "stroke",
+                    pointerEvents: "none",
+                  }}
+                >
+                  {c.name}
+                </text>
+              </Marker>
+            );
+          }
           return (
             <Marker key={c.name} coordinates={c.coords}>
               <motion.circle
@@ -140,19 +177,18 @@ export function AfricaMap() {
                 animate={{ r: [6, 18], opacity: [0.9, 0] }}
                 transition={{ duration: 1.8, repeat: Infinity, ease: "easeOut" }}
               />
-              <circle r={isRwanda ? 7 : 6} fill={isRwanda ? "oklch(0.88 0.22 128)" : "oklch(0.16 0.02 170)"} />
+              <circle r={6} fill="oklch(0.16 0.02 170)" />
               <circle r={3.5} fill="oklch(0.97 0.005 170)" />
-              {isRwanda && <line x1={0} y1={-7} x2={0} y2={-16} stroke="oklch(0.97 0.005 170)" strokeWidth={1.2} />}
               <text
-                y={labelY}
+                y={-14}
                 textAnchor="middle"
                 style={{
                   fontFamily: "Space Grotesk",
-                  fontSize: isRwanda ? 14 : 13,
+                  fontSize: 13,
                   fontWeight: 700,
-                  fill: isRwanda ? "oklch(0.16 0.02 170)" : "oklch(0.16 0.02 170)",
-                  stroke: isRwanda ? "oklch(0.88 0.22 128)" : "oklch(0.97 0.005 170)",
-                  strokeWidth: isRwanda ? 4 : 3,
+                  fill: "oklch(0.16 0.02 170)",
+                  stroke: "oklch(0.97 0.005 170)",
+                  strokeWidth: 3,
                   paintOrder: "stroke",
                   pointerEvents: "none",
                 }}
