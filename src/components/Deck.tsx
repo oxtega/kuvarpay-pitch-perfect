@@ -153,8 +153,8 @@ const slides: Slide[] = [
             Hi, I'm <span className="text-gradient-lime">Kuvar.</span>
           </h2>
           <p className="mt-6 text-xl text-muted-foreground">
-            I'm here to help your business accept payments from anyone, in any
-            currency — without the headache. You serve. I settle.
+            I'm here to help your business accept payments from anyone, using
+            over 1300 cryptocurrencies. Without any headache. You serve. I settle.
           </p>
           <div className="mt-8 grid grid-cols-3 gap-4">
             {[
@@ -564,20 +564,20 @@ const slides: Slide[] = [
             <motion.a
               whileHover={{ scale: 1.04 }}
               whileTap={{ scale: 0.97 }}
-              href="mailto:hq@kuvarpay.com"
-              className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-6 py-3 font-display text-foreground hover:border-lime/60"
-            >
-              Book a demo <ArrowUpRight className="h-4 w-4" />
-            </motion.a>
-            <motion.a
-              whileHover={{ scale: 1.04 }}
-              whileTap={{ scale: 0.97 }}
-              href="https://www.youtube.com/watch?v=leIO-yUl8R0&t=245s"
+              href="https://www.kuvarpay.com/demo-dashboard/overview"
               target="_blank"
               rel="noreferrer"
               className="group inline-flex items-center gap-2 rounded-full border border-lime/40 bg-lime/10 px-6 py-3 font-display text-lime hover:bg-lime/20"
             >
-              <PlayCircle className="h-5 w-5" /> Watch demo
+              <PlayCircle className="h-5 w-5" /> Explore demo
+            </motion.a>
+            <motion.a
+              whileHover={{ scale: 1.04 }}
+              whileTap={{ scale: 0.97 }}
+              href="mailto:hq@kuvarpay.com?subject=Book%20a%20call%20with%20KuvarPay"
+              className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-6 py-3 font-display text-foreground hover:border-lime/60"
+            >
+              Book a call <ArrowUpRight className="h-4 w-4" />
             </motion.a>
           </div>
           <div className="mt-6 flex flex-wrap items-center gap-3">
