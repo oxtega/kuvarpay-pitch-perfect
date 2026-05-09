@@ -142,7 +142,7 @@ const slides: Slide[] = [
         <motion.img
           src={mascot}
           alt="Kuvar"
-          className="mx-auto max-h-[460px] w-auto object-contain drop-shadow-2xl"
+          className="mx-auto max-h-[460px] w-auto object-contain"
           animate={{ rotate: [-2, 2, -2] }}
           transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
           whileHover={{ scale: 1.06 }}
