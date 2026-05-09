@@ -72,14 +72,18 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
+      { title: "KuvarPay" },
+      { name: "description", content: "KuvarPay Pitch Perfect is a business slide deck designed to onboard new businesses and freelancers onto the KuvarPay platform." },
       { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { property: "og:title", content: "KuvarPay" },
+      { property: "og:description", content: "KuvarPay Pitch Perfect is a business slide deck designed to onboard new businesses and freelancers onto the KuvarPay platform." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:title", content: "KuvarPay" },
+      { name: "twitter:description", content: "KuvarPay Pitch Perfect is a business slide deck designed to onboard new businesses and freelancers onto the KuvarPay platform." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/2e239460-d388-468a-8be2-35e388c0f104/id-preview-6442d75d--300f06d9-e588-4365-9594-45bed46a4b29.lovable.app-1778338921367.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/2e239460-d388-468a-8be2-35e388c0f104/id-preview-6442d75d--300f06d9-e588-4365-9594-45bed46a4b29.lovable.app-1778338921367.png" },
     ],
     links: [
       {
