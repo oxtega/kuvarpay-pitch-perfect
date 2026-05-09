@@ -606,11 +606,10 @@ const slides: Slide[] = [
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.6 }}
         >
-          <div className="absolute inset-0 -z-10 rounded-[3rem] bg-lime/20 blur-3xl" />
           <motion.img
             src={mascot}
             alt="Kuvar"
-            className="mx-auto max-h-[460px] w-auto object-contain drop-shadow-2xl"
+            className="mx-auto max-h-[460px] w-auto object-contain"
             animate={{ y: [0, -10, 0] }}
             transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
             whileHover={{ scale: 1.05 }}
