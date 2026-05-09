@@ -104,9 +104,9 @@ const slides: Slide[] = [
             <span className="text-gradient-lime">Get paid in cash.</span>
           </h1>
           <p className="mt-6 max-w-xl text-lg text-muted-foreground">
-            KuvarPay lets your business accept payments from any customer,
-            anywhere in the world — and settles directly to your bank in
-            local currency. No crypto knowledge required.
+            KuvarPay lets your business accept cryptocurrency payments from any
+            customer, anywhere in the world and settles directly to your bank
+            in local currency. No crypto knowledge required.
           </p>
           <div className="mt-10 flex flex-wrap items-center gap-6 text-sm text-muted-foreground">
             <div><span className="font-display text-2xl text-foreground">0.9%</span> per transaction</div>
@@ -153,8 +153,9 @@ const slides: Slide[] = [
             Hi, I'm <span className="text-gradient-lime">Kuvar.</span>
           </h2>
           <p className="mt-6 text-xl text-muted-foreground">
-            I'm here to help your business accept payments from anyone, using
-            over 1300 cryptocurrencies. Without any headache. You serve. I settle.
+            I'm here to help your business accept cryptocurrency payments from
+            anyone, using over 1300 cryptocurrencies. Without any headache. You
+            serve. I settle.
           </p>
           <div className="mt-8 grid grid-cols-3 gap-4">
             {[
@@ -574,7 +575,9 @@ const slides: Slide[] = [
             <motion.a
               whileHover={{ scale: 1.04 }}
               whileTap={{ scale: 0.97 }}
-              href="mailto:hq@kuvarpay.com?subject=Book%20a%20call%20with%20KuvarPay"
+              href="https://mail.google.com/mail/?view=cm&fs=1&to=hq@kuvarpay.com&su=Book%20a%20call%20with%20KuvarPay"
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-6 py-3 font-display text-foreground hover:border-lime/60"
             >
               Book a call <ArrowUpRight className="h-4 w-4" />
