@@ -245,7 +245,7 @@ const slides: Slide[] = [
               handle="Mr_Jay_Pee"
               time="2 May"
               href="https://x.com/Mr_Jay_Pee/status/2050678019065295019?s=20"
-              body="If you want to see scammers, visit Bybit P2P. That's home of Scam Vendors. Even the ones with 96% completion and 2000+ trades — doesn't still work. Even 100% record aren't legit too."
+              body="If you want to see scammers, visit Bybit P2P. That's home of Scam Vendors. Even the ones with 96% completion and 2000+ trades, doesn't still work. Even 100% record aren't legit too."
             />
             <ComplaintCard
               rotate={2}
