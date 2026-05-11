@@ -450,9 +450,9 @@ const slides: Slide[] = [
         </h2>
         <div className="mt-12 grid flex-1 gap-6 md:grid-cols-3">
           {[
-            { n: "01", t: "We meet", d: "15-min call to understand your business & pick the right tools." },
-            { n: "02", t: "We set up", d: "We provision your dashboard, branded checkout, QR codes & POS." },
-            { n: "03", t: "We train", d: "Your team learns to accept payments — no crypto knowledge needed." },
+            { n: "01", t: "Go to our website", d: "Visit kuvarpay.com to get started in minutes." },
+            { n: "02", t: "Onboard your business", d: "We set up your dashboard, branded checkout, QR codes & POS." },
+            { n: "03", t: "Start accepting crypto", d: "Your team accepts payments worldwide, no crypto knowledge needed." },
           ].map((s) => (
             <motion.div {...cardHover} key={s.n} className="cursor-pointer rounded-3xl border border-border bg-card p-8 transition-colors hover:border-lime/60">
               <div className="font-display text-4xl text-lime">{s.n}</div>
@@ -460,10 +460,6 @@ const slides: Slide[] = [
               <p className="mt-3 text-muted-foreground">{s.d}</p>
             </motion.div>
           ))}
-        </div>
-        <div className="mt-8 rounded-2xl border border-lime/30 bg-lime/5 p-6 text-sm text-muted-foreground">
-          <span className="font-display text-foreground">First month free.</span>{" "}
-          Onboard now and pay zero fees on your first 30 days of transactions.
         </div>
       </div>
     ),
