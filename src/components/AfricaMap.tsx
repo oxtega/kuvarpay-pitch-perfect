@@ -43,7 +43,24 @@ function statusFor(name: string) {
 
 type Tip = { name: string; live: boolean; status?: string; data?: Live } | null;
 
-export function AfricaMap() {
+type TractionMarker = {
+  name: string;
+  coords: [number, number];
+  volume: string;
+  prominent?: boolean;
+};
+
+const TRACTION: TractionMarker[] = [
+  { name: "Rwanda",  coords: [29.8739, -1.9403], volume: "$24,350", prominent: true },
+  { name: "Nigeria", coords: [8.6753,   9.0820], volume: "$13,720" },
+  { name: "Kenya",   coords: [37.9062, -0.0236], volume: "$11,480" },
+  { name: "Ghana",   coords: [-1.0232,  7.9465], volume: "$7,630" },
+  { name: "Uganda",  coords: [32.2903,  1.3733], volume: "$4,820" },
+];
+const TRACTION_NAMES = new Set(TRACTION.map((t) => t.name));
+
+export function AfricaMap({ variant = "default" }: { variant?: "default" | "traction" } = {}) {
+  if (variant === "traction") return <TractionAfricaMap />;
   const [hover, setHover] = useState<Tip>(null);
   const [pinned, setPinned] = useState<Tip>(null);
 
