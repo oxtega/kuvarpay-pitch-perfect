@@ -322,8 +322,8 @@ const slides: Slide[] = [
         </h2>
         <div className="mt-10 grid flex-1 gap-4 md:grid-cols-3">
           {[
-            { i: Coins, t: "Lower fees", d: "Just 0.9% — vs 3–4% on POS / cards." },
-            { i: Clock, t: "Instant settlement", d: "T+0 to your bank. No more T+3 waits." },
+            { i: Coins, t: "Lower fees", d: "Just 1.5% from customers, zero charges on the business." },
+            { i: Clock, t: "Instant settlement", d: "T+1 to your bank, no more T+3 waits." },
             { i: Globe2, t: "Global customers", d: "Tourists & remote buyers can finally pay." },
             { i: ShieldCheck, t: "No chargebacks", d: "Crypto payments are final & verified." },
             { i: BadgeCheck, t: "Compliance built-in", d: "KYC/AML & sanctions screened end-to-end." },
