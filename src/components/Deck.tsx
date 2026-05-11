@@ -265,50 +265,6 @@ const slides: Slide[] = [
       </div>
     ),
   },
-
-  // 4. The solution
-  {
-    eyebrow: "The solution",
-    render: () => (
-      <div className="grid h-full items-center gap-12 lg:grid-cols-[1.1fr_1fr]">
-        <div>
-          <h2 className="font-display text-5xl font-bold md:text-6xl">
-            One checkout. <span className="text-gradient-lime">Every customer.</span>
-          </h2>
-          <p className="mt-6 text-lg text-muted-foreground">
-            Plug KuvarPay into your POS, website or invoice link. Your customer
-            pays in any crypto, any chain — you receive local currency in your
-            bank, instantly.
-          </p>
-          <div className="mt-8 space-y-3">
-            {[
-              "Accept payments from tourists & global customers",
-              "Settle to your bank account in NGN, KES, GHS, RWF, ZAR",
-              "No chargebacks. No frozen funds. No P2P scams.",
-              "Lower fees than Visa, Mastercard or POS terminals",
-            ].map((t) => (
-              <motion.div
-                key={t}
-                whileHover={{ x: 6 }}
-                className="flex cursor-pointer items-center gap-3 rounded-lg p-2 text-foreground transition-colors hover:bg-lime/5"
-              >
-                <CheckCircle2 className="h-5 w-5 shrink-0 text-lime" />
-                <span>{t}</span>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-        <div className="relative">
-          <img
-            src={dashboard}
-            alt="KuvarPay dashboard"
-            className="w-full object-contain"
-          />
-        </div>
-      </div>
-    ),
-  },
-
   // 5. How it works
   {
     eyebrow: "How it works",
