@@ -5,24 +5,24 @@ import {
   ArrowRight,
   ArrowUpRight,
   BadgeCheck,
-  Boxes,
   Briefcase,
-  CheckCircle2,
   Clock,
+  Code,
   Coins,
-  CreditCard,
+  FileText,
   Globe2,
   Instagram,
   Linkedin,
+  Link2,
   Lock,
   PlayCircle,
   Repeat,
   Rocket,
   ShieldCheck,
+  ShoppingCart,
   Sparkles,
   Store,
   Twitter,
-  Users,
   Wallet,
   XCircle,
   Zap,
@@ -30,7 +30,6 @@ import {
 import { SlideShell } from "@/components/SlideShell";
 import { AfricaMap } from "@/components/AfricaMap";
 import mascot from "@/assets/kuvar-mascot.png";
-import dashboard from "@/assets/dashboard.jpg";
 import devicesImg from "@/assets/howitworks-devices.png";
 import mobileMoneyImg from "@/assets/mobile-money-iphone.png";
 import avatarKhadee from "@/assets/avatar-khadee.png";
@@ -99,7 +98,7 @@ const slides: Slide[] = [
           <span className="inline-flex items-center gap-2 rounded-full border border-lime/40 bg-lime/10 px-3 py-1 text-xs font-medium uppercase tracking-[0.18em] text-lime">
             <Sparkles className="h-3 w-3" /> For Businesses & Freelancers
           </span>
-          <h1 className="mt-6 font-display text-6xl font-bold leading-[0.95] md:text-8xl">
+          <h1 className="mt-6 font-display text-6xl font-black leading-[0.95] md:text-8xl">
             Accept crypto.<br />
             <span className="text-gradient-lime">Get paid in cash.</span>
           </h1>
@@ -109,9 +108,9 @@ const slides: Slide[] = [
             in local currency. No crypto knowledge required.
           </p>
           <div className="mt-10 flex flex-wrap items-center gap-6 text-sm text-muted-foreground">
-            <div><span className="font-display text-2xl text-foreground">0.9%</span> per transaction</div>
+            <div><span className="font-display text-2xl text-foreground">1.5%</span> per transaction</div>
             <div className="h-6 w-px bg-border" />
-            <div><span className="font-display text-2xl text-foreground">T+0</span> settlement</div>
+            <div><span className="font-display text-2xl text-foreground">T+1</span> settlement</div>
             <div className="h-6 w-px bg-border" />
             <div><span className="font-display text-2xl text-foreground">5 min</span> setup</div>
           </div>
@@ -149,7 +148,7 @@ const slides: Slide[] = [
           whileHover={{ scale: 1.06 }}
         />
         <div>
-          <h2 className="font-display text-5xl font-bold md:text-6xl">
+          <h2 className="font-display text-5xl font-black md:text-6xl">
             Hi, I'm <span className="text-gradient-lime">Kuvar.</span>
           </h2>
           <p className="mt-6 text-xl text-muted-foreground">
@@ -160,8 +159,8 @@ const slides: Slide[] = [
           <div className="mt-8 grid grid-cols-3 gap-4">
             {[
               { k: "You sell", v: "Anywhere" },
-              { k: "They pay", v: "Anyhow" },
-              { k: "You get", v: "Local cash" },
+              { k: "They pay", v: "They pay crypto." },
+              { k: "You get", v: "Local currency." },
             ].map((b) => (
               <motion.div {...cardHover} key={b.k} className="cursor-pointer rounded-2xl border border-border bg-card p-4 transition-colors hover:border-lime/60">
                 <div className="text-xs uppercase tracking-widest text-muted-foreground">{b.k}</div>
@@ -180,7 +179,7 @@ const slides: Slide[] = [
     render: () => (
       <div className="grid h-full gap-8 lg:grid-cols-[1fr_1fr]">
         <div>
-          <h2 className="font-display text-5xl font-bold leading-[1.05] md:text-6xl">
+          <h2 className="font-display text-5xl font-black leading-[1.05] md:text-6xl">
             THE <span className="text-gradient-lime">PROBLEM</span>
           </h2>
           <p className="mt-4 text-base text-muted-foreground">
@@ -241,7 +240,7 @@ const slides: Slide[] = [
               handle="Mr_Jay_Pee"
               time="2 May"
               href="https://x.com/Mr_Jay_Pee/status/2050678019065295019?s=20"
-              body="If you want to see scammers, visit Bybit P2P. That's home of Scam Vendors. Even the ones with 96% completion and 2000+ trades — doesn't still work. Even 100% record aren't legit too."
+              body="If you want to see scammers, visit Bybit P2P. That's home of Scam Vendors. Even the ones with 96% completion and 2000+ trades, doesn't still work. Even 100% record aren't legit too."
             />
             <ComplaintCard
               rotate={2}
@@ -261,56 +260,12 @@ const slides: Slide[] = [
       </div>
     ),
   },
-
-  // 4. The solution
-  {
-    eyebrow: "The solution",
-    render: () => (
-      <div className="grid h-full items-center gap-12 lg:grid-cols-[1.1fr_1fr]">
-        <div>
-          <h2 className="font-display text-5xl font-bold md:text-6xl">
-            One checkout. <span className="text-gradient-lime">Every customer.</span>
-          </h2>
-          <p className="mt-6 text-lg text-muted-foreground">
-            Plug KuvarPay into your POS, website or invoice link. Your customer
-            pays in any crypto, any chain — you receive local currency in your
-            bank, instantly.
-          </p>
-          <div className="mt-8 space-y-3">
-            {[
-              "Accept payments from tourists & global customers",
-              "Settle to your bank account in NGN, KES, GHS, RWF, ZAR",
-              "No chargebacks. No frozen funds. No P2P scams.",
-              "Lower fees than Visa, Mastercard or POS terminals",
-            ].map((t) => (
-              <motion.div
-                key={t}
-                whileHover={{ x: 6 }}
-                className="flex cursor-pointer items-center gap-3 rounded-lg p-2 text-foreground transition-colors hover:bg-lime/5"
-              >
-                <CheckCircle2 className="h-5 w-5 shrink-0 text-lime" />
-                <span>{t}</span>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-        <div className="relative">
-          <img
-            src={dashboard}
-            alt="KuvarPay dashboard"
-            className="w-full object-contain"
-          />
-        </div>
-      </div>
-    ),
-  },
-
   // 5. How it works
   {
     eyebrow: "How it works",
     render: () => (
       <div className="flex h-full flex-col">
-        <h2 className="font-display text-5xl font-bold md:text-6xl">
+        <h2 className="font-display text-5xl font-black md:text-6xl">
           Live in <span className="text-gradient-lime">5 minutes.</span>
         </h2>
         <div className="mt-8 grid flex-1 gap-8 lg:grid-cols-[1.1fr_1fr]">
@@ -357,13 +312,13 @@ const slides: Slide[] = [
     eyebrow: "Why KuvarPay",
     render: () => (
       <div className="flex h-full flex-col">
-        <h2 className="font-display text-5xl font-bold md:text-6xl">
+        <h2 className="font-display text-5xl font-black md:text-6xl">
           More sales. <span className="text-gradient-lime">Less friction.</span>
         </h2>
         <div className="mt-10 grid flex-1 gap-4 md:grid-cols-3">
           {[
-            { i: Coins, t: "Lower fees", d: "Just 0.9% — vs 3–4% on POS / cards." },
-            { i: Clock, t: "Instant settlement", d: "T+0 to your bank. No more T+3 waits." },
+            { i: Coins, t: "Lower fees", d: "Just 1.5% from customers, zero charges on the business." },
+            { i: Clock, t: "Instant settlement", d: "T+1 to your bank, no more T+3 waits." },
             { i: Globe2, t: "Global customers", d: "Tourists & remote buyers can finally pay." },
             { i: ShieldCheck, t: "No chargebacks", d: "Crypto payments are final & verified." },
             { i: BadgeCheck, t: "Compliance built-in", d: "KYC/AML & sanctions screened end-to-end." },
@@ -385,51 +340,23 @@ const slides: Slide[] = [
       </div>
     ),
   },
-
-  // 7. Built for your business (use cases)
-  {
-    eyebrow: "Built for you",
-    render: () => (
-      <div className="flex h-full flex-col">
-        <h2 className="font-display text-5xl font-bold md:text-6xl">
-          Made for <span className="text-gradient-lime">your business.</span>
-        </h2>
-        <p className="mt-4 max-w-2xl text-base text-muted-foreground">
-          Whether you run a business or freelance — KuvarPay gives you the
-          same global rails the biggest merchants use.
-        </p>
-        <div className="mt-10 grid flex-1 gap-4 md:grid-cols-2">
-          {[
-            { i: Store, t: "Businesses", d: "Walk-in, online, in-person — accept crypto from any customer worldwide and settle to your bank in local currency." },
-            { i: Briefcase, t: "Freelancers", d: "Send invoices, share payment links, and get paid by global clients without juggling P2P, FX, or wallets." },
-          ].map(({ i: Icon, t, d }) => (
-            <motion.div {...cardHover} key={t} className="group cursor-pointer rounded-3xl border border-border bg-card p-8 transition-colors hover:border-lime/60">
-              <Icon className="h-10 w-10 text-lime" />
-              <div className="mt-4 font-display text-3xl">{t}</div>
-              <p className="mt-3 text-muted-foreground">{d}</p>
-            </motion.div>
-          ))}
-        </div>
-      </div>
-    ),
-  },
-
   // 8. Tools
   {
     eyebrow: "Your toolkit",
     render: () => (
       <div className="flex h-full flex-col">
-        <h2 className="font-display text-5xl font-bold md:text-6xl">
+        <h2 className="font-display text-5xl font-black md:text-6xl">
           Everything you need <span className="text-gradient-lime">in one place.</span>
         </h2>
         <div className="mt-10 grid flex-1 gap-4 md:grid-cols-3">
           {[
-            { i: CreditCard, t: "Hosted Checkout", d: "Branded payment page in one click." },
-            { i: Wallet, t: "POS App", d: "Tablet & phone friendly for in-person sales." },
-            { i: Repeat, t: "Subscriptions", d: "Memberships & recurring billing." },
-            { i: Boxes, t: "Payment Links", d: "Send a link via WhatsApp, get paid." },
-            { i: Lock, t: "Secure Dashboard", d: "Track every payment & payout." },
-            { i: Zap, t: "WooCommerce Plugin", d: "Drop-in for any online store." },
+            { i: Link2, t: "Payment Link", d: "QR code download." },
+            { i: FileText, t: "Invoicing", d: "" },
+            { i: Repeat, t: "Subscription", d: "" },
+            { i: Code, t: "API Generation", d: "" },
+            { i: Wallet, t: "POS App", d: "" },
+            { i: ShoppingCart, t: "WooCommerce Plugin", d: "" },
+            { i: Lock, t: "Secure Dashboard", d: "" },
           ].map(({ i: Icon, t, d }) => (
             <motion.div
               {...cardHover}
@@ -440,7 +367,7 @@ const slides: Slide[] = [
                 <Icon className="h-5 w-5" />
               </div>
               <div className="mt-4 font-display text-xl">{t}</div>
-              <p className="mt-2 text-sm text-muted-foreground">{d}</p>
+              {d && <p className="mt-2 text-sm text-muted-foreground">{d}</p>}
             </motion.div>
           ))}
         </div>
@@ -454,12 +381,12 @@ const slides: Slide[] = [
     render: () => (
       <div className="grid h-full items-center gap-10 lg:grid-cols-[1fr_1.1fr]">
         <div>
-          <h2 className="font-display text-5xl font-bold md:text-6xl">
+          <h2 className="font-display text-5xl font-black md:text-6xl">
             5 countries. <span className="text-gradient-lime">One rail.</span>
           </h2>
           <p className="mt-6 text-lg text-muted-foreground">
             We're already settling local currency for merchants across the
-            continent's largest crypto markets — your business is next.
+            continent's largest crypto markets, your business is next.
           </p>
           <div className="mt-8 space-y-2">
             {["Nigeria","Ghana","Kenya","Rwanda","South Africa"].map((c) => (
@@ -484,18 +411,18 @@ const slides: Slide[] = [
     eyebrow: "Pricing",
     render: () => (
       <div className="flex h-full flex-col">
-        <h2 className="font-display text-5xl font-bold md:text-6xl">
+        <h2 className="font-display text-5xl font-black md:text-6xl">
           Simple, transparent <span className="text-gradient-lime">pricing.</span>
         </h2>
         <div className="mt-12 grid flex-1 gap-6 md:grid-cols-3">
           {[
-            { t: "Per transaction", v: "0.9%", d: "Flat fee on every successful payment. No hidden charges." },
+            { t: "Per transaction", v: "1.5%", d: "1.5% flat fee on every successful customer's payment. No hidden charge." },
             { t: "Setup", v: "Free", d: "Zero onboarding cost. Get live in under 5 minutes." },
-            { t: "Monthly", v: "$0", d: "No subscription. Pay only when you get paid." },
+            { t: "Monthly", v: "$0", d: "No subscription needed." },
           ].map((b) => (
             <motion.div {...cardHover} key={b.t} className="cursor-pointer rounded-3xl border border-border bg-card p-8 transition-colors hover:border-lime/60">
               <div className="text-xs uppercase tracking-[0.2em] text-muted-foreground">{b.t}</div>
-              <div className="text-gradient-lime mt-3 font-display text-6xl font-bold">{b.v}</div>
+              <div className="text-gradient-lime mt-3 font-display text-6xl font-black">{b.v}</div>
               <p className="mt-4 text-muted-foreground">{b.d}</p>
             </motion.div>
           ))}
@@ -513,14 +440,14 @@ const slides: Slide[] = [
     eyebrow: "Onboarding",
     render: () => (
       <div className="flex h-full flex-col">
-        <h2 className="font-display text-5xl font-bold md:text-6xl">
+        <h2 className="font-display text-5xl font-black md:text-6xl">
           Onboarding in <span className="text-gradient-lime">3 steps.</span>
         </h2>
         <div className="mt-12 grid flex-1 gap-6 md:grid-cols-3">
           {[
-            { n: "01", t: "We meet", d: "15-min call to understand your business & pick the right tools." },
-            { n: "02", t: "We set up", d: "We provision your dashboard, branded checkout, QR codes & POS." },
-            { n: "03", t: "We train", d: "Your team learns to accept payments — no crypto knowledge needed." },
+            { n: "01", t: "Go to our website", d: "Visit kuvarpay.com to get started in minutes." },
+            { n: "02", t: "Onboard your business", d: "We set up your dashboard, branded checkout, QR codes & POS." },
+            { n: "03", t: "Start accepting crypto", d: "Your team accepts payments worldwide, no crypto knowledge needed." },
           ].map((s) => (
             <motion.div {...cardHover} key={s.n} className="cursor-pointer rounded-3xl border border-border bg-card p-8 transition-colors hover:border-lime/60">
               <div className="font-display text-4xl text-lime">{s.n}</div>
@@ -528,10 +455,6 @@ const slides: Slide[] = [
               <p className="mt-3 text-muted-foreground">{s.d}</p>
             </motion.div>
           ))}
-        </div>
-        <div className="mt-8 rounded-2xl border border-lime/30 bg-lime/5 p-6 text-sm text-muted-foreground">
-          <span className="font-display text-foreground">First month free.</span>{" "}
-          Onboard now and pay zero fees on your first 30 days of transactions.
         </div>
       </div>
     ),
@@ -543,7 +466,7 @@ const slides: Slide[] = [
     render: () => (
       <div className="grid h-full items-center gap-12 lg:grid-cols-[1.2fr_1fr]">
         <div>
-          <h2 className="font-display text-6xl font-bold leading-[0.95] md:text-7xl">
+          <h2 className="font-display text-6xl font-black leading-[0.95] md:text-7xl">
             Ready to accept<br />
             <span className="text-gradient-lime">the world?</span>
           </h2>
