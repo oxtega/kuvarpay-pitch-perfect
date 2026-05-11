@@ -5,13 +5,10 @@ import {
   ArrowRight,
   ArrowUpRight,
   BadgeCheck,
-  Boxes,
   Briefcase,
-  CheckCircle2,
   Clock,
   Code,
   Coins,
-  CreditCard,
   FileText,
   Globe2,
   Instagram,
@@ -26,7 +23,6 @@ import {
   Sparkles,
   Store,
   Twitter,
-  Users,
   Wallet,
   XCircle,
   Zap,
@@ -34,7 +30,6 @@ import {
 import { SlideShell } from "@/components/SlideShell";
 import { AfricaMap } from "@/components/AfricaMap";
 import mascot from "@/assets/kuvar-mascot.png";
-import dashboard from "@/assets/dashboard.jpg";
 import devicesImg from "@/assets/howitworks-devices.png";
 import mobileMoneyImg from "@/assets/mobile-money-iphone.png";
 import avatarKhadee from "@/assets/avatar-khadee.png";
