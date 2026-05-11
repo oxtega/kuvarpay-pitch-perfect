@@ -184,7 +184,7 @@ const slides: Slide[] = [
     render: () => (
       <div className="grid h-full gap-8 lg:grid-cols-[1fr_1fr]">
         <div>
-          <h2 className="font-display text-5xl font-bold leading-[1.05] md:text-6xl">
+          <h2 className="font-display text-5xl font-black leading-[1.05] md:text-6xl">
             THE <span className="text-gradient-lime">PROBLEM</span>
           </h2>
           <p className="mt-4 text-base text-muted-foreground">
