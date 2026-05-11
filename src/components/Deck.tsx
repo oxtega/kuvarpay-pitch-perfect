@@ -391,7 +391,7 @@ const slides: Slide[] = [
           </h2>
           <p className="mt-6 text-lg text-muted-foreground">
             We're already settling local currency for merchants across the
-            continent's largest crypto markets — your business is next.
+            continent's largest crypto markets, your business is next.
           </p>
           <div className="mt-8 space-y-2">
             {["Nigeria","Ghana","Kenya","Rwanda","South Africa"].map((c) => (
