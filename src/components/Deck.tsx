@@ -103,7 +103,7 @@ const slides: Slide[] = [
           <span className="inline-flex items-center gap-2 rounded-full border border-lime/40 bg-lime/10 px-3 py-1 text-xs font-medium uppercase tracking-[0.18em] text-lime">
             <Sparkles className="h-3 w-3" /> For Businesses & Freelancers
           </span>
-          <h1 className="mt-6 font-display text-6xl font-bold leading-[0.95] md:text-8xl">
+          <h1 className="mt-6 font-display text-6xl font-black leading-[0.95] md:text-8xl">
             Accept crypto.<br />
             <span className="text-gradient-lime">Get paid in cash.</span>
           </h1>
@@ -113,9 +113,9 @@ const slides: Slide[] = [
             in local currency. No crypto knowledge required.
           </p>
           <div className="mt-10 flex flex-wrap items-center gap-6 text-sm text-muted-foreground">
-            <div><span className="font-display text-2xl text-foreground">0.9%</span> per transaction</div>
+            <div><span className="font-display text-2xl text-foreground">1.5%</span> per transaction</div>
             <div className="h-6 w-px bg-border" />
-            <div><span className="font-display text-2xl text-foreground">T+0</span> settlement</div>
+            <div><span className="font-display text-2xl text-foreground">T+1</span> settlement</div>
             <div className="h-6 w-px bg-border" />
             <div><span className="font-display text-2xl text-foreground">5 min</span> setup</div>
           </div>
