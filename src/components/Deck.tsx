@@ -270,7 +270,7 @@ const slides: Slide[] = [
     eyebrow: "How it works",
     render: () => (
       <div className="flex h-full flex-col">
-        <h2 className="font-display text-5xl font-bold md:text-6xl">
+        <h2 className="font-display text-5xl font-black md:text-6xl">
           Live in <span className="text-gradient-lime">5 minutes.</span>
         </h2>
         <div className="mt-8 grid flex-1 gap-8 lg:grid-cols-[1.1fr_1fr]">
@@ -317,7 +317,7 @@ const slides: Slide[] = [
     eyebrow: "Why KuvarPay",
     render: () => (
       <div className="flex h-full flex-col">
-        <h2 className="font-display text-5xl font-bold md:text-6xl">
+        <h2 className="font-display text-5xl font-black md:text-6xl">
           More sales. <span className="text-gradient-lime">Less friction.</span>
         </h2>
         <div className="mt-10 grid flex-1 gap-4 md:grid-cols-3">
@@ -345,41 +345,12 @@ const slides: Slide[] = [
       </div>
     ),
   },
-
-  // 7. Built for your business (use cases)
-  {
-    eyebrow: "Built for you",
-    render: () => (
-      <div className="flex h-full flex-col">
-        <h2 className="font-display text-5xl font-bold md:text-6xl">
-          Made for <span className="text-gradient-lime">your business.</span>
-        </h2>
-        <p className="mt-4 max-w-2xl text-base text-muted-foreground">
-          Whether you run a business or freelance — KuvarPay gives you the
-          same global rails the biggest merchants use.
-        </p>
-        <div className="mt-10 grid flex-1 gap-4 md:grid-cols-2">
-          {[
-            { i: Store, t: "Businesses", d: "Walk-in, online, in-person — accept crypto from any customer worldwide and settle to your bank in local currency." },
-            { i: Briefcase, t: "Freelancers", d: "Send invoices, share payment links, and get paid by global clients without juggling P2P, FX, or wallets." },
-          ].map(({ i: Icon, t, d }) => (
-            <motion.div {...cardHover} key={t} className="group cursor-pointer rounded-3xl border border-border bg-card p-8 transition-colors hover:border-lime/60">
-              <Icon className="h-10 w-10 text-lime" />
-              <div className="mt-4 font-display text-3xl">{t}</div>
-              <p className="mt-3 text-muted-foreground">{d}</p>
-            </motion.div>
-          ))}
-        </div>
-      </div>
-    ),
-  },
-
   // 8. Tools
   {
     eyebrow: "Your toolkit",
     render: () => (
       <div className="flex h-full flex-col">
-        <h2 className="font-display text-5xl font-bold md:text-6xl">
+        <h2 className="font-display text-5xl font-black md:text-6xl">
           Everything you need <span className="text-gradient-lime">in one place.</span>
         </h2>
         <div className="mt-10 grid flex-1 gap-4 md:grid-cols-3">
@@ -414,7 +385,7 @@ const slides: Slide[] = [
     render: () => (
       <div className="grid h-full items-center gap-10 lg:grid-cols-[1fr_1.1fr]">
         <div>
-          <h2 className="font-display text-5xl font-bold md:text-6xl">
+          <h2 className="font-display text-5xl font-black md:text-6xl">
             5 countries. <span className="text-gradient-lime">One rail.</span>
           </h2>
           <p className="mt-6 text-lg text-muted-foreground">
@@ -444,7 +415,7 @@ const slides: Slide[] = [
     eyebrow: "Pricing",
     render: () => (
       <div className="flex h-full flex-col">
-        <h2 className="font-display text-5xl font-bold md:text-6xl">
+        <h2 className="font-display text-5xl font-black md:text-6xl">
           Simple, transparent <span className="text-gradient-lime">pricing.</span>
         </h2>
         <div className="mt-12 grid flex-1 gap-6 md:grid-cols-3">
@@ -455,7 +426,7 @@ const slides: Slide[] = [
           ].map((b) => (
             <motion.div {...cardHover} key={b.t} className="cursor-pointer rounded-3xl border border-border bg-card p-8 transition-colors hover:border-lime/60">
               <div className="text-xs uppercase tracking-[0.2em] text-muted-foreground">{b.t}</div>
-              <div className="text-gradient-lime mt-3 font-display text-6xl font-bold">{b.v}</div>
+              <div className="text-gradient-lime mt-3 font-display text-6xl font-black">{b.v}</div>
               <p className="mt-4 text-muted-foreground">{b.d}</p>
             </motion.div>
           ))}
@@ -473,7 +444,7 @@ const slides: Slide[] = [
     eyebrow: "Onboarding",
     render: () => (
       <div className="flex h-full flex-col">
-        <h2 className="font-display text-5xl font-bold md:text-6xl">
+        <h2 className="font-display text-5xl font-black md:text-6xl">
           Onboarding in <span className="text-gradient-lime">3 steps.</span>
         </h2>
         <div className="mt-12 grid flex-1 gap-6 md:grid-cols-3">
@@ -503,7 +474,7 @@ const slides: Slide[] = [
     render: () => (
       <div className="grid h-full items-center gap-12 lg:grid-cols-[1.2fr_1fr]">
         <div>
-          <h2 className="font-display text-6xl font-bold leading-[0.95] md:text-7xl">
+          <h2 className="font-display text-6xl font-black leading-[0.95] md:text-7xl">
             Ready to accept<br />
             <span className="text-gradient-lime">the world?</span>
           </h2>
