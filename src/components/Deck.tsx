@@ -153,7 +153,7 @@ const slides: Slide[] = [
           whileHover={{ scale: 1.06 }}
         />
         <div>
-          <h2 className="font-display text-5xl font-bold md:text-6xl">
+          <h2 className="font-display text-5xl font-black md:text-6xl">
             Hi, I'm <span className="text-gradient-lime">Kuvar.</span>
           </h2>
           <p className="mt-6 text-xl text-muted-foreground">
@@ -164,8 +164,8 @@ const slides: Slide[] = [
           <div className="mt-8 grid grid-cols-3 gap-4">
             {[
               { k: "You sell", v: "Anywhere" },
-              { k: "They pay", v: "Anyhow" },
-              { k: "You get", v: "Local cash" },
+              { k: "They pay", v: "They pay crypto." },
+              { k: "You get", v: "Local currency." },
             ].map((b) => (
               <motion.div {...cardHover} key={b.k} className="cursor-pointer rounded-2xl border border-border bg-card p-4 transition-colors hover:border-lime/60">
                 <div className="text-xs uppercase tracking-widest text-muted-foreground">{b.k}</div>
