@@ -43,7 +43,24 @@ function statusFor(name: string) {
 
 type Tip = { name: string; live: boolean; status?: string; data?: Live } | null;
 
-export function AfricaMap() {
+type TractionMarker = {
+  name: string;
+  coords: [number, number];
+  volume: string;
+  prominent?: boolean;
+};
+
+const TRACTION: TractionMarker[] = [
+  { name: "Rwanda",  coords: [29.8739, -1.9403], volume: "$24,350", prominent: true },
+  { name: "Nigeria", coords: [8.6753,   9.0820], volume: "$13,720" },
+  { name: "Kenya",   coords: [37.9062, -0.0236], volume: "$11,480" },
+  { name: "Ghana",   coords: [-1.0232,  7.9465], volume: "$7,630" },
+  { name: "Uganda",  coords: [32.2903,  1.3733], volume: "$4,820" },
+];
+const TRACTION_NAMES = new Set(TRACTION.map((t) => t.name));
+
+export function AfricaMap({ variant = "default" }: { variant?: "default" | "traction" } = {}) {
+  if (variant === "traction") return <TractionAfricaMap />;
   const [hover, setHover] = useState<Tip>(null);
   const [pinned, setPinned] = useState<Tip>(null);
 
@@ -229,6 +246,84 @@ export function AfricaMap() {
         <span className="inline-flex items-center gap-1.5"><span className="h-2 w-2 rounded-sm bg-lime" /> Live</span>
         <span className="inline-flex items-center gap-1.5"><span className="h-2 w-2 rounded-sm bg-muted" /> Watching</span>
       </div>
+    </div>
+  );
+}
+
+function TractionAfricaMap() {
+  return (
+    <div className="relative w-full">
+      <ComposableMap
+        projection="geoMercator"
+        projectionConfig={{ scale: 380, center: [20, 3] }}
+        width={800}
+        height={620}
+        style={{ width: "100%", height: "auto" }}
+      >
+        <Geographies geography={GEO_URL}>
+          {({ geographies }) =>
+            geographies
+              .filter((g) => AFRICA_NUM.has(String(g.id).padStart(3, "0")))
+              .map((geo) => {
+                const name = geo.properties.name as string;
+                const isActive = TRACTION_NAMES.has(name);
+                return (
+                  <Geography
+                    key={geo.rsmKey}
+                    geography={geo}
+                    style={{
+                      default: {
+                        fill: isActive ? "oklch(0.88 0.22 128)" : "oklch(0.42 0.025 170)",
+                        stroke: "oklch(0.97 0.005 170)",
+                        strokeWidth: 0.8,
+                        outline: "none",
+                      },
+                      hover: { outline: "none" },
+                      pressed: { outline: "none" },
+                    }}
+                  />
+                );
+              })
+          }
+        </Geographies>
+
+        {TRACTION.map((t) => (
+          <Marker key={t.name} coordinates={t.coords}>
+            {t.prominent ? (
+              <g transform="translate(0,-26)">
+                <path
+                  d="M0 26 C-8 16 -12 9 -12 2 a12 12 0 1 1 24 0 c0 7 -4 14 -12 24 z"
+                  fill="oklch(0.88 0.22 128)"
+                  stroke="oklch(0.16 0.02 170)"
+                  strokeWidth={1.4}
+                />
+                <circle cx={0} cy={2} r={4} fill="oklch(0.16 0.02 170)" />
+              </g>
+            ) : (
+              <>
+                <circle r={5} fill="oklch(0.16 0.02 170)" />
+                <circle r={2.5} fill="oklch(0.97 0.005 170)" />
+              </>
+            )}
+            <g transform={`translate(0, ${t.prominent ? -42 : -14})`}>
+              <text
+                textAnchor="middle"
+                style={{
+                  fontFamily: "Space Grotesk",
+                  fontSize: t.prominent ? 18 : 13,
+                  fontWeight: 800,
+                  fill: "oklch(0.16 0.02 170)",
+                  stroke: t.prominent ? "oklch(0.88 0.22 128)" : "oklch(0.97 0.005 170)",
+                  strokeWidth: t.prominent ? 5 : 3.5,
+                  paintOrder: "stroke",
+                }}
+              >
+                {t.name} · {t.volume}
+              </text>
+            </g>
+          </Marker>
+        ))}
+      </ComposableMap>
     </div>
   );
 }
