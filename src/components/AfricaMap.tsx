@@ -46,17 +46,8 @@ type Tip = { name: string; live: boolean; status?: string; data?: Live } | null;
 export function AfricaMap() {
   const [hover, setHover] = useState<Tip>(null);
   const [pinned, setPinned] = useState<Tip>(null);
-  const [position, setPosition] = useState<{ coordinates: [number, number]; zoom: number }>({
-    coordinates: [20, 3],
-    zoom: 1,
-  });
 
   const active = pinned ?? hover;
-
-  const zoomIn = () => setPosition((p) => ({ ...p, zoom: Math.min(p.zoom * 1.5, 8) }));
-  const zoomOut = () => setPosition((p) => ({ ...p, zoom: Math.max(p.zoom / 1.5, 1) }));
-  const reset = () => setPosition({ coordinates: [20, 3], zoom: 1 });
-  const focusRwanda = () => setPosition({ coordinates: [29.8739, -1.9403], zoom: 5 });
 
   return (
     <div
@@ -70,15 +61,8 @@ export function AfricaMap() {
         projectionConfig={{ scale: 380, center: [20, 3] }}
         width={800}
         height={720}
-        style={{ width: "100%", height: "auto" }}
+        style={{ width: "100%", height: "auto", pointerEvents: "auto" }}
       >
-        <ZoomableGroup
-          zoom={position.zoom}
-          center={position.coordinates}
-          minZoom={1}
-          maxZoom={8}
-          onMoveEnd={(pos) => setPosition({ coordinates: pos.coordinates as [number, number], zoom: pos.zoom })}
-        >
         <Geographies geography={GEO_URL}>
           {({ geographies }) =>
             geographies
