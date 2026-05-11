@@ -355,12 +355,13 @@ const slides: Slide[] = [
         </h2>
         <div className="mt-10 grid flex-1 gap-4 md:grid-cols-3">
           {[
-            { i: CreditCard, t: "Hosted Checkout", d: "Branded payment page in one click." },
-            { i: Wallet, t: "POS App", d: "Tablet & phone friendly for in-person sales." },
-            { i: Repeat, t: "Subscriptions", d: "Memberships & recurring billing." },
-            { i: Boxes, t: "Payment Links", d: "Send a link via WhatsApp, get paid." },
-            { i: Lock, t: "Secure Dashboard", d: "Track every payment & payout." },
-            { i: Zap, t: "WooCommerce Plugin", d: "Drop-in for any online store." },
+            { i: Link2, t: "Payment Link", d: "QR code download." },
+            { i: FileText, t: "Invoicing", d: "" },
+            { i: Repeat, t: "Subscription", d: "" },
+            { i: Code, t: "API Generation", d: "" },
+            { i: Wallet, t: "POS App", d: "" },
+            { i: ShoppingCart, t: "WooCommerce Plugin", d: "" },
+            { i: Lock, t: "Secure Dashboard", d: "" },
           ].map(({ i: Icon, t, d }) => (
             <motion.div
               {...cardHover}
