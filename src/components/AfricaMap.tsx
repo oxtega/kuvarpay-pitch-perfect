@@ -181,15 +181,7 @@ export function AfricaMap() {
             </Marker>
           );
         })}
-        </ZoomableGroup>
       </ComposableMap>
-
-      <div className="absolute right-3 top-3 flex flex-col gap-1.5 rounded-xl border border-border bg-ink/70 p-1.5 backdrop-blur">
-        <button onClick={zoomIn} className="grid h-8 w-8 place-items-center rounded-lg text-foreground hover:bg-foreground/10" aria-label="Zoom in"><Plus className="h-4 w-4" /></button>
-        <button onClick={zoomOut} className="grid h-8 w-8 place-items-center rounded-lg text-foreground hover:bg-foreground/10" aria-label="Zoom out"><Minus className="h-4 w-4" /></button>
-        <button onClick={focusRwanda} className="grid h-8 w-8 place-items-center rounded-lg text-lime hover:bg-foreground/10" aria-label="Focus Rwanda" title="Focus Rwanda"><Locate className="h-4 w-4" /></button>
-        <button onClick={reset} className="grid h-8 w-8 place-items-center rounded-lg text-muted-foreground hover:bg-foreground/10" aria-label="Reset"><RotateCcw className="h-4 w-4" /></button>
-      </div>
 
       <AnimatePresence>
         {active && (
