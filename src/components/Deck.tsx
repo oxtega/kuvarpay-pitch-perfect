@@ -421,9 +421,9 @@ const slides: Slide[] = [
         </h2>
         <div className="mt-12 grid flex-1 gap-6 md:grid-cols-3">
           {[
-            { t: "Per transaction", v: "0.9%", d: "Flat fee on every successful payment. No hidden charges." },
+            { t: "Per transaction", v: "1.5%", d: "1.5% flat fee on every successful customer's payment. No hidden charge." },
             { t: "Setup", v: "Free", d: "Zero onboarding cost. Get live in under 5 minutes." },
-            { t: "Monthly", v: "$0", d: "No subscription. Pay only when you get paid." },
+            { t: "Monthly", v: "$0", d: "No subscription needed." },
           ].map((b) => (
             <motion.div {...cardHover} key={b.t} className="cursor-pointer rounded-3xl border border-border bg-card p-8 transition-colors hover:border-lime/60">
               <div className="text-xs uppercase tracking-[0.2em] text-muted-foreground">{b.t}</div>
