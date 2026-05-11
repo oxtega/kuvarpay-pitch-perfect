@@ -375,32 +375,91 @@ const slides: Slide[] = [
     ),
   },
 
-  // 9. Live across Africa
+  // Competitive landscape
   {
-    eyebrow: "Live across Africa",
-    render: () => (
-      <div className="grid h-full items-center gap-10 lg:grid-cols-[1fr_1.1fr]">
-        <div>
+    eyebrow: "Competitive landscape",
+    render: () => {
+      const rows = [
+        { f: "Fee",          k: "1.5%",   c: "3-5%",    w: "Variable" },
+        { f: "Settlement",   k: "T+1",    c: "T+3+",    w: "Manual"   },
+        { f: "Fiat Payout",  k: "Yes",    c: "Yes",     w: "No"       },
+        { f: "Africa-Ready", k: "Yes",    c: "Limited", w: "No"       },
+        { f: "Setup",        k: "5 mins", c: "Days",    w: "Complex"  },
+      ];
+      return (
+        <div className="flex h-full flex-col">
           <h2 className="font-display text-5xl font-black md:text-6xl">
-            5 countries. <span className="text-gradient-lime">One rail.</span>
+            Why <span className="text-gradient-lime">KuvarPay?</span>
           </h2>
-          <p className="mt-6 text-lg text-muted-foreground">
-            We're already settling local currency for merchants across the
-            continent's largest crypto markets, your business is next.
+          <p className="mt-4 text-base text-muted-foreground">
+            How we stack up against legacy and crypto-native alternatives.
           </p>
-          <div className="mt-8 space-y-2">
-            {["Nigeria","Ghana","Kenya","Rwanda","South Africa"].map((c) => (
-              <motion.div {...cardHover} key={c} className="flex cursor-pointer items-center justify-between rounded-xl border border-border bg-card px-4 py-3 transition-colors hover:border-lime/60">
-                <span className="font-display text-foreground">{c}</span>
-                <span className="inline-flex items-center gap-2 text-xs font-medium text-lime">
-                  <span className="h-2 w-2 animate-pulse rounded-full bg-lime" /> Live
-                </span>
+          <div className="mt-8 flex-1">
+            <div className="overflow-hidden rounded-3xl border border-border bg-card">
+              <div className="grid grid-cols-4 border-b border-border bg-secondary/40 text-xs uppercase tracking-[0.18em] text-muted-foreground">
+                <div className="px-6 py-4">Feature</div>
+                <div className="px-6 py-4 bg-lime/15 text-lime font-display text-sm tracking-normal normal-case">KuvarPay</div>
+                <div className="px-6 py-4">Card Processors</div>
+                <div className="px-6 py-4">Crypto Wallets</div>
+              </div>
+              {rows.map((r, idx) => (
+                <div
+                  key={r.f}
+                  className={`grid grid-cols-4 ${idx !== rows.length - 1 ? "border-b border-border" : ""}`}
+                >
+                  <div className="px-6 py-5 font-display text-base text-foreground">{r.f}</div>
+                  <div className="px-6 py-5 bg-lime/10 font-display text-lg text-lime border-x border-lime/30">{r.k}</div>
+                  <div className="px-6 py-5 text-muted-foreground">{r.c}</div>
+                  <div className="px-6 py-5 text-muted-foreground">{r.w}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      );
+    },
+  },
+
+  // Traction
+  {
+    eyebrow: "Traction",
+    render: () => (
+      <div className="flex h-full flex-col gap-6">
+        <h2 className="font-display text-5xl font-black md:text-6xl">
+          <span className="text-gradient-lime">Traction</span> on the ground.
+        </h2>
+        <div className="grid flex-1 items-center gap-8 lg:grid-cols-[1fr_1.2fr]">
+          <div className="space-y-2">
+            {[
+              { c: "Rwanda",  v: "$24,350" },
+              { c: "Nigeria", v: "$13,720" },
+              { c: "Kenya",   v: "$11,480" },
+              { c: "Ghana",   v: "$7,630"  },
+              { c: "Uganda",  v: "$4,820"  },
+            ].map((r) => (
+              <motion.div {...cardHover} key={r.c} className="flex cursor-pointer items-center justify-between rounded-xl border border-border bg-card px-4 py-3 transition-colors hover:border-lime/60">
+                <span className="font-display text-foreground">{r.c}</span>
+                <span className="font-display text-lime">{r.v}</span>
               </motion.div>
             ))}
           </div>
+          <div>
+            <AfricaMap variant="traction" />
+          </div>
         </div>
-        <div>
-          <AfricaMap />
+        <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
+          {[
+            { v: "31",    l: "Businesses",   d: "Successfully onboarded." },
+            { v: "48",    l: "Freelancers",  d: "Successfully onboarded." },
+            { v: "100+",  l: "Transactions", d: "Processed since launch." },
+            { v: "$60K+", l: "Volume",       d: "In transaction volume since launch." },
+          ].map((s) => (
+            <motion.div {...cardHover} key={s.l} className="cursor-pointer rounded-2xl border border-border bg-card p-4 transition-colors hover:border-lime/60">
+              <div className="font-display text-3xl font-black text-gradient-lime">{s.v}</div>
+              <div className="mt-1 font-display text-base text-foreground">{s.l}</div>
+              <p className="mt-1 text-xs text-muted-foreground">{s.d}</p>
+            </motion.div>
+          ))}
         </div>
       </div>
     ),
