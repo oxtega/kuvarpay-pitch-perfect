@@ -372,7 +372,7 @@ const slides: Slide[] = [
                 <Icon className="h-5 w-5" />
               </div>
               <div className="mt-4 font-display text-xl">{t}</div>
-              <p className="mt-2 text-sm text-muted-foreground">{d}</p>
+              {d && <p className="mt-2 text-sm text-muted-foreground">{d}</p>}
             </motion.div>
           ))}
         </div>
