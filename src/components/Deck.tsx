@@ -389,7 +389,7 @@ const slides: Slide[] = [
       return (
         <div className="flex h-full flex-col">
           <h2 className="font-display text-5xl font-black md:text-6xl">
-            Why <span className="text-gradient-lime">KuvarPay?</span>
+            Why we <span className="text-gradient-lime">stand out</span>
           </h2>
           <p className="mt-4 text-base text-muted-foreground">
             How we stack up against legacy and crypto-native alternatives.
@@ -436,7 +436,7 @@ const slides: Slide[] = [
               { c: "Kenya",        v: "$11,480", l: "KSh 1,480,920" },
               { c: "South Africa", v: "$8,970",  l: "R 165,945" },
               { c: "Ghana",        v: "$7,630",  l: "GH₵ 114,450" },
-              { c: "Uganda",       v: "$4,820",  l: "USh 18,075,000" },
+              { c: "Uganda",       v: "$4,820",  l: "UGX 18,075,000" },
             ].map((r) => (
               <motion.div {...cardHover} key={r.c} className="flex cursor-pointer items-center justify-between rounded-xl border border-border bg-card px-4 py-3 transition-colors hover:border-lime/60">
                 <span className="font-display text-foreground">{r.c}</span>
