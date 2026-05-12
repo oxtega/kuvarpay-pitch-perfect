@@ -431,11 +431,12 @@ const slides: Slide[] = [
         <div className="grid flex-1 items-center gap-8 lg:grid-cols-[1fr_1.2fr]">
           <div className="space-y-2">
             {[
-              { c: "Rwanda",  v: "$24,350" },
-              { c: "Nigeria", v: "$13,720" },
-              { c: "Kenya",   v: "$11,480" },
-              { c: "Ghana",   v: "$7,630"  },
-              { c: "Uganda",  v: "$4,820"  },
+              { c: "Rwanda",       v: "$24,350" },
+              { c: "Nigeria",      v: "$13,720" },
+              { c: "Kenya",        v: "$11,480" },
+              { c: "South Africa", v: "$8,970"  },
+              { c: "Ghana",        v: "$7,630"  },
+              { c: "Uganda",       v: "$4,820"  },
             ].map((r) => (
               <motion.div {...cardHover} key={r.c} className="flex cursor-pointer items-center justify-between rounded-xl border border-border bg-card px-4 py-3 transition-colors hover:border-lime/60">
                 <span className="font-display text-foreground">{r.c}</span>
@@ -447,12 +448,13 @@ const slides: Slide[] = [
             <AfricaMap variant="traction" />
           </div>
         </div>
-        <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
+        <div className="grid grid-cols-2 gap-3 md:grid-cols-5">
           {[
             { v: "31",    l: "Businesses",   d: "Successfully onboarded." },
             { v: "48",    l: "Freelancers",  d: "Successfully onboarded." },
             { v: "100+",  l: "Transactions", d: "Processed since launch." },
             { v: "$60K+", l: "Volume",       d: "In transaction volume since launch." },
+            { v: "100",   l: "Waitlist",     d: "Signed up for KuvarSend, coming soon." },
           ].map((s) => (
             <motion.div {...cardHover} key={s.l} className="cursor-pointer rounded-2xl border border-border bg-card p-4 transition-colors hover:border-lime/60">
               <div className="font-display text-3xl font-black text-gradient-lime">{s.v}</div>
