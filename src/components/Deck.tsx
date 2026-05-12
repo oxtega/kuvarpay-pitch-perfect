@@ -309,7 +309,7 @@ const slides: Slide[] = [
 
   // 6. Why KuvarPay (benefits)
   {
-    eyebrow: "Why KuvarPay",
+    eyebrow: "Why we stand out",
     render: () => (
       <div className="flex h-full flex-col">
         <h2 className="font-display text-5xl font-black md:text-6xl">
@@ -431,16 +431,19 @@ const slides: Slide[] = [
         <div className="grid flex-1 items-center gap-8 lg:grid-cols-[1fr_1.2fr]">
           <div className="space-y-2">
             {[
-              { c: "Rwanda",       v: "$24,350" },
-              { c: "Nigeria",      v: "$13,720" },
-              { c: "Kenya",        v: "$11,480" },
-              { c: "South Africa", v: "$8,970"  },
-              { c: "Ghana",        v: "$7,630"  },
-              { c: "Uganda",       v: "$4,820"  },
+              { c: "Rwanda",       v: "$24,350", l: "RWF 32,142,000" },
+              { c: "Nigeria",      v: "$13,720", l: "₦22,500,800" },
+              { c: "Kenya",        v: "$11,480", l: "KSh 1,480,920" },
+              { c: "South Africa", v: "$8,970",  l: "R 165,945" },
+              { c: "Ghana",        v: "$7,630",  l: "GH₵ 114,450" },
+              { c: "Uganda",       v: "$4,820",  l: "USh 18,075,000" },
             ].map((r) => (
               <motion.div {...cardHover} key={r.c} className="flex cursor-pointer items-center justify-between rounded-xl border border-border bg-card px-4 py-3 transition-colors hover:border-lime/60">
                 <span className="font-display text-foreground">{r.c}</span>
-                <span className="font-display text-lime">{r.v}</span>
+                <div className="flex flex-col items-end">
+                  <span className="font-display text-lime">{r.v}</span>
+                  <span className="text-xs text-muted-foreground">{r.l}</span>
+                </div>
               </motion.div>
             ))}
           </div>
