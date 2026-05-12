@@ -51,12 +51,14 @@ type TractionMarker = {
 };
 
 const TRACTION: TractionMarker[] = [
-  { name: "Rwanda",  coords: [29.8739, -1.9403], volume: "$24,350", prominent: true },
-  { name: "Nigeria", coords: [8.6753,   9.0820], volume: "$13,720" },
-  { name: "Kenya",   coords: [37.9062, -0.0236], volume: "$11,480" },
-  { name: "Ghana",   coords: [-1.0232,  7.9465], volume: "$7,630" },
-  { name: "Uganda",  coords: [32.2903,  1.3733], volume: "$4,820" },
+  { name: "Rwanda",       coords: [29.8739, -1.9403], volume: "$24,350", prominent: true },
+  { name: "Nigeria",      coords: [8.6753,   9.0820], volume: "$13,720" },
+  { name: "Kenya",        coords: [37.9062, -0.0236], volume: "$11,480" },
+  { name: "South Africa", coords: [22.9375, -30.5595], volume: "$8,970" },
+  { name: "Ghana",        coords: [-1.0232,  7.9465], volume: "$7,630" },
+  { name: "Uganda",       coords: [32.2903,  1.3733], volume: "$4,820" },
 ];
+const TRACTION_BY_NAME = new Map(TRACTION.map((t) => [t.name, t]));
 const TRACTION_NAMES = new Set(TRACTION.map((t) => t.name));
 
 export function AfricaMap({ variant = "default" }: { variant?: "default" | "traction" } = {}) {
