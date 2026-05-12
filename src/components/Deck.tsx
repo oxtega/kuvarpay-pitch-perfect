@@ -389,7 +389,7 @@ const slides: Slide[] = [
       return (
         <div className="flex h-full flex-col">
           <h2 className="font-display text-5xl font-black md:text-6xl">
-            Why we <span className="text-gradient-lime">stand out</span>
+            Why <span className="text-gradient-lime">KuvarPay?</span>
           </h2>
           <p className="mt-4 text-base text-muted-foreground">
             How we stack up against legacy and crypto-native alternatives.
