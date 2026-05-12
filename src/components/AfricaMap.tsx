@@ -51,12 +51,14 @@ type TractionMarker = {
 };
 
 const TRACTION: TractionMarker[] = [
-  { name: "Rwanda",  coords: [29.8739, -1.9403], volume: "$24,350", prominent: true },
-  { name: "Nigeria", coords: [8.6753,   9.0820], volume: "$13,720" },
-  { name: "Kenya",   coords: [37.9062, -0.0236], volume: "$11,480" },
-  { name: "Ghana",   coords: [-1.0232,  7.9465], volume: "$7,630" },
-  { name: "Uganda",  coords: [32.2903,  1.3733], volume: "$4,820" },
+  { name: "Rwanda",       coords: [29.8739, -1.9403], volume: "$24,350", prominent: true },
+  { name: "Nigeria",      coords: [8.6753,   9.0820], volume: "$13,720" },
+  { name: "Kenya",        coords: [37.9062, -0.0236], volume: "$11,480" },
+  { name: "South Africa", coords: [22.9375, -30.5595], volume: "$8,970" },
+  { name: "Ghana",        coords: [-1.0232,  7.9465], volume: "$7,630" },
+  { name: "Uganda",       coords: [32.2903,  1.3733], volume: "$4,820" },
 ];
+const TRACTION_BY_NAME = new Map(TRACTION.map((t) => [t.name, t]));
 const TRACTION_NAMES = new Set(TRACTION.map((t) => t.name));
 
 export function AfricaMap({ variant = "default" }: { variant?: "default" | "traction" } = {}) {
@@ -250,9 +252,18 @@ export function AfricaMap({ variant = "default" }: { variant?: "default" | "trac
   );
 }
 
+type TractionTip = { name: string; volume?: string; live: boolean } | null;
+
 function TractionAfricaMap() {
+  const [tip, setTip] = useState<TractionTip>(null);
+
   return (
-    <div className="relative w-full">
+    <div
+      className="relative w-full"
+      onClick={(e) => {
+        if (e.target === e.currentTarget) setTip(null);
+      }}
+    >
       <ComposableMap
         projection="geoMercator"
         projectionConfig={{ scale: 380, center: [20, 3] }}
@@ -267,18 +278,28 @@ function TractionAfricaMap() {
               .map((geo) => {
                 const name = geo.properties.name as string;
                 const isActive = TRACTION_NAMES.has(name);
+                const data = TRACTION_BY_NAME.get(name);
                 return (
                   <Geography
                     key={geo.rsmKey}
                     geography={geo}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setTip({ name, volume: data?.volume, live: isActive });
+                    }}
                     style={{
                       default: {
                         fill: isActive ? "oklch(0.88 0.22 128)" : "oklch(0.42 0.025 170)",
                         stroke: "oklch(0.97 0.005 170)",
                         strokeWidth: 0.8,
                         outline: "none",
+                        cursor: "pointer",
                       },
-                      hover: { outline: "none" },
+                      hover: {
+                        fill: isActive ? "oklch(0.94 0.18 128)" : "oklch(0.56 0.04 170)",
+                        outline: "none",
+                        cursor: "pointer",
+                      },
                       pressed: { outline: "none" },
                     }}
                   />
@@ -288,7 +309,15 @@ function TractionAfricaMap() {
         </Geographies>
 
         {TRACTION.map((t) => (
-          <Marker key={t.name} coordinates={t.coords}>
+          <Marker
+            key={t.name}
+            coordinates={t.coords}
+            onClick={(e: React.MouseEvent) => {
+              e.stopPropagation();
+              setTip({ name: t.name, volume: t.volume, live: true });
+            }}
+            style={{ default: { cursor: "pointer" }, hover: { cursor: "pointer" }, pressed: {} }}
+          >
             {t.prominent ? (
               <g transform="translate(0,-26)">
                 <path
@@ -305,25 +334,40 @@ function TractionAfricaMap() {
                 <circle r={2.5} fill="oklch(0.97 0.005 170)" />
               </>
             )}
-            <g transform={`translate(0, ${t.prominent ? -42 : -14})`}>
-              <text
-                textAnchor="middle"
-                style={{
-                  fontFamily: "Space Grotesk",
-                  fontSize: t.prominent ? 18 : 13,
-                  fontWeight: 800,
-                  fill: "oklch(0.16 0.02 170)",
-                  stroke: t.prominent ? "oklch(0.88 0.22 128)" : "oklch(0.97 0.005 170)",
-                  strokeWidth: t.prominent ? 5 : 3.5,
-                  paintOrder: "stroke",
-                }}
-              >
-                {t.name} · {t.volume}
-              </text>
-            </g>
           </Marker>
         ))}
       </ComposableMap>
+
+      <AnimatePresence>
+        {tip && (
+          <motion.div
+            key={tip.name}
+            initial={{ opacity: 0, y: 4 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0 }}
+            className="pointer-events-none absolute left-4 top-4 max-w-[240px] rounded-xl border border-border bg-ink/90 px-4 py-3 text-sm text-foreground backdrop-blur-xl shadow-2xl"
+          >
+            <div className="font-display text-base">{tip.name}</div>
+            {tip.live && tip.volume ? (
+              <div className="mt-2 space-y-1.5">
+                <span className="inline-flex items-center gap-1.5 text-xs text-lime">
+                  <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-lime" />
+                  Live
+                </span>
+                <div className="flex items-baseline justify-between gap-3 text-xs">
+                  <span className="text-muted-foreground">Volume</span>
+                  <span className="font-display text-lime">{tip.volume}</span>
+                </div>
+              </div>
+            ) : (
+              <span className="mt-1 inline-flex items-center gap-1.5 text-xs text-muted-foreground">
+                <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-muted-foreground" />
+                Coming Soon
+              </span>
+            )}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
