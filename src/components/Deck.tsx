@@ -6,6 +6,7 @@ import {
   ArrowUpRight,
   BadgeCheck,
   Briefcase,
+  Building2,
   Clock,
   Code,
   Coins,
@@ -15,6 +16,7 @@ import {
   Linkedin,
   Link2,
   Lock,
+  MapPin,
   PlayCircle,
   Repeat,
   Rocket,
@@ -22,7 +24,10 @@ import {
   ShoppingCart,
   Sparkles,
   Store,
+  TrendingUp,
+  Truck,
   Twitter,
+  Users,
   Wallet,
   XCircle,
   Zap,
@@ -134,128 +139,99 @@ const slides: Slide[] = [
     ),
   },
 
-  // 2. Meet Kuvar
+  // 2. Meet KuvarPay
   {
-    eyebrow: "Meet Kuvar",
+    eyebrow: "Meet KuvarPay",
     render: () => (
-      <div className="grid h-full items-center gap-12 lg:grid-cols-2">
-        <motion.img
-          src={mascot}
-          alt="Kuvar"
-          className="mx-auto max-h-[460px] w-auto object-contain"
-          animate={{ rotate: [-2, 2, -2] }}
-          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-          whileHover={{ scale: 1.06 }}
-        />
+      <div className="grid h-full items-center gap-12 lg:grid-cols-[1.1fr_1fr]">
         <div>
           <h2 className="font-display text-5xl font-black md:text-6xl">
-            Hi, I'm <span className="text-gradient-lime">Kuvar.</span>
+            Meet <span className="text-gradient-lime">KuvarPay.</span>
           </h2>
-          <p className="mt-6 text-xl text-muted-foreground">
-            I'm here to help your business accept cryptocurrency payments from
-            anyone, using over 1300 cryptocurrencies. Without any headache. You
-            serve. I settle.
+          <p className="mt-6 max-w-xl text-lg text-muted-foreground">
+            KuvarPay is a regulated crypto payment gateway built for African
+            businesses. We make it possible for any business on the continent
+            to accept cryptocurrency from customers anywhere in the world and
+            receive settlement directly in their local currency, with no
+            crypto knowledge required.
           </p>
-          <div className="mt-8 grid grid-cols-3 gap-4">
+          <div className="mt-10 flex flex-wrap gap-3">
             {[
-              { k: "You sell", v: "Anywhere" },
-              { k: "They pay", v: "They pay crypto." },
-              { k: "You get", v: "Local currency." },
-            ].map((b) => (
-              <motion.div {...cardHover} key={b.k} className="cursor-pointer rounded-2xl border border-border bg-card p-4 transition-colors hover:border-lime/60">
-                <div className="text-xs uppercase tracking-widest text-muted-foreground">{b.k}</div>
-                <div className="mt-1 font-display text-lg text-foreground">{b.v}</div>
+              { i: Globe2, t: "Live in 5 Countries" },
+              { i: ShieldCheck, t: "Settled on Stellar Blockchain" },
+              { i: Coins, t: "1.5% Flat Transaction Fee" },
+            ].map(({ i: Icon, t }) => (
+              <motion.div
+                {...cardHover}
+                key={t}
+                className="inline-flex cursor-pointer items-center gap-2 rounded-full border border-lime/40 bg-lime/10 px-4 py-2 text-sm font-medium text-lime"
+              >
+                <Icon className="h-4 w-4" />
+                {t}
               </motion.div>
             ))}
           </div>
         </div>
+        <motion.img
+          src={mascot}
+          alt="Kuvar mascot"
+          className="mx-auto max-h-[460px] w-auto object-contain"
+          animate={{ y: [0, -12, 0] }}
+          transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+          whileHover={{ scale: 1.05 }}
+        />
       </div>
     ),
   },
 
-  // 3. The Problem
+  // 3. Sound Familiar?
   {
-    eyebrow: "The problem",
+    eyebrow: "Sound familiar?",
     render: () => (
-      <div className="grid h-full gap-8 lg:grid-cols-[1fr_1fr]">
-        <div>
-          <h2 className="font-display text-5xl font-black leading-[1.05] md:text-6xl">
-            THE <span className="text-gradient-lime">PROBLEM</span>
-          </h2>
-          <p className="mt-4 text-base text-muted-foreground">
-            Businesses and freelancers are losing revenue because:
-          </p>
-          <ul className="mt-5 space-y-2.5">
-            {[
-              "Tourists face payment friction (FX, card limits, declined payments)",
-              "High POS/card fees (up to 3–4%)",
-              "Delayed settlements (T+2 / T+3 from banks)",
-              "No access to crypto-paying high-value customers",
-              "No modern, simple crypto checkout for global customers",
-              "Limited payment options at checkout for foreigners",
-              "P2P fiat conversion delays at checkout",
-              "Little to no knowledge about crypto acceptance",
-            ].map((t) => (
-              <motion.li
-                key={t}
-                whileHover={{ x: 6 }}
-                className="flex cursor-pointer items-start gap-2 text-sm text-foreground"
-              >
-                <XCircle className="mt-0.5 h-4 w-4 shrink-0 text-red-500" />
-                <span>{t}</span>
-              </motion.li>
-            ))}
-          </ul>
-          <div className="mt-5 inline-block border-b-4 border-lime pb-1 font-display text-base">
-            👉 Result: Lost sales + poor customer experience
+      <div className="flex h-full flex-col overflow-hidden rounded-3xl border border-border">
+        {/* Top half - problem */}
+        <div className="relative flex-1 overflow-hidden bg-ink p-8 md:p-12">
+          <div
+            className="absolute inset-0 bg-cover bg-center opacity-20"
+            style={{
+              backgroundImage:
+                "url('https://images.unsplash.com/photo-1542296332-2e4473faf563?auto=format&fit=crop&w=1600&q=80')",
+            }}
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-ink/85 via-ink/80 to-ink/95" />
+          <div className="relative z-10 mx-auto flex h-full max-w-3xl flex-col justify-center">
+            <h2 className="font-display text-4xl font-black md:text-5xl">
+              Sound <span className="text-gradient-lime">Familiar?</span>
+            </h2>
+            <p className="mt-6 text-lg leading-relaxed text-foreground/95 md:text-xl">
+              Imagine you land in a new country. You're at the airport,
+              jet-lagged, and you just want to grab a drink or a quick meal
+              before your connecting flight. But the restaurant only accepts
+              payments in their local currency. No exceptions. You walk away
+              empty-handed.
+            </p>
           </div>
         </div>
-        <div className="relative">
-          {/* lime decorative blobs */}
-          <div className="absolute right-0 top-0 -z-0 h-64 w-64 rounded-full bg-lime/30 blur-2xl" />
-          <div className="absolute bottom-10 right-20 -z-0 h-40 w-40 rounded-full bg-lime/20 blur-2xl" />
-          <div className="relative z-10 grid grid-cols-2 gap-3">
-            <ComplaintCard
-              rotate={-2}
-              avatar={avatarKhadee}
-              name="💗💚 khadee"
-              handle="dee_nftarmy"
-              time="29 Mar"
-              href="https://x.com/dee_nftarmy/status/2038187509419504047?s=20"
-              body="Another day to fight with P2P vendors 😂😂 It's always when you want to convert big money. And please don't tell me to use spenda."
-            />
-            <ComplaintCard
-              rotate={3}
-              avatar={avatarSweet}
-              name="sweet_coder"
-              handle="AdegbemboB"
-              time="16 Feb"
-              href="https://x.com/AdegbemboB/status/2023322897993867771?s=20"
-              body="Some of these P2P vendors on these exchanges are actually thieves 😭 I tried to sell my USDT… I was supposed to get 553,000 naira, but this vendor sent me 535,000 thinking I wouldn't notice. He really wanted to scam me."
-            />
-            <ComplaintCard
-              rotate={-3}
-              avatar={avatarJaypee}
-              name="JayPee👑"
-              handle="Mr_Jay_Pee"
-              time="2 May"
-              href="https://x.com/Mr_Jay_Pee/status/2050678019065295019?s=20"
-              body="If you want to see scammers, visit Bybit P2P. That's home of Scam Vendors. Even the ones with 96% completion and 2000+ trades, doesn't still work. Even 100% record aren't legit too."
-            />
-            <ComplaintCard
-              rotate={2}
-              avatar={avatarKenneth}
-              name="Kenn_eth"
-              handle="keenn_eth"
-              time="1 May"
-              href="https://x.com/keenn_eth/status/2050205543906607316?s=20"
-              body="I just got scammed on Bybit p2p. Buyer kept saying 'accept your incoming pending transaction so the money can drop'… reporting you for scam."
-            />
+
+        {/* Divider */}
+        <div className="h-px bg-gradient-to-r from-transparent via-lime to-transparent" />
+
+        {/* Bottom half - solution */}
+        <div className="relative flex-1 bg-lime p-8 text-ink md:p-12">
+          <div className="mx-auto flex h-full max-w-3xl flex-col items-center justify-center text-center">
+            <h3 className="font-display text-3xl font-black md:text-4xl">
+              That's the gap KuvarPay closes.
+            </h3>
+            <p className="mt-4 max-w-2xl text-base leading-relaxed text-ink/85 md:text-lg">
+              KuvarPay helps businesses accept crypto payments from any
+              customer, anywhere in the world — and converts it instantly to
+              local currency in their bank account. No barriers. No lost sales.
+              No complexity.
+            </p>
+            <span className="mt-6 inline-flex items-center gap-2 rounded-full bg-ink px-5 py-2 font-display text-sm text-lime">
+              <Sparkles className="h-4 w-4" /> Accept more. Lose less.
+            </span>
           </div>
-          <p className="mt-4 text-center text-xs text-muted-foreground">
-            Why should your customer go through this when you can let them pay
-            crypto <span className="text-lime">directly at checkout?</span>
-          </p>
         </div>
       </div>
     ),
@@ -307,22 +283,27 @@ const slides: Slide[] = [
     ),
   },
 
-  // 6. Why KuvarPay (benefits)
+  // 5. Who We're Built For
   {
-    eyebrow: "Why we stand out",
+    eyebrow: "Target clients",
     render: () => (
       <div className="flex h-full flex-col">
         <h2 className="font-display text-5xl font-black md:text-6xl">
-          More sales. <span className="text-gradient-lime">Less friction.</span>
+          Who We're <span className="text-gradient-lime">Built For.</span>
         </h2>
-        <div className="mt-10 grid flex-1 gap-4 md:grid-cols-3">
+        <p className="mt-4 max-w-3xl text-base text-muted-foreground">
+          KuvarPay is designed for any business that wants to stop turning
+          customers away and start accepting payments from anywhere in the
+          world.
+        </p>
+        <div className="mt-8 grid flex-1 gap-4 md:grid-cols-3">
           {[
-            { i: Coins, t: "Lower fees", d: "Just 1.5% from customers, zero charges on the business." },
-            { i: Clock, t: "Instant settlement", d: "T+1 to your bank, no more T+3 waits." },
-            { i: Globe2, t: "Global customers", d: "Tourists & remote buyers can finally pay." },
-            { i: ShieldCheck, t: "No chargebacks", d: "Crypto payments are final & verified." },
-            { i: BadgeCheck, t: "Compliance built-in", d: "KYC/AML & sanctions screened end-to-end." },
-            { i: Zap, t: "Zero crypto skill", d: "Your team uses cash. We handle the rest." },
+            { i: ShoppingCart, t: "E-commerce & Online Retailers", d: "Sell to international customers without worrying about payment barriers or currency mismatch." },
+            { i: Briefcase, t: "Freelancers & Remote Workers", d: "Get paid by international clients in crypto and receive your earnings in local currency, instantly." },
+            { i: Store, t: "Restaurants, Hotels & Hospitality", d: "Serve foreign guests and tourists who carry crypto but no local cash — and never lose a sale again." },
+            { i: Truck, t: "Logistics & Supply Chain Companies", d: "Settle cross-border invoices and vendor payments quickly without the friction of traditional forex." },
+            { i: Building2, t: "Financial Platforms & Cooperatives", d: "Embed crypto payment rails into your existing product and expand what your members can do." },
+            { i: Users, t: "Diaspora-Facing Businesses", d: "Receive payments from customers and family abroad without high remittance fees or delays." },
           ].map(({ i: Icon, t, d }) => (
             <motion.div
               {...cardHover}
@@ -332,7 +313,7 @@ const slides: Slide[] = [
               <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-lime/15 text-lime transition-all group-hover:bg-lime group-hover:text-ink">
                 <Icon className="h-5 w-5" />
               </div>
-              <div className="mt-4 font-display text-xl">{t}</div>
+              <div className="mt-4 font-display text-lg">{t}</div>
               <p className="mt-2 text-sm text-muted-foreground">{d}</p>
             </motion.div>
           ))}
@@ -340,15 +321,15 @@ const slides: Slide[] = [
       </div>
     ),
   },
-  // 8. Tools
+  // 6. Product Depth (toolkit + benefits)
   {
-    eyebrow: "Your toolkit",
+    eyebrow: "Product depth",
     render: () => (
       <div className="flex h-full flex-col">
         <h2 className="font-display text-5xl font-black md:text-6xl">
           Everything you need <span className="text-gradient-lime">in one place.</span>
         </h2>
-        <div className="mt-10 grid flex-1 gap-4 md:grid-cols-3">
+        <div className="mt-8 grid gap-4 md:grid-cols-4">
           {[
             { i: Link2, t: "Payment Link", d: "QR code download." },
             { i: FileText, t: "Invoicing", d: "Generate invoices to send to your customers." },
@@ -361,15 +342,95 @@ const slides: Slide[] = [
             <motion.div
               {...cardHover}
               key={t}
+              className="group cursor-pointer rounded-2xl border border-border bg-card p-5 transition-colors hover:border-lime/60"
+            >
+              <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-lime/15 text-lime transition-all group-hover:bg-lime group-hover:text-ink">
+                <Icon className="h-4 w-4" />
+              </div>
+              <div className="mt-3 font-display text-base">{t}</div>
+              {d && <p className="mt-1 text-xs text-muted-foreground">{d}</p>}
+            </motion.div>
+          ))}
+        </div>
+
+        <div className="mt-8 border-t border-border pt-6">
+          <div className="text-xs uppercase tracking-[0.2em] text-lime">More sales. Less friction.</div>
+          <div className="mt-4 grid gap-3 md:grid-cols-3">
+            {[
+              { i: Coins, t: "Lower fees", d: "Just 1.5% from customers, zero charges on the business." },
+              { i: Clock, t: "Instant settlement", d: "T+1 to your bank, no more T+3 waits." },
+              { i: Globe2, t: "Global customers", d: "Tourists & remote buyers can finally pay." },
+              { i: ShieldCheck, t: "No chargebacks", d: "Crypto payments are final & verified." },
+              { i: BadgeCheck, t: "Compliance built-in", d: "KYC/AML & sanctions screened end-to-end." },
+              { i: Zap, t: "Zero crypto skill", d: "Your team uses cash. We handle the rest." },
+            ].map(({ i: Icon, t, d }) => (
+              <motion.div
+                {...cardHover}
+                key={t}
+                className="group flex cursor-pointer items-start gap-3 rounded-xl border border-border bg-card p-4 transition-colors hover:border-lime/60"
+              >
+                <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-lime/15 text-lime">
+                  <Icon className="h-4 w-4" />
+                </div>
+                <div>
+                  <div className="font-display text-sm">{t}</div>
+                  <p className="mt-0.5 text-xs text-muted-foreground">{d}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </div>
+    ),
+  },
+
+  // 7. Market Opportunity
+  {
+    eyebrow: "Market opportunity",
+    render: () => (
+      <div className="relative flex h-full flex-col">
+        <div className="pointer-events-none absolute inset-0 -z-10 opacity-[0.07]">
+          <svg viewBox="0 0 200 100" className="h-full w-full" preserveAspectRatio="none">
+            <path d="M0 90 Q50 60 100 50 T200 10" stroke="currentColor" strokeWidth="0.6" fill="none" className="text-lime" />
+            <path d="M0 95 Q50 75 100 65 T200 30" stroke="currentColor" strokeWidth="0.4" fill="none" className="text-lime" />
+          </svg>
+        </div>
+
+        <h2 className="font-display text-4xl font-black md:text-5xl">
+          You're sitting on an <span className="text-gradient-lime">untapped customer base.</span>
+        </h2>
+        <p className="mt-5 max-w-4xl font-display text-xl md:text-2xl">
+          Millions of people are already holding crypto and ready to spend it.
+          They just need somewhere that accepts it.
+        </p>
+
+        <div className="mt-8 grid flex-1 gap-4 md:grid-cols-3">
+          {[
+            { i: TrendingUp, h: "A $117 Billion Market", d: "Africa processed over $117 billion in crypto transactions between 2022 and 2023, making it the fastest-growing crypto region in the world. That money is already moving — the question is whether your business is positioned to receive any of it." },
+            { i: Globe2, h: "Less Than 5% of Businesses Are Ready", d: "Fewer than 5% of African businesses currently have a compliant, simple way to accept crypto payments. That means the businesses that move now own the market before it gets crowded." },
+            { i: MapPin, h: "Why Rwanda Is the Starting Line", d: "Rwanda's pro-innovation regulations, growing SME base, and high mobile penetration make it the perfect entry point. Early adopters here set the standard for the rest of the continent." },
+          ].map(({ i: Icon, h, d }) => (
+            <motion.div
+              {...cardHover}
+              key={h}
               className="group cursor-pointer rounded-2xl border border-border bg-card p-6 transition-colors hover:border-lime/60"
             >
               <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-lime/15 text-lime transition-all group-hover:bg-lime group-hover:text-ink">
                 <Icon className="h-5 w-5" />
               </div>
-              <div className="mt-4 font-display text-xl">{t}</div>
-              {d && <p className="mt-2 text-sm text-muted-foreground">{d}</p>}
+              <div className="mt-4 font-display text-xl leading-tight">{h}</div>
+              <p className="mt-3 text-sm text-muted-foreground">{d}</p>
             </motion.div>
           ))}
+        </div>
+
+        <div className="mt-6 flex flex-col items-center gap-3 rounded-2xl border border-lime/30 bg-lime/5 px-6 py-5 text-center">
+          <p className="max-w-3xl font-display text-base md:text-lg">
+            Every customer paying in crypto that your business can't accept today is revenue you are leaving behind.
+          </p>
+          <span className="inline-flex items-center gap-2 rounded-full bg-lime px-4 py-1.5 font-display text-sm text-ink">
+            <Sparkles className="h-3.5 w-3.5" /> KuvarPay opens that door.
+          </span>
         </div>
       </div>
     ),
