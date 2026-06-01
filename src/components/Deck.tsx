@@ -283,22 +283,27 @@ const slides: Slide[] = [
     ),
   },
 
-  // 6. Why KuvarPay (benefits)
+  // 5. Who We're Built For
   {
-    eyebrow: "Why we stand out",
+    eyebrow: "Target clients",
     render: () => (
       <div className="flex h-full flex-col">
         <h2 className="font-display text-5xl font-black md:text-6xl">
-          More sales. <span className="text-gradient-lime">Less friction.</span>
+          Who We're <span className="text-gradient-lime">Built For.</span>
         </h2>
-        <div className="mt-10 grid flex-1 gap-4 md:grid-cols-3">
+        <p className="mt-4 max-w-3xl text-base text-muted-foreground">
+          KuvarPay is designed for any business that wants to stop turning
+          customers away and start accepting payments from anywhere in the
+          world.
+        </p>
+        <div className="mt-8 grid flex-1 gap-4 md:grid-cols-3">
           {[
-            { i: Coins, t: "Lower fees", d: "Just 1.5% from customers, zero charges on the business." },
-            { i: Clock, t: "Instant settlement", d: "T+1 to your bank, no more T+3 waits." },
-            { i: Globe2, t: "Global customers", d: "Tourists & remote buyers can finally pay." },
-            { i: ShieldCheck, t: "No chargebacks", d: "Crypto payments are final & verified." },
-            { i: BadgeCheck, t: "Compliance built-in", d: "KYC/AML & sanctions screened end-to-end." },
-            { i: Zap, t: "Zero crypto skill", d: "Your team uses cash. We handle the rest." },
+            { i: ShoppingCart, t: "E-commerce & Online Retailers", d: "Sell to international customers without worrying about payment barriers or currency mismatch." },
+            { i: Briefcase, t: "Freelancers & Remote Workers", d: "Get paid by international clients in crypto and receive your earnings in local currency, instantly." },
+            { i: Store, t: "Restaurants, Hotels & Hospitality", d: "Serve foreign guests and tourists who carry crypto but no local cash — and never lose a sale again." },
+            { i: Truck, t: "Logistics & Supply Chain Companies", d: "Settle cross-border invoices and vendor payments quickly without the friction of traditional forex." },
+            { i: Building2, t: "Financial Platforms & Cooperatives", d: "Embed crypto payment rails into your existing product and expand what your members can do." },
+            { i: Users, t: "Diaspora-Facing Businesses", d: "Receive payments from customers and family abroad without high remittance fees or delays." },
           ].map(({ i: Icon, t, d }) => (
             <motion.div
               {...cardHover}
@@ -308,7 +313,7 @@ const slides: Slide[] = [
               <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-lime/15 text-lime transition-all group-hover:bg-lime group-hover:text-ink">
                 <Icon className="h-5 w-5" />
               </div>
-              <div className="mt-4 font-display text-xl">{t}</div>
+              <div className="mt-4 font-display text-lg">{t}</div>
               <p className="mt-2 text-sm text-muted-foreground">{d}</p>
             </motion.div>
           ))}
