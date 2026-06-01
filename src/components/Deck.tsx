@@ -563,34 +563,8 @@ const slides: Slide[] = [
     ),
   },
 
-  // 10. Pricing
-  {
-    eyebrow: "Pricing",
-    render: () => (
-      <div className="flex h-full flex-col">
-        <h2 className="font-display text-5xl font-black md:text-6xl">
-          Simple, transparent <span className="text-gradient-lime">pricing.</span>
-        </h2>
-        <div className="mt-12 grid flex-1 gap-6 md:grid-cols-3">
-          {[
-            { t: "Per transaction", v: "1.5%", d: "1.5% flat fee on every successful customer's payment. No hidden charge." },
-            { t: "Setup", v: "Free", d: "Zero onboarding cost. Get live in under 5 minutes." },
-            { t: "Monthly", v: "$0", d: "No subscription needed." },
-          ].map((b) => (
-            <motion.div {...cardHover} key={b.t} className="cursor-pointer rounded-3xl border border-border bg-card p-8 transition-colors hover:border-lime/60">
-              <div className="text-xs uppercase tracking-[0.2em] text-muted-foreground">{b.t}</div>
-              <div className="text-gradient-lime mt-3 font-display text-6xl font-black">{b.v}</div>
-              <p className="mt-4 text-muted-foreground">{b.d}</p>
-            </motion.div>
-          ))}
-        </div>
-        <p className="mt-8 text-sm text-muted-foreground">
-          Compare: Visa/Mastercard charge 2.5–4% + delayed settlement. KuvarPay
-          is <span className="text-lime">3x cheaper</span> and pays you the same day.
-        </p>
-      </div>
-    ),
-  },
+
+
 
   // 11. Onboarding
   {
