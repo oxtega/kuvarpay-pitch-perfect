@@ -139,20 +139,51 @@ const slides: Slide[] = [
     ),
   },
 
-  // 2. Meet KuvarPay
+  // 2. Meet Kuvar (mascot intro)
   {
-    eyebrow: "Meet KuvarPay",
+    eyebrow: "Meet Kuvar",
+    render: () => (
+      <div className="flex h-full flex-col items-center justify-center text-center">
+        <h2 className="font-display text-5xl font-black md:text-7xl">
+          Meet <span className="text-gradient-lime">Kuvar.</span>
+        </h2>
+        <motion.img
+          src={mascot}
+          alt="Kuvar mascot"
+          className="my-8 max-h-[460px] w-auto object-contain"
+          initial={{ opacity: 0, scale: 0.85 }}
+          animate={{ opacity: 1, scale: 1, y: [0, -14, 0] }}
+          transition={{
+            opacity: { duration: 0.5 },
+            scale: { duration: 0.5 },
+            y: { duration: 4, repeat: Infinity, ease: "easeInOut" },
+          }}
+          whileHover={{ scale: 1.05, rotate: -2 }}
+        />
+        <p className="max-w-2xl font-display text-2xl font-bold text-foreground md:text-3xl">
+          Hi, I'm Kuvar — your guide to smarter, borderless payments.
+        </p>
+        <p className="mt-4 max-w-xl text-base text-muted-foreground md:text-lg">
+          Wherever business takes you, I'm here to make sure payments never get in the way.
+        </p>
+      </div>
+    ),
+  },
+
+  // 3. Who Are We and What Do We Do?
+  {
+    eyebrow: "Who we are",
     render: () => (
       <div className="grid h-full items-center gap-12 lg:grid-cols-[1.1fr_1fr]">
         <div>
-          <h2 className="font-display text-5xl font-black md:text-6xl">
-            Meet <span className="text-gradient-lime">KuvarPay.</span>
+          <h2 className="font-display text-4xl font-black md:text-5xl">
+            Who Are We and <span className="text-gradient-lime">What Do We Do?</span>
           </h2>
           <p className="mt-6 max-w-xl text-lg text-muted-foreground">
             KuvarPay is a regulated crypto payment gateway built for African
             businesses. We make it possible for any business on the continent
             to accept cryptocurrency from customers anywhere in the world and
-            receive settlement directly in their local currency, with no
+            receive settlement directly in their local currency — with no
             crypto knowledge required.
           </p>
           <div className="mt-10 flex flex-wrap gap-3">
@@ -175,14 +206,15 @@ const slides: Slide[] = [
         <motion.img
           src={mascot}
           alt="Kuvar mascot"
-          className="mx-auto max-h-[460px] w-auto object-contain"
-          animate={{ y: [0, -12, 0] }}
+          className="mx-auto max-h-[360px] w-auto object-contain"
+          animate={{ y: [0, -10, 0] }}
           transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
           whileHover={{ scale: 1.05 }}
         />
       </div>
     ),
   },
+
 
   // 3. Sound Familiar?
   {
