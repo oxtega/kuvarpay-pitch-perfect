@@ -139,20 +139,51 @@ const slides: Slide[] = [
     ),
   },
 
-  // 2. Meet KuvarPay
+  // 2. Meet Kuvar (mascot intro)
   {
-    eyebrow: "Meet KuvarPay",
+    eyebrow: "Meet Kuvar",
+    render: () => (
+      <div className="flex h-full flex-col items-center justify-center text-center">
+        <h2 className="font-display text-5xl font-black md:text-7xl">
+          Meet <span className="text-gradient-lime">Kuvar.</span>
+        </h2>
+        <motion.img
+          src={mascot}
+          alt="Kuvar mascot"
+          className="my-8 max-h-[460px] w-auto object-contain"
+          initial={{ opacity: 0, scale: 0.85 }}
+          animate={{ opacity: 1, scale: 1, y: [0, -14, 0] }}
+          transition={{
+            opacity: { duration: 0.5 },
+            scale: { duration: 0.5 },
+            y: { duration: 4, repeat: Infinity, ease: "easeInOut" },
+          }}
+          whileHover={{ scale: 1.05, rotate: -2 }}
+        />
+        <p className="max-w-2xl font-display text-2xl font-bold text-foreground md:text-3xl">
+          Hi, I'm Kuvar — your guide to smarter, borderless payments.
+        </p>
+        <p className="mt-4 max-w-xl text-base text-muted-foreground md:text-lg">
+          Wherever business takes you, I'm here to make sure payments never get in the way.
+        </p>
+      </div>
+    ),
+  },
+
+  // 3. Who Are We and What Do We Do?
+  {
+    eyebrow: "Who we are",
     render: () => (
       <div className="grid h-full items-center gap-12 lg:grid-cols-[1.1fr_1fr]">
         <div>
-          <h2 className="font-display text-5xl font-black md:text-6xl">
-            Meet <span className="text-gradient-lime">KuvarPay.</span>
+          <h2 className="font-display text-4xl font-black md:text-5xl">
+            Who Are We and <span className="text-gradient-lime">What Do We Do?</span>
           </h2>
           <p className="mt-6 max-w-xl text-lg text-muted-foreground">
             KuvarPay is a regulated crypto payment gateway built for African
             businesses. We make it possible for any business on the continent
             to accept cryptocurrency from customers anywhere in the world and
-            receive settlement directly in their local currency, with no
+            receive settlement directly in their local currency — with no
             crypto knowledge required.
           </p>
           <div className="mt-10 flex flex-wrap gap-3">
@@ -175,14 +206,15 @@ const slides: Slide[] = [
         <motion.img
           src={mascot}
           alt="Kuvar mascot"
-          className="mx-auto max-h-[460px] w-auto object-contain"
-          animate={{ y: [0, -12, 0] }}
+          className="mx-auto max-h-[360px] w-auto object-contain"
+          animate={{ y: [0, -10, 0] }}
           transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
           whileHover={{ scale: 1.05 }}
         />
       </div>
     ),
   },
+
 
   // 3. Sound Familiar?
   {
@@ -531,34 +563,8 @@ const slides: Slide[] = [
     ),
   },
 
-  // 10. Pricing
-  {
-    eyebrow: "Pricing",
-    render: () => (
-      <div className="flex h-full flex-col">
-        <h2 className="font-display text-5xl font-black md:text-6xl">
-          Simple, transparent <span className="text-gradient-lime">pricing.</span>
-        </h2>
-        <div className="mt-12 grid flex-1 gap-6 md:grid-cols-3">
-          {[
-            { t: "Per transaction", v: "1.5%", d: "1.5% flat fee on every successful customer's payment. No hidden charge." },
-            { t: "Setup", v: "Free", d: "Zero onboarding cost. Get live in under 5 minutes." },
-            { t: "Monthly", v: "$0", d: "No subscription needed." },
-          ].map((b) => (
-            <motion.div {...cardHover} key={b.t} className="cursor-pointer rounded-3xl border border-border bg-card p-8 transition-colors hover:border-lime/60">
-              <div className="text-xs uppercase tracking-[0.2em] text-muted-foreground">{b.t}</div>
-              <div className="text-gradient-lime mt-3 font-display text-6xl font-black">{b.v}</div>
-              <p className="mt-4 text-muted-foreground">{b.d}</p>
-            </motion.div>
-          ))}
-        </div>
-        <p className="mt-8 text-sm text-muted-foreground">
-          Compare: Visa/Mastercard charge 2.5–4% + delayed settlement. KuvarPay
-          is <span className="text-lime">3x cheaper</span> and pays you the same day.
-        </p>
-      </div>
-    ),
-  },
+
+
 
   // 11. Onboarding
   {
