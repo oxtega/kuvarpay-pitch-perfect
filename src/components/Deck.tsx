@@ -184,89 +184,54 @@ const slides: Slide[] = [
     ),
   },
 
-  // 3. The Problem
+  // 3. Sound Familiar?
   {
-    eyebrow: "The problem",
+    eyebrow: "Sound familiar?",
     render: () => (
-      <div className="grid h-full gap-8 lg:grid-cols-[1fr_1fr]">
-        <div>
-          <h2 className="font-display text-5xl font-black leading-[1.05] md:text-6xl">
-            THE <span className="text-gradient-lime">PROBLEM</span>
-          </h2>
-          <p className="mt-4 text-base text-muted-foreground">
-            Businesses and freelancers are losing revenue because:
-          </p>
-          <ul className="mt-5 space-y-2.5">
-            {[
-              "Tourists face payment friction (FX, card limits, declined payments)",
-              "High POS/card fees (up to 3–4%)",
-              "Delayed settlements (T+2 / T+3 from banks)",
-              "No access to crypto-paying high-value customers",
-              "No modern, simple crypto checkout for global customers",
-              "Limited payment options at checkout for foreigners",
-              "P2P fiat conversion delays at checkout",
-              "Little to no knowledge about crypto acceptance",
-            ].map((t) => (
-              <motion.li
-                key={t}
-                whileHover={{ x: 6 }}
-                className="flex cursor-pointer items-start gap-2 text-sm text-foreground"
-              >
-                <XCircle className="mt-0.5 h-4 w-4 shrink-0 text-red-500" />
-                <span>{t}</span>
-              </motion.li>
-            ))}
-          </ul>
-          <div className="mt-5 inline-block border-b-4 border-lime pb-1 font-display text-base">
-            👉 Result: Lost sales + poor customer experience
+      <div className="flex h-full flex-col overflow-hidden rounded-3xl border border-border">
+        {/* Top half - problem */}
+        <div className="relative flex-1 overflow-hidden bg-ink p-8 md:p-12">
+          <div
+            className="absolute inset-0 bg-cover bg-center opacity-20"
+            style={{
+              backgroundImage:
+                "url('https://images.unsplash.com/photo-1542296332-2e4473faf563?auto=format&fit=crop&w=1600&q=80')",
+            }}
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-ink/85 via-ink/80 to-ink/95" />
+          <div className="relative z-10 mx-auto flex h-full max-w-3xl flex-col justify-center">
+            <h2 className="font-display text-4xl font-black md:text-5xl">
+              Sound <span className="text-gradient-lime">Familiar?</span>
+            </h2>
+            <p className="mt-6 text-lg leading-relaxed text-foreground/95 md:text-xl">
+              Imagine you land in a new country. You're at the airport,
+              jet-lagged, and you just want to grab a drink or a quick meal
+              before your connecting flight. But the restaurant only accepts
+              payments in their local currency. No exceptions. You walk away
+              empty-handed.
+            </p>
           </div>
         </div>
-        <div className="relative">
-          {/* lime decorative blobs */}
-          <div className="absolute right-0 top-0 -z-0 h-64 w-64 rounded-full bg-lime/30 blur-2xl" />
-          <div className="absolute bottom-10 right-20 -z-0 h-40 w-40 rounded-full bg-lime/20 blur-2xl" />
-          <div className="relative z-10 grid grid-cols-2 gap-3">
-            <ComplaintCard
-              rotate={-2}
-              avatar={avatarKhadee}
-              name="💗💚 khadee"
-              handle="dee_nftarmy"
-              time="29 Mar"
-              href="https://x.com/dee_nftarmy/status/2038187509419504047?s=20"
-              body="Another day to fight with P2P vendors 😂😂 It's always when you want to convert big money. And please don't tell me to use spenda."
-            />
-            <ComplaintCard
-              rotate={3}
-              avatar={avatarSweet}
-              name="sweet_coder"
-              handle="AdegbemboB"
-              time="16 Feb"
-              href="https://x.com/AdegbemboB/status/2023322897993867771?s=20"
-              body="Some of these P2P vendors on these exchanges are actually thieves 😭 I tried to sell my USDT… I was supposed to get 553,000 naira, but this vendor sent me 535,000 thinking I wouldn't notice. He really wanted to scam me."
-            />
-            <ComplaintCard
-              rotate={-3}
-              avatar={avatarJaypee}
-              name="JayPee👑"
-              handle="Mr_Jay_Pee"
-              time="2 May"
-              href="https://x.com/Mr_Jay_Pee/status/2050678019065295019?s=20"
-              body="If you want to see scammers, visit Bybit P2P. That's home of Scam Vendors. Even the ones with 96% completion and 2000+ trades, doesn't still work. Even 100% record aren't legit too."
-            />
-            <ComplaintCard
-              rotate={2}
-              avatar={avatarKenneth}
-              name="Kenn_eth"
-              handle="keenn_eth"
-              time="1 May"
-              href="https://x.com/keenn_eth/status/2050205543906607316?s=20"
-              body="I just got scammed on Bybit p2p. Buyer kept saying 'accept your incoming pending transaction so the money can drop'… reporting you for scam."
-            />
+
+        {/* Divider */}
+        <div className="h-px bg-gradient-to-r from-transparent via-lime to-transparent" />
+
+        {/* Bottom half - solution */}
+        <div className="relative flex-1 bg-lime p-8 text-ink md:p-12">
+          <div className="mx-auto flex h-full max-w-3xl flex-col items-center justify-center text-center">
+            <h3 className="font-display text-3xl font-black md:text-4xl">
+              That's the gap KuvarPay closes.
+            </h3>
+            <p className="mt-4 max-w-2xl text-base leading-relaxed text-ink/85 md:text-lg">
+              KuvarPay helps businesses accept crypto payments from any
+              customer, anywhere in the world — and converts it instantly to
+              local currency in their bank account. No barriers. No lost sales.
+              No complexity.
+            </p>
+            <span className="mt-6 inline-flex items-center gap-2 rounded-full bg-ink px-5 py-2 font-display text-sm text-lime">
+              <Sparkles className="h-4 w-4" /> Accept more. Lose less.
+            </span>
           </div>
-          <p className="mt-4 text-center text-xs text-muted-foreground">
-            Why should your customer go through this when you can let them pay
-            crypto <span className="text-lime">directly at checkout?</span>
-          </p>
         </div>
       </div>
     ),
