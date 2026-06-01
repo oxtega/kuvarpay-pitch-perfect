@@ -321,15 +321,15 @@ const slides: Slide[] = [
       </div>
     ),
   },
-  // 8. Tools
+  // 6. Product Depth (toolkit + benefits)
   {
-    eyebrow: "Your toolkit",
+    eyebrow: "Product depth",
     render: () => (
       <div className="flex h-full flex-col">
         <h2 className="font-display text-5xl font-black md:text-6xl">
           Everything you need <span className="text-gradient-lime">in one place.</span>
         </h2>
-        <div className="mt-10 grid flex-1 gap-4 md:grid-cols-3">
+        <div className="mt-8 grid gap-4 md:grid-cols-4">
           {[
             { i: Link2, t: "Payment Link", d: "QR code download." },
             { i: FileText, t: "Invoicing", d: "Generate invoices to send to your customers." },
@@ -342,15 +342,95 @@ const slides: Slide[] = [
             <motion.div
               {...cardHover}
               key={t}
+              className="group cursor-pointer rounded-2xl border border-border bg-card p-5 transition-colors hover:border-lime/60"
+            >
+              <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-lime/15 text-lime transition-all group-hover:bg-lime group-hover:text-ink">
+                <Icon className="h-4 w-4" />
+              </div>
+              <div className="mt-3 font-display text-base">{t}</div>
+              {d && <p className="mt-1 text-xs text-muted-foreground">{d}</p>}
+            </motion.div>
+          ))}
+        </div>
+
+        <div className="mt-8 border-t border-border pt-6">
+          <div className="text-xs uppercase tracking-[0.2em] text-lime">More sales. Less friction.</div>
+          <div className="mt-4 grid gap-3 md:grid-cols-3">
+            {[
+              { i: Coins, t: "Lower fees", d: "Just 1.5% from customers, zero charges on the business." },
+              { i: Clock, t: "Instant settlement", d: "T+1 to your bank, no more T+3 waits." },
+              { i: Globe2, t: "Global customers", d: "Tourists & remote buyers can finally pay." },
+              { i: ShieldCheck, t: "No chargebacks", d: "Crypto payments are final & verified." },
+              { i: BadgeCheck, t: "Compliance built-in", d: "KYC/AML & sanctions screened end-to-end." },
+              { i: Zap, t: "Zero crypto skill", d: "Your team uses cash. We handle the rest." },
+            ].map(({ i: Icon, t, d }) => (
+              <motion.div
+                {...cardHover}
+                key={t}
+                className="group flex cursor-pointer items-start gap-3 rounded-xl border border-border bg-card p-4 transition-colors hover:border-lime/60"
+              >
+                <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-lime/15 text-lime">
+                  <Icon className="h-4 w-4" />
+                </div>
+                <div>
+                  <div className="font-display text-sm">{t}</div>
+                  <p className="mt-0.5 text-xs text-muted-foreground">{d}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </div>
+    ),
+  },
+
+  // 7. Market Opportunity
+  {
+    eyebrow: "Market opportunity",
+    render: () => (
+      <div className="relative flex h-full flex-col">
+        <div className="pointer-events-none absolute inset-0 -z-10 opacity-[0.07]">
+          <svg viewBox="0 0 200 100" className="h-full w-full" preserveAspectRatio="none">
+            <path d="M0 90 Q50 60 100 50 T200 10" stroke="currentColor" strokeWidth="0.6" fill="none" className="text-lime" />
+            <path d="M0 95 Q50 75 100 65 T200 30" stroke="currentColor" strokeWidth="0.4" fill="none" className="text-lime" />
+          </svg>
+        </div>
+
+        <h2 className="font-display text-4xl font-black md:text-5xl">
+          You're sitting on an <span className="text-gradient-lime">untapped customer base.</span>
+        </h2>
+        <p className="mt-5 max-w-4xl font-display text-xl md:text-2xl">
+          Millions of people are already holding crypto and ready to spend it.
+          They just need somewhere that accepts it.
+        </p>
+
+        <div className="mt-8 grid flex-1 gap-4 md:grid-cols-3">
+          {[
+            { i: TrendingUp, h: "A $117 Billion Market", d: "Africa processed over $117 billion in crypto transactions between 2022 and 2023, making it the fastest-growing crypto region in the world. That money is already moving — the question is whether your business is positioned to receive any of it." },
+            { i: Globe2, h: "Less Than 5% of Businesses Are Ready", d: "Fewer than 5% of African businesses currently have a compliant, simple way to accept crypto payments. That means the businesses that move now own the market before it gets crowded." },
+            { i: MapPin, h: "Why Rwanda Is the Starting Line", d: "Rwanda's pro-innovation regulations, growing SME base, and high mobile penetration make it the perfect entry point. Early adopters here set the standard for the rest of the continent." },
+          ].map(({ i: Icon, h, d }) => (
+            <motion.div
+              {...cardHover}
+              key={h}
               className="group cursor-pointer rounded-2xl border border-border bg-card p-6 transition-colors hover:border-lime/60"
             >
               <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-lime/15 text-lime transition-all group-hover:bg-lime group-hover:text-ink">
                 <Icon className="h-5 w-5" />
               </div>
-              <div className="mt-4 font-display text-xl">{t}</div>
-              {d && <p className="mt-2 text-sm text-muted-foreground">{d}</p>}
+              <div className="mt-4 font-display text-xl leading-tight">{h}</div>
+              <p className="mt-3 text-sm text-muted-foreground">{d}</p>
             </motion.div>
           ))}
+        </div>
+
+        <div className="mt-6 flex flex-col items-center gap-3 rounded-2xl border border-lime/30 bg-lime/5 px-6 py-5 text-center">
+          <p className="max-w-3xl font-display text-base md:text-lg">
+            Every customer paying in crypto that your business can't accept today is revenue you are leaving behind.
+          </p>
+          <span className="inline-flex items-center gap-2 rounded-full bg-lime px-4 py-1.5 font-display text-sm text-ink">
+            <Sparkles className="h-3.5 w-3.5" /> KuvarPay opens that door.
+          </span>
         </div>
       </div>
     ),
