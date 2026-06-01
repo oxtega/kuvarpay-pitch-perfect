@@ -352,34 +352,6 @@ const slides: Slide[] = [
             </motion.div>
           ))}
         </div>
-
-        <div className="mt-8 border-t border-border pt-6">
-          <div className="text-xs uppercase tracking-[0.2em] text-lime">More sales. Less friction.</div>
-          <div className="mt-4 grid gap-3 md:grid-cols-3">
-            {[
-              { i: Coins, t: "Lower fees", d: "Just 1.5% from customers, zero charges on the business." },
-              { i: Clock, t: "Instant settlement", d: "T+1 to your bank, no more T+3 waits." },
-              { i: Globe2, t: "Global customers", d: "Tourists & remote buyers can finally pay." },
-              { i: ShieldCheck, t: "No chargebacks", d: "Crypto payments are final & verified." },
-              { i: BadgeCheck, t: "Compliance built-in", d: "KYC/AML & sanctions screened end-to-end." },
-              { i: Zap, t: "Zero crypto skill", d: "Your team uses cash. We handle the rest." },
-            ].map(({ i: Icon, t, d }) => (
-              <motion.div
-                {...cardHover}
-                key={t}
-                className="group flex cursor-pointer items-start gap-3 rounded-xl border border-border bg-card p-4 transition-colors hover:border-lime/60"
-              >
-                <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-lime/15 text-lime">
-                  <Icon className="h-4 w-4" />
-                </div>
-                <div>
-                  <div className="font-display text-sm">{t}</div>
-                  <p className="mt-0.5 text-xs text-muted-foreground">{d}</p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
       </div>
     ),
   },
