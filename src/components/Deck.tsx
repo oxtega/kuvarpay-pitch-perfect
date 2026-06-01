@@ -139,41 +139,47 @@ const slides: Slide[] = [
     ),
   },
 
-  // 2. Meet Kuvar
+  // 2. Meet KuvarPay
   {
-    eyebrow: "Meet Kuvar",
+    eyebrow: "Meet KuvarPay",
     render: () => (
-      <div className="grid h-full items-center gap-12 lg:grid-cols-2">
-        <motion.img
-          src={mascot}
-          alt="Kuvar"
-          className="mx-auto max-h-[460px] w-auto object-contain"
-          animate={{ rotate: [-2, 2, -2] }}
-          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-          whileHover={{ scale: 1.06 }}
-        />
+      <div className="grid h-full items-center gap-12 lg:grid-cols-[1.1fr_1fr]">
         <div>
           <h2 className="font-display text-5xl font-black md:text-6xl">
-            Hi, I'm <span className="text-gradient-lime">Kuvar.</span>
+            Meet <span className="text-gradient-lime">KuvarPay.</span>
           </h2>
-          <p className="mt-6 text-xl text-muted-foreground">
-            I'm here to help your business accept cryptocurrency payments from
-            anyone, using over 1300 cryptocurrencies. Without any headache. You
-            serve. I settle.
+          <p className="mt-6 max-w-xl text-lg text-muted-foreground">
+            KuvarPay is a regulated crypto payment gateway built for African
+            businesses. We make it possible for any business on the continent
+            to accept cryptocurrency from customers anywhere in the world and
+            receive settlement directly in their local currency, with no
+            crypto knowledge required.
           </p>
-          <div className="mt-8 grid grid-cols-3 gap-4">
+          <div className="mt-10 flex flex-wrap gap-3">
             {[
-              { k: "You sell", v: "Anywhere" },
-              { k: "They pay", v: "They pay crypto." },
-              { k: "You get", v: "Local currency." },
-            ].map((b) => (
-              <motion.div {...cardHover} key={b.k} className="cursor-pointer rounded-2xl border border-border bg-card p-4 transition-colors hover:border-lime/60">
-                <div className="text-xs uppercase tracking-widest text-muted-foreground">{b.k}</div>
-                <div className="mt-1 font-display text-lg text-foreground">{b.v}</div>
+              { i: Globe2, t: "Live in 5 Countries" },
+              { i: ShieldCheck, t: "Settled on Stellar Blockchain" },
+              { i: Coins, t: "1.5% Flat Transaction Fee" },
+            ].map(({ i: Icon, t }) => (
+              <motion.div
+                {...cardHover}
+                key={t}
+                className="inline-flex cursor-pointer items-center gap-2 rounded-full border border-lime/40 bg-lime/10 px-4 py-2 text-sm font-medium text-lime"
+              >
+                <Icon className="h-4 w-4" />
+                {t}
               </motion.div>
             ))}
           </div>
         </div>
+        <motion.img
+          src={mascot}
+          alt="Kuvar mascot"
+          className="mx-auto max-h-[460px] w-auto object-contain"
+          animate={{ y: [0, -12, 0] }}
+          transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+          whileHover={{ scale: 1.05 }}
+        />
       </div>
     ),
   },
